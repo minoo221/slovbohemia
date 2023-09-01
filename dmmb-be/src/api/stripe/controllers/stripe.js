@@ -12,22 +12,6 @@ module.exports = {
   //     ctx.body = err;
   //   }
   // }
-  async getStrapi(ctx, next) {
-    try {
-      //console.log(ctx)
-      console.log('strapi.services ', strapi.services);
-      //console.log(strapi.api)
-      const data = await strapi
-            .service("api::stripe.stripe")
-            .testService(ctx);
-      console.log(data, "data");
-
-      ctx.body = data;
-    } catch (err) {
-      console.error(err);
-      ctx.badRequest("Post report controller error", { moreDetails: err });
-    }
-  },
 
   async chargePayment(ctx, next) {
     try {
