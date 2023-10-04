@@ -1,0 +1,36 @@
+{
+  "hello": "Ahoj, {name}!",
+  "test": "test",
+  "home": {
+    "homeInfo": "Vyberte si z možností, na aké obdobie chcete získať prístup pre náš exkluzívny obsah",
+    "title": "Vitajte na našej stránke"
+  },
+  "header": {
+    "login": "Prihlásenie",
+    "register": "Registrácia"
+  },
+  "footer": {
+    "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "form": {
+      "fullName": "Celé meno",
+      "tel": "Telefón",
+      "email": "Email",
+      "subject": "Predmet",
+      "text": "Správa",
+      "agree": "Súhlasím so spracovaním osobných údajov",
+      "submit": "Odoslať",
+      "rules": {
+        "required": "Toto pole je povinné",
+        "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
+        "email": "Nesprávny formát emailu"
+      },
+      "responses": {
+        "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
+        "success": "Kontaktný formulár bol úspešne odoslaný"
+      }
+    }
+  }
+}

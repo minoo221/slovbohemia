@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+@import 'variables';
+html,
+body {
+    font-family: $primary-font;
+    header,
+    footer {
+        background: $white;
+    }
+    main {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        color: $secondary-100;
+        font-family: $secondary-font;
+    }
+
+    h1 {
+        font-size: 48px;
+    }
+
+    a {
+        color: $secondary-100;
+        display: inline-block;
+        &:hover,
+        &:focus {
+            color: $primary-100;
+        }
+    }
+    .v-container {
+        max-width: 1640px;
+    }
+    .v-btn--variant-plain {
+        opacity: 1;
+        font-weight: 600;
+        &:hover,
+        &:focus {
+            color: $brown !important;
+        }
+    }
+    table {
+        tbody {
+            text-align: left;
+        }
+    }
+    .v-snackbar__content {
+        color: $white
+    }
+        .v-snackbar__actions {
+            > .v-btn {
+                color: $white;
+            }
+        }
+        .v-btn {
+            &--active {
+                &.v-btn--variant-plain {
+                    .v-btn__content {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+}

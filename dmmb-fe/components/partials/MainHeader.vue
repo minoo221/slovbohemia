@@ -1,0 +1,199 @@
+<template>
+  <header class="header">
+    <div class="header__top" ref="header">
+      <div class="header-menu">
+        <v-container>
+          <v-row class="align-center" justify="space-between">
+            <v-col col="12" md="2" class="py-0">
+              <NuxtLink to="/" class="d-block">
+                <v-img contain src="/images/logo.png" class="img-logo"></v-img>
+              </NuxtLink>
+            </v-col>
+            <v-col cols="12" md="auto" class="d-none d-md-block">
+              <div class="d-flex">
+                <div v-for="(item, index) in menu" :key="index">
+                  <v-btn exact class="mx-0 px-2 mx-lg-2 px-lg-4" color="secondary" link :to="item.to" variant="plain" nuxt>
+                    {{ item.title }}
+                  </v-btn>
+                </div>
+              </div>
+            </v-col>
+            <v-col cols="12" md="2" class="d-none d-md-block">
+              <div class="d-flex align-center">
+                <v-menu v-model="accountMenu" location="bottom center" color="transparent">
+                  <template v-slot:activator="{ props }">
+                    <v-btn icon="mdi-account" v-bind="props" variant="plain" density="compact"> </v-btn>
+                  </template>
+                  <v-list dense>
+                    <v-list-item :active="false" density="compact" to="/registracia">
+                      {{ t("header.login") }}
+                    </v-list-item>
+                    <v-list-item :active="false" density="compact" to="/prihlasenie">
+                      {{ t("header.register") }}
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+                <v-menu v-model="languageMenu" offset-y color="transparent">
+                  <template v-slot:activator="{ props }">
+                    <v-btn class="text-capitalize" v-bind="props" variant="plain">
+                      {{ activeLang.toUpperCase() }}
+                      <v-icon small right>mdi-menu-down</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list dense>
+                    <v-list-item
+                      v-for="(lang, index) in availableLocales"
+                      :key="index"
+                      :active="false"
+                      density="compact"
+                      @click="handleMenuItemClick(lang.code)"
+                      :to="switchLocalePath(lang.code)"
+                    >
+                      {{ lang.code.toUpperCase() }}
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </div>
+            </v-col>
+            <v-col cols="auto" class="d-block d-md-none">
+              <v-btn icon="mdi-menu" density="default" color="primary" @click="drawer = true"></v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
+      </div>
+    </div>
+    <div class="header__bottom">
+      <div class="title-cover align-center justify-center">
+        <h1>{{ title }}</h1>
+      </div>
+    </div>
+
+    <v-navigation-drawer v-model="drawer" temporary location="right" color="secondary">
+      <div class="d-flex justify-end">
+        <v-btn class="ml-auto" variant="text" size="x-large" icon="mdi-close" color="primary" @click="drawer = false"></v-btn>
+      </div>
+      <v-list nav bg-color="transparent" density="compact" color="white">
+        <v-list-item v-for="(item, i) in menu" :key="i" :to="item.to" nuxt nav base-color="white" link color="#fff" exact>
+          <v-list-item-title v-text="item.title"></v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+  </header>
+</template>
+
+<script setup lang="ts">
+import { useLocalePath, useSwitchLocalePath, useLocaleHead, useBrowserLocale } from "#i18n";
+import type { Menu, Slider } from "~/types";
+const { locale, t, locales } = useI18n();
+import { storeToRefs } from "pinia";
+
+import { useIndexStore } from "@/stores/";
+const store = useIndexStore();
+
+const { title } = storeToRefs(store);
+
+const switchLocalePath = useSwitchLocalePath();
+const localePath = useLocalePath();
+
+const availableLocales = computed(() => {
+  return locales.value;
+});
+
+const header = ref<any>(null);
+
+const drawer: Ref<boolean> = ref(false);
+const activeLang: Ref<string> = ref("SK");
+const languageMenu: Ref<boolean> = ref(false);
+const accountMenu: Ref<boolean> = ref(false);
+
+const handleMenuItemClick = (lang: string) => {
+  activeLang.value = lang;
+};
+
+/* const { find } = useStrapi();
+const { data: contact, refresh } = await useAsyncData("contact-information", () =>
+  find<any>("contact-information", { populate: "*" })
+); */
+
+const menu: Menu[] = reactive([
+  { title: "Domov", to: localePath("/") },
+  { title: "Muzeum", to: localePath("muzeum") },
+  { title: "Kontakt", to: localePath("kontakt") },
+  { title: "Obchodné podmienky", to: localePath("obchodne-podmienky") },
+]);
+
+onMounted(() => {
+  console.log(store.title);
+});
+</script>
+
+<style scoped lang="scss">
+.img-logo {
+  max-width: 140px;
+}
+.header {
+  background: $primary-80 url("/images/bg-dmmb.jpg") 0 80px no-repeat;
+  background-size: cover;
+  &__top {
+    /* position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease; */
+    &.isScrolled {
+      transform: translateY(-50px);
+      background: $secondary-100;
+      @media (max-width: 960px) {
+        transform: translateY(0px);
+      }
+    }
+    .header-info {
+      /* background: $secondary-80; */
+      height: 50px;
+    }
+    .header-menu {
+      /* background: $white; */
+
+      .v-btn {
+        color: $secondary-100;
+      }
+      @media (max-width: 1250px) {
+        .v-btn {
+          font-size: 12px;
+        }
+      }
+    }
+    .v-container {
+      height: 100%;
+    }
+    .v-row {
+      height: 100%;
+    }
+  }
+  &__bottom {
+    position: relative;
+    height: 400px;
+    .title-cover {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 12;
+    }
+    h1 {
+      color: $white;
+    }
+  }
+}
+.header__bottom {
+  position: relative;
+}
+.v-carousel {
+  &:deep {
+    .v-window__controls {
+      z-index: 10;
+    }
+  }
+}
+</style>
