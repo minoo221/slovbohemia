@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lamps",
+  "info": {
+    "singularName": "lamp",
+    "pluralName": "lamps",
+    "displayName": "Lampy",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "rotateGallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "body": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "standard"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "lamp_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::lamp-category.lamp-category",
+      "inversedBy": "lampies"
+    }
+  }
+}

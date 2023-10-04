@@ -37,15 +37,6 @@ useHead({
 
 const isVisible: Ref<boolean> = ref(false);
 
-const { findOne, find } = useStrapi();
-
-const prices: any[] = reactive([
-  { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
-  { title: "1 mesiac", desc: "Členstvo platí 1 mesiac od zakúpenia", price: "10" },
-  { title: "Polrok", desc: "Členstvo platí 6 mesiacov od zakúpenia", price: "40" },
-  { title: "Rok", desc: "Členstvo platí 12 mesiacov od zakúpenia", price: "70" },
-]);
-
 const onShow = () => {
   isVisible.value = true;
 };
@@ -59,15 +50,4 @@ onMounted(() => {
   console.log(store.title);
 });
 </script>
-<style scoped lang="scss">
-.main-info {
-  max-width: 680px;
-  margin: 0 auto;
-  margin-bottom: 80px;
-}
-
-.prices {
-  .v-card {
-  }
-}
-</style>
+<style scoped lang="scss"></style>
