@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "lamp_categories",
+  "collectionName": "subcategories",
   "info": {
-    "singularName": "lamp-category",
-    "pluralName": "lamp-categories",
-    "displayName": "Kategórie múzea",
+    "singularName": "subcategory",
+    "pluralName": "subcategories",
+    "displayName": "Subcategory",
     "description": ""
   },
   "options": {
@@ -15,17 +15,17 @@
     "title": {
       "type": "string"
     },
-    "subcategories": {
+    "kategorie_muzeas": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::subcategory.subcategory",
-      "mappedBy": "kategorie_muzeas"
+      "target": "api::lamp-category.lamp-category",
+      "inversedBy": "subcategories"
     },
-    "lampies": {
+    "muzeums": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::lamp.lamp",
-      "mappedBy": "lamp_categories"
+      "inversedBy": "subcategories"
     },
     "slug": {
       "type": "uid",

@@ -17,6 +17,7 @@
     "@strapi/strapi": "4.12.6",
     "better-sqlite3": "8.5.0",
     "mysql": "^2.18.1",
+    "strapi-plugin-navigation": "^2.2.16",
     "stripe": "^13.2.0"
   },
   "author": {

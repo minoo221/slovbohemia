@@ -1,6 +1,6 @@
 <template>
   <section class="main-info text-center">
-    <h3>{{ t("home.homeInfo") }}</h3>
+    <h3>{{ t("museum.title") }}</h3>
   </section>
   <section class="prices">
     <v-container>

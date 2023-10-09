@@ -4,7 +4,7 @@
   "info": {
     "singularName": "lamp",
     "pluralName": "lamps",
-    "displayName": "Lampy",
+    "displayName": "Muzeum",
     "description": ""
   },
   "options": {
@@ -45,11 +45,21 @@
       },
       "customField": "plugin::ckeditor.CKEditor"
     },
-    "lamp_category": {
+    "lamp_categories": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::lamp-category.lamp-category",
       "inversedBy": "lampies"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "subcategories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subcategory.subcategory",
+      "mappedBy": "muzeums"
     }
   }
 }

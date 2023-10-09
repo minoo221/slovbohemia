@@ -1,16 +1,16 @@
 'use strict';
 
 /**
- * lamp-category controller
+ * subcategory controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::lamp-category.lamp-category', ({strapi}) => ({
+module.exports = createCoreController('api::subcategory.subcategory', ({strapi}) => ({
 
 	async findOne(ctx) {
 		const {id} = ctx.params;
-		const result = await strapi.db.query('api::lamp-category.lamp-category').findOne({
+		const result = await strapi.db.query('api::subcategory.subcategory').findOne({
 			where: {slug: id}
 		})
 		const sanitizedResults = await this.sanitizeOutput(result, ctx);

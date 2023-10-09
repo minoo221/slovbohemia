@@ -115,15 +115,31 @@ const { data: contact, refresh } = await useAsyncData("contact-information", () 
   find<any>("contact-information", { populate: "*" })
 ); */
 
+const { find } = useStrapi();
+const { data: lampCategories, refresh } = await useAsyncData("lamp-categories", () => find<Menu>("lamp-categories", {}));
+
 const menu: Menu[] = reactive([
-  { title: "Domov", to: localePath("/") },
-  { title: "Muzeum", to: localePath("muzeum") },
-  { title: "Kontakt", to: localePath("kontakt") },
-  { title: "Obchodné podmienky", to: localePath("obchodne-podmienky") },
+  { title: "Domov", to: localePath("/"), childrens: [] },
+  { title: "Muzeum", to: localePath("muzeum"), childrens: [] },
+  { title: "Kontakt", to: localePath("kontakt"), childrens: [] },
+  { title: "Obchodné podmienky", to: localePath("obchodne-podmienky"), childrens: [] },
 ]);
+
+const getMenu = async () => {
+  try {
+    const { data: lampCategories, refresh } = await useAsyncData("lamp-categories", () => find<Menu>("lamp-categories", {}));
+    console.log("menu", lampCategories.value.data);
+
+    menu[1].childrens.push(lampCategories.value.data);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 onMounted(() => {
   console.log(store.title);
+  console.log(lampCategories);
+  getMenu();
 });
 </script>
 
