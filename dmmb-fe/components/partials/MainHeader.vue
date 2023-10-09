@@ -130,7 +130,7 @@ const getMenu = async () => {
     const { data: lampCategories, refresh } = await useAsyncData("lamp-categories", () => find<Menu>("lamp-categories", {}));
     console.log("menu", lampCategories.value.data);
 
-    menu[1].childrens.push(lampCategories.value.data);
+    menu[1].childrens?.push(lampCategories.value?.data);
   } catch (e) {
     console.log(e);
   }
