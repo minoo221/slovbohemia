@@ -11,10 +11,45 @@
             </v-col>
             <v-col cols="12" md="auto" class="d-none d-md-block">
               <div class="d-flex">
-                <div v-for="(item, index) in menu" :key="index">
-                  <v-btn exact class="mx-0 px-2 mx-lg-2 px-lg-4" color="secondary" link :to="item.to" variant="plain" nuxt>
+                <div v-for="item in menu" :key="item.id">
+                  <v-btn
+                    exact
+                    class="mx-0 px-2 mx-lg-2 px-lg-4"
+                    color="secondary"
+                    link
+                    :to="item.path"
+                    variant="plain"
+                    nuxt
+                    v-if="item.items.length == 0"
+                  >
                     {{ item.title }}
                   </v-btn>
+                  <v-menu v-else>
+                    <template v-slot:activator="{ props }">
+                      <v-btn
+                        exact
+                        class="mx-0 px-2 mx-lg-2 px-lg-4"
+                        color="secondary"
+                        variant="plain"
+                        v-bind="props"
+                        append-icon="mdi-chevron-down"
+                      >
+                        {{ item.title }}
+                      </v-btn>
+                    </template>
+                    <v-list>
+                      <v-list-item
+                        v-for="(submenu, index) in item.items"
+                        :key="index"
+                        :value="index"
+                        link
+                        nuxt
+                        :to="submenu.path"
+                      >
+                        <v-list-item-title>{{ submenu.title }}</v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
                 </div>
               </div>
             </v-col>
@@ -24,12 +59,20 @@
                   <template v-slot:activator="{ props }">
                     <v-btn icon="mdi-account" v-bind="props" variant="plain" density="compact"> </v-btn>
                   </template>
-                  <v-list dense>
+                  <v-list dense v-if="!user">
                     <v-list-item :active="false" density="compact" to="/registracia">
                       {{ t("header.login") }}
                     </v-list-item>
                     <v-list-item :active="false" density="compact" to="/prihlasenie">
                       {{ t("header.register") }}
+                    </v-list-item>
+                  </v-list>
+                  <v-list dense v-else>
+                    <v-list-item :active="false" density="compact" to="/registracia">
+                      {{ t("header.profile") }}
+                    </v-list-item>
+                    <v-list-item :active="false" density="compact" to="/prihlasenie">
+                      {{ t("header.logout") }}
                     </v-list-item>
                   </v-list>
                 </v-menu>
@@ -89,6 +132,7 @@ import { storeToRefs } from "pinia";
 
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
+const user = useStrapiUser();
 
 const { title } = storeToRefs(store);
 
@@ -116,30 +160,22 @@ const { data: contact, refresh } = await useAsyncData("contact-information", () 
 ); */
 
 const { find } = useStrapi();
-const { data: lampCategories, refresh } = await useAsyncData("lamp-categories", () => find<Menu>("lamp-categories", {}));
+const { data: menu, refresh } = await useAsyncData("menu", () =>
+  find<Menu>("navigation/render/1", {
+    type: "TREE",
+  })
+);
 
-const menu: Menu[] = reactive([
+/* const menu: Menu[] = reactive([
   { title: "Domov", to: localePath("/"), childrens: [] },
   { title: "Muzeum", to: localePath("muzeum"), childrens: [] },
   { title: "Kontakt", to: localePath("kontakt"), childrens: [] },
   { title: "Obchodné podmienky", to: localePath("obchodne-podmienky"), childrens: [] },
-]);
-
-const getMenu = async () => {
-  try {
-    const { data: lampCategories, refresh } = await useAsyncData("lamp-categories", () => find<Menu>("lamp-categories", {}));
-    console.log("menu", lampCategories.value.data);
-
-    menu[1].childrens?.push(lampCategories.value?.data);
-  } catch (e) {
-    console.log(e);
-  }
-};
+]); */
 
 onMounted(() => {
   console.log(store.title);
-  console.log(lampCategories);
-  getMenu();
+  console.log(menu);
 });
 </script>
 

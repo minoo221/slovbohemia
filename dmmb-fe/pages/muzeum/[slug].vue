@@ -27,10 +27,13 @@
 
 <script setup lang="ts">
 const { locale, t } = useI18n();
-import type { Gallery } from "~/types";
+import type { Categories } from "~/types";
 const emit = defineEmits(["title"]);
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
+definePageMeta({
+  middleware: "auth",
+});
 useHead({
   script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
 });

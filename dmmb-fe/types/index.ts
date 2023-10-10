@@ -1,8 +1,9 @@
 export interface Menu {
   title: string;
-  to?: any;
-  slug?: any;
-  childrens?: any[]
+  path?: any;
+  id?: number;
+  slug?: string;
+  items?: any[]
 }
 
 export interface Slider {

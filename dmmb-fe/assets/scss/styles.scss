@@ -68,4 +68,16 @@ body {
                 }
             }
         }
+        .input-required {
+            .v-label {
+                padding-right: 10px;
+                &:after {
+                    content: "*";
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    color: $red-80;
+                }
+            }
+        }
 }

@@ -7,7 +7,15 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register ({ strapi }) {
+    strapi.service('plugin::users-permissions.user').fetchAuthenticatedUser = (id) => {
+      return strapi
+        .query('plugin::users-permissions.user')
+        .findOne({ where: { id }, populate: ['role'] })
+    }
+  },
+
+
 
   /**
    * An asynchronous bootstrap function that runs before

@@ -7,25 +7,50 @@
   },
   "header": {
     "login": "Prihlásenie",
-    "register": "Registrácia"
+    "register": "Registrácia",
+    "profile": "Profil",
+    "logout": "Odhlásenie"
   },
   "footer": {
     "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at."
   },
-  "contact": {
-    "title": "Kontakt",
+  "register": {
+    "title": "Registrácia",
     "form": {
-      "fullName": "Celé meno",
+      "username": "Prihlasovacie meno",
       "tel": "Telefón",
       "email": "Email",
-      "subject": "Predmet",
+      "password": "Heslo",
       "text": "Správa",
       "agree": "Súhlasím so spracovaním osobných údajov",
-      "submit": "Odoslať",
+      "registerBtn": "Registrovať",
       "rules": {
         "required": "Toto pole je povinné",
         "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
-        "email": "Nesprávny formát emailu"
+        "email": "Nesprávny formát emailu",
+        "minLength": "Minimálny počet znakov je 6"
+      },
+      "responses": {
+        "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
+        "success": "Kontaktný formulár bol úspešne odoslaný"
+      }
+    }
+  },
+  "login": {
+    "title": "Prihlásenie",
+    "form": {
+      "username": "Prihlasovacie meno",
+      "tel": "Telefón",
+      "email": "Email",
+      "password": "Heslo",
+      "text": "Správa",
+      "agree": "Súhlasím so spracovaním osobných údajov",
+      "loginBtn": "Prihlásiť",
+      "rules": {
+        "required": "Toto pole je povinné",
+        "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
+        "email": "Nesprávny formát emailu",
+        "minLength": "Minimálny počet znakov je 6"
       },
       "responses": {
         "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
