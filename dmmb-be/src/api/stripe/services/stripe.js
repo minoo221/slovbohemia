@@ -23,8 +23,8 @@ module.exports = {
         },
       ],
       mode: 'payment',
-      success_url: `http://localhost:1337/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `http://localhost:1337/cancel.html`,
+      success_url: `http://localhost:3000/platba-uspesna?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `http://localhost:3000/cancel.html`,
       customer: userStripeId//'cus_OVcD82pxA2YkJE'
     });
       
