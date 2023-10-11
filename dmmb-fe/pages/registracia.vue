@@ -91,7 +91,7 @@ const loadingSend: Ref<boolean> = ref(false);
 const user = useStrapiUser();
 
 const { create, find } = useStrapi();
-const { login } = useStrapiAuth();
+const { register } = useStrapiAuth();
 
 const sendForm = async () => {
   const { valid } = await form.value.validate();
@@ -101,9 +101,11 @@ const sendForm = async () => {
   if (valid) {
     loadingSend.value = true;
     try {
-      await login({
-        identifier: formData.username,
+      await register({
+        username: formData.username,
+        email: formData.email,
         password: formData.password,
+        phoneNumber: formData.tel,
       });
       store.showSuccess(t("login.form.responses.success"));
       await form.value.reset();

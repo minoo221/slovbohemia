@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.9",
+    "@mailerlite/mailerlite-nodejs": "^1.2.0",
     "@palmabit/strapi-app-version": "^1.1.0",
     "@strapi/plugin-i18n": "4.12.5",
     "@strapi/plugin-users-permissions": "4.12.5",
