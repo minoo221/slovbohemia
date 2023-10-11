@@ -11,21 +11,24 @@ module.exports = {
   chargePayment: async (ctx) => {
     console.log("SERVICE chargePayment")
 
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1NjI0dKbNiX05g6vsKCPEFwV',
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: `http://localhost:1337/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `http://localhost:1337/cancel.html`,
-    customer: 'cus_OVcD82pxA2YkJE'
-  });
-    
-  console.log(session);
+    let priceId = ctx.request.body.priceId;
+    let userStripeId = ctx.request.body.userStripeId;
+
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+          price: priceId, //'price_1NjI0dKbNiX05g6vsKCPEFwV',
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `http://localhost:1337/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `http://localhost:1337/cancel.html`,
+      customer: userStripeId//'cus_OVcD82pxA2YkJE'
+    });
+      
+    console.log(session);
    return session.url; 
   },
 
@@ -67,5 +70,30 @@ module.exports = {
     
     console.log(session);
     return sessionId;
+  },
+
+  listOfProducts: async(limit) => {
+    const prices = await stripe.prices.list({
+      limit: limit,
+    });
+
+    let res = [];
+
+    for (const price of prices.data) {
+      console.log(price);
+
+      const product = await stripe.products.retrieve(
+        price.product
+      );
+      let item = {
+        name: product.name,
+        priceId: price.id,
+        price: price.unit_amount / 100,
+        currency: price.currency
+      }
+      res.push(item)
+
+    }
+    return res;
   }
 };

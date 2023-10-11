@@ -39,5 +39,20 @@ module.exports = {
       console.error(err);
       ctx.badRequest("Post report controller error", { moreDetails: err });
     }
+  },
+
+  async listOfProducts(ctx, next) {
+    try {
+      console.log("listOfProducts");
+      console.log(ctx.params);
+      const data = await strapi
+            .service("api::stripe.stripe")
+            .listOfProducts(5);
+
+      ctx.body = data;
+    } catch (err) {
+      console.error(err);
+      ctx.badRequest("Post report controller error", { moreDetails: err });
+    }
   }
 };
