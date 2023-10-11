@@ -80,7 +80,6 @@ module.exports = {
     let res = [];
 
     for (const price of prices.data) {
-      console.log(price);
 
       const product = await stripe.products.retrieve(
         price.product
@@ -89,7 +88,8 @@ module.exports = {
         name: product.name,
         priceId: price.id,
         price: price.unit_amount / 100,
-        currency: price.currency
+        currency: price.currency,
+        description: product.description
       }
       res.push(item)
 
