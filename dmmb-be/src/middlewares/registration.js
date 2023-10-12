@@ -17,7 +17,7 @@ module.exports = () => {
       console.log("Registration midd")
       const email = ctx.response.body.user.email;
       const name = ctx.response.body.user.nickname;
-      const createdAt = ctx.response.body.user.createdAt;
+      const newsletter = ctx.response.body.user.newsletter;
 
        stripe.customers.create({
           email: email,
@@ -28,7 +28,7 @@ module.exports = () => {
         strapi.db.query('plugin::users-permissions.user').update({
           where: { email: email },
           data: {
-            stripeUserId: customer.id
+            stripeUserId: customer.id,
           }
         });
 
@@ -46,17 +46,24 @@ module.exports = () => {
           unsubscribed_at:	''
         };
         console.log(ctx.response.body.user);
-        mailerlite.subscribers.createOrUpdate(subscriberData)
-          .then(response => {
-            console.log(response.data);
-          })
-          .catch(error => {
-            if (error.response) console.log(error.response.data);
-            console.log(error.message);
-          });
+
+        if(newsletter == true) {
+        //@ts-ignore
+          mailerlite.subscribers.createOrUpdate(subscriberData)
+            .then(response => {
+              console.log("newsletter", newsletter);
+            })
+            .catch(error => {
+              if (error.response) console.log(error.response.data);
+              console.log(error.message);
+            });
+          }
       })
 
-      .catch(error => console.error(error));
+      .catch(error => {
+        console.error(error)
+        return error
+      });
     }
   };
 }

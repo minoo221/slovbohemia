@@ -38,11 +38,36 @@
                 :rules="[
                   (v) => v?.length >= 6 || t('register.form.rules.minLength'),
                   (value) => !!value || t('register.form.rules.required'),
+                  passwordConfirmationRule,
+                ]"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field
+                v-model="formData.rePassword"
+                :label="t('register.form.rePassword')"
+                variant="solo"
+                class="input-required"
+                required
+                type="password"
+                :rules="[
+                  (v) => v?.length >= 6 || t('register.form.rules.minLength'),
+                  (value) => !!value || t('register.form.rules.required'),
+                  passwordConfirmationRule,
                 ]"
               ></v-text-field>
             </v-col>
             <v-col cols="12" md="6">
               <v-text-field v-model="formData.tel" :label="t('register.form.tel')" variant="solo"></v-text-field>
+            </v-col>
+            <v-col cols="12" class="pb-0">
+              <v-checkbox
+                v-model="formData.newsletter"
+                :label="t('register.form.newsletter')"
+                color="primary"
+                density="compact"
+                hide-details
+              ></v-checkbox>
             </v-col>
             <v-col cols="12">
               <v-checkbox
@@ -51,6 +76,7 @@
                 color="primary"
                 value="agree"
                 density="compact"
+                required
                 class="input-required"
                 :rules="[(v) => !!v || t('register.form.rules.requiredAgree')]"
               ></v-checkbox>
@@ -88,6 +114,8 @@ const formData: any = reactive({});
 const form: Ref<any> = ref(null);
 const loadingSend: Ref<boolean> = ref(false);
 
+const passwordConfirmationRule = computed(() => formData.password === formData.rePassword || "Password must match");
+
 const user = useStrapiUser();
 
 const { create, find } = useStrapi();
@@ -106,6 +134,7 @@ const sendForm = async () => {
         email: formData.email,
         password: formData.password,
         phoneNumber: formData.tel,
+        newsletter: formData.newsletter,
       });
       store.showSuccess(t("login.form.responses.success"));
       await form.value.reset();

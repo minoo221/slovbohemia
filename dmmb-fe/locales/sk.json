@@ -21,7 +21,9 @@
       "tel": "Telefón",
       "email": "Email",
       "password": "Heslo",
+      "rePassword": "Potvrdenie hesla",
       "text": "Správa",
+      "newsletter": "Chcem sa príhlasiť na odber noviniek",
       "agree": "Súhlasím so spracovaním osobných údajov",
       "registerBtn": "Registrovať",
       "rules": {
