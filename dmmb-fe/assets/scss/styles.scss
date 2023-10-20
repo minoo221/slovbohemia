@@ -73,9 +73,9 @@ body {
                 padding-right: 10px;
                 &:after {
                     content: "*";
-                    position: absolute;
+                    position: relative;
                     top: 0px;
-                    right: 0px;
+                    right: -2px;
                     color: $red-80;
                 }
             }

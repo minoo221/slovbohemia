@@ -60,10 +60,10 @@
                     <v-btn icon="mdi-account" v-bind="props" variant="plain" density="compact"> </v-btn>
                   </template>
                   <v-list dense v-if="!user">
-                    <v-list-item :active="false" density="compact" to="/registracia">
+                    <v-list-item :active="false" density="compact" to="/prihlasenie">
                       {{ t("header.login") }}
                     </v-list-item>
-                    <v-list-item :active="false" density="compact" to="/prihlasenie">
+                    <v-list-item :active="false" density="compact" to="/registracia">
                       {{ t("header.register") }}
                     </v-list-item>
                   </v-list>
@@ -71,7 +71,7 @@
                     <v-list-item :active="false" density="compact" to="/registracia">
                       {{ t("header.profile") }}
                     </v-list-item>
-                    <v-list-item :active="false" density="compact" to="/prihlasenie">
+                    <v-list-item :active="false" density="compact" @click="onLogout()">
                       {{ t("header.logout") }}
                     </v-list-item>
                   </v-list>
@@ -133,6 +133,8 @@ import { storeToRefs } from "pinia";
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 const user = useStrapiUser();
+const { logout } = useStrapiAuth();
+const router = useRouter();
 
 const { title } = storeToRefs(store);
 
@@ -152,6 +154,13 @@ const accountMenu: Ref<boolean> = ref(false);
 
 const handleMenuItemClick = (lang: string) => {
   activeLang.value = lang;
+};
+
+const onLogout = () => {
+  console.log("logout");
+
+  logout();
+  router.push("/");
 };
 
 /* const { find } = useStrapi();

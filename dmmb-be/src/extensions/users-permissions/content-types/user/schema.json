@@ -73,6 +73,10 @@
     },
     "stripeUserId": {
       "type": "string"
+    },
+    "newsletter": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
