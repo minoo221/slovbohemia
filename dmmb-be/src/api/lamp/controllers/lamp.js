@@ -39,4 +39,12 @@ module.exports = createCoreController('api::lamp.lamp', ({strapi}) => ({
 
     } */
 
+	async create(ctx) {
+		// some logic here
+		const response = await super.create(ctx);
+		// some more logic
+		console.log("create");
+		return response;
+}
+
 }));
