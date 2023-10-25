@@ -11,7 +11,10 @@ module.exports = createCoreController('api::lamp-category.lamp-category', ({stra
 	async findOne(ctx) {
 		const {id} = ctx.params;
 		const result = await strapi.db.query('api::lamp-category.lamp-category').findOne({
-			where: {slug: id}
+			where: {slug: id},
+			populate: {
+				subcategories: true
+			}
 		})
 		const sanitizedResults = await this.sanitizeOutput(result, ctx);
 

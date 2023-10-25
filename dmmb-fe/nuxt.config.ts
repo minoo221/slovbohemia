@@ -69,7 +69,7 @@ export default defineNuxtConfig({
     },
 	strapi: {
 		auth: {
-		populate: ['role']
+			populate: ['role']
 		}
 	},
 });

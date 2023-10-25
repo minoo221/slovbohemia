@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+html,
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+html header,
+html footer,
+body header,
+body footer {
+  background: #EDF2F4;
+}
+
+html main,
+body main {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5 {
+  color: #2B2D42;
+  font-family: "Open Sans", sans-serif;
+}
+
+html h1,
+body h1 {
+  font-size: 48px;
+}
+
+html a,
+body a {
+  color: #2B2D42;
+  display: inline-block;
+}
+
+html a:hover, html a:focus,
+body a:hover,
+body a:focus {
+  color: #f2c514;
+}
+
+html .v-container,
+body .v-container {
+  max-width: 1640px;
+}
+
+html .v-btn--variant-plain,
+body .v-btn--variant-plain {
+  opacity: 1;
+  font-weight: 600;
+}
+
+html .v-btn--variant-plain:hover, html .v-btn--variant-plain:focus,
+body .v-btn--variant-plain:hover,
+body .v-btn--variant-plain:focus {
+  color: #5D4037 !important;
+}
+
+html table tbody,
+body table tbody {
+  text-align: left;
+}
+
+html .v-snackbar__content,
+body .v-snackbar__content {
+  color: #EDF2F4;
+}
+
+html .v-snackbar__actions > .v-btn,
+body .v-snackbar__actions > .v-btn {
+  color: #EDF2F4;
+}
+
+html .v-btn--active.v-btn--variant-plain .v-btn__content,
+body .v-btn--active.v-btn--variant-plain .v-btn__content {
+  font-weight: 600;
+}
+
+html .input-required .v-label,
+body .input-required .v-label {
+  padding-right: 10px;
+}
+
+html .input-required .v-label:after,
+body .input-required .v-label:after {
+  content: "*";
+  position: relative;
+  top: 0px;
+  right: -2px;
+  color: #F44336;
+}
+/*# sourceMappingURL=styles.css.map */

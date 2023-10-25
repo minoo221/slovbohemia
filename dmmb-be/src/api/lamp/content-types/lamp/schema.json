@@ -60,6 +60,20 @@
       "relation": "manyToMany",
       "target": "api::subcategory.subcategory",
       "mappedBy": "muzeums"
+    },
+    "coverImg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "summaryText": {
+      "type": "text"
     }
   }
 }
