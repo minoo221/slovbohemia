@@ -23,6 +23,9 @@
             class="articles-museum"
             :class="{ 'articles-museum--with-filter': subCategories?.data.attributes.subcategories.data.length > 0 }"
           >
+            <v-overlay v-model="loading" contained class="align-center justify-center" scrim="white">
+              <v-progress-circular color="warning" indeterminate size="64"></v-progress-circular>
+            </v-overlay>
             <v-row>
               <v-col cols="12" v-for="(item, index) in museum?.data">
                 <v-card elevation="0" color="transparent">
@@ -60,6 +63,13 @@
                 </v-card>
               </v-col>
             </v-row>
+            <v-pagination
+              v-model="page"
+              class="my-4"
+              :length="museum?.meta.pagination.pageCount"
+              :total-visible="4"
+              @update:model-value="getArticles()"
+            ></v-pagination>
           </div>
         </v-col>
       </v-row>
@@ -84,6 +94,7 @@ useHead({
 const isVisible: Ref<boolean> = ref(false);
 const filter: Ref<string> = ref("");
 const loading: Ref<boolean> = ref(false);
+const page: Ref<number> = ref(1);
 
 const { find, findOne } = useStrapi();
 
@@ -126,6 +137,10 @@ const getArticles = async () => {
               slug: route.params.slug,
             },
           },
+          pagination: {
+            page: page.value,
+            pageSize: 2,
+          },
         })
       );
     } else {
@@ -139,6 +154,10 @@ const getArticles = async () => {
             subcategories: {
               slug: filter.value,
             },
+          },
+          pagination: {
+            page: page.value,
+            pageSize: 2,
           },
         })
       );
@@ -170,6 +189,7 @@ onMounted(() => {
     max-width: 1120px;
   }
   .articles-museum {
+    position: relative;
     max-width: 860px;
     margin: 0 auto;
 

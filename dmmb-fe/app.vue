@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NuxtLayout>
-      <NuxtLoadingIndicator color="#EF233C" :height="7" />
+      <NuxtLoadingIndicator color="#f2c514" :height="7" />
       <NuxtPage />
     </NuxtLayout>
   </v-app>
