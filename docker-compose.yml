@@ -35,6 +35,8 @@ services:
     build: .
     image: dmmb-fe:latest
     restart: unless-stopped
+    volumes:
+      - ./be/public/uploads:/opt/public/uploads
     depends_on:
       - dmmb-be
     ports:

@@ -170,7 +170,7 @@ const { data: contact, refresh } = await useAsyncData("contact-information", () 
 
 const { find } = useStrapi();
 const { data: menu, refresh } = await useAsyncData("menu", () =>
-  find<Menu>("navigation/render/1", {
+  find<Menu>("navigation/render/main-navigation", {
     type: "TREE",
   })
 );
