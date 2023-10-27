@@ -455,8 +455,18 @@ export interface ApiLampCategoryLampCategory extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     subcategories: Attribute.Relation<
       'api::lamp-category.lamp-category',
       'manyToMany',
@@ -483,6 +493,12 @@ export interface ApiLampCategoryLampCategory extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::lamp-category.lamp-category',
+      'oneToMany',
+      'api::lamp-category.lamp-category'
+    >;
+    locale: Attribute.String;
   };
 }
 
