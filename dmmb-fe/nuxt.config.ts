@@ -43,6 +43,7 @@ export default defineNuxtConfig({
 				url: process.env.STRAPI_URL, // can be overridden by NUXT_PUBLIC_STRAPI_URL environment variable
 				populate: ['role']
 			},
+			env: process.env.NODE_ENV
 		}
 	},
     i18n: {
