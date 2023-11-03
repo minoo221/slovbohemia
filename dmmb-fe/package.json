@@ -2,8 +2,8 @@
   "name": "nuxt-app",
   "private": true,
   "engines": {
-    "node": "16.x",
-    "npm": "9.x"
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
   },
   "scripts": {
     "build": "nuxt build",
@@ -27,6 +27,7 @@
     "sass": "^1.62.1",
     "vue-easy-lightbox": "^1.16.0",
     "vue3-google-map": "^0.15.0",
+    "nuxt-swiper": "^1.2.2",
     "vuetify": "^3.3.0"
   }
 }

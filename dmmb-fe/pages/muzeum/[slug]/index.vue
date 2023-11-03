@@ -27,13 +27,13 @@
               <v-progress-circular color="warning" indeterminate size="64"></v-progress-circular>
             </v-overlay>
             <v-row>
-              <v-col cols="12" v-for="(item, index) in museum?.data">
+              <v-col cols="12" v-for="(item, index) in museum?.data" class="mb-4">
                 <v-card elevation="0" color="transparent">
                   <v-row>
                     <v-col cols="12" md="4">
                       <v-img
                         class="text-left align-end rounded-md"
-                        :src="getMedia(item.attributes.coverImg.data?.attributes.url)"
+                        :src="store.getMediaUrl(item.attributes.coverImg.data?.attributes.url)"
                         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                         height="250px"
                         cover
@@ -72,7 +72,7 @@
             <v-pagination
               v-model="page"
               class="my-4"
-              :length="museum?.meta.pagination.pageCount"
+              :length="museum.meta?.pagination.pageCount"
               :total-visible="4"
               @update:model-value="getArticles()"
             ></v-pagination>
@@ -107,16 +107,7 @@ const page: Ref<number> = ref(1);
 
 const { find, findOne } = useStrapi();
 
-const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () =>
-  find<any>("lamps", {
-    populate: "*",
-    filters: {
-      lamp_categories: {
-        slug: route.params.slug,
-      },
-    },
-  })
-);
+const museum: Ref<any> = ref([]);
 
 const { data: subCategories, refresh: refreshCategories } = await useAsyncData("lamp-categories", () =>
   findOne<any>("lamp-categories", route.params.slug)
@@ -136,26 +127,37 @@ const getMedia = (media: string) => {
 
 const getArticles = async () => {
   loading.value = true;
+  console.log("tu som v metode");
+
   try {
-    if (filter.value == "") {
-      const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () =>
+    /* if (filter.value == "") { */
+    const response = await find<any>("lamps", {
+      pagination: {
+        page: page.value,
+        pageSize: 6,
+      },
+      populate: "*",
+      filters: {
+        lamp_categories: {
+          slug: route.params.slug,
+        },
+        subcategories: {
+          slug: {
+            $contains: filter.value,
+          },
+        },
+      },
+    });
+    museum.value = response;
+
+    /* } else {
+      const { data: museumData, refresh: refreshPrices } = await useAsyncData("lamps", () =>
         find<any>("lamps", {
           populate: "*",
-          filters: {
-            lamp_categories: {
-              slug: route.params.slug,
-            },
-          },
           pagination: {
             page: page.value,
-            pageSize: 2,
+            pageSize: 6,
           },
-        })
-      );
-    } else {
-      const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () =>
-        find<any>("lamps", {
-          populate: "*",
           filters: {
             lamp_categories: {
               slug: route.params.slug,
@@ -164,13 +166,10 @@ const getArticles = async () => {
               slug: filter.value,
             },
           },
-          pagination: {
-            page: page.value,
-            pageSize: 2,
-          },
         })
       );
-    }
+      museum.value = museumData.value;
+    } */
   } catch (e) {
     console.log(e);
     store.showError(t("login.form.responses.error"));
@@ -184,13 +183,13 @@ const resetFilter = () => {
   getArticles();
 };
 
-onMounted(() => {
-  store.setTitle(t("home.title"));
+onMounted(async () => {
+  store.setTitle(subCategories.value?.data.attributes.title);
   console.log(store.title);
-  getArticles();
+  await getArticles();
   console.log("museum", museum.value);
   console.log("subcategories", subCategories.value);
-  console.log("env", config.env);
+  console.log("env", config.public.env);
 });
 </script>
 <style scoped lang="scss">
@@ -205,6 +204,14 @@ onMounted(() => {
 
     &--with-filter {
       max-width: 100%;
+    }
+
+    .v-card {
+      .v-btn {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
     }
   }
 }

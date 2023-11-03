@@ -11,7 +11,11 @@ module.exports = createCoreController('api::lamp.lamp', ({strapi}) => ({
 	async findOne(ctx) {
 		const {id} = ctx.params;
 		const result = await strapi.db.query('api::lamp.lamp').findOne({
-			where: {slug: id}
+			where: {slug: id},
+			populate: {
+				rotateGallery: true,
+				gallery: true
+			}
 		})
 		const sanitizedResults = await this.sanitizeOutput(result, ctx);
 

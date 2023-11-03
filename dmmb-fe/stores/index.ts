@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
 
+
+/* const config = useRuntimeConfig(); */
+
 interface State {
   title: string | null
   snackbar: any;
@@ -18,6 +21,7 @@ export const useIndexStore = defineStore("index", {
     },
 
     getters: {
+
     },
 
     actions: {
@@ -35,6 +39,14 @@ export const useIndexStore = defineStore("index", {
         },
         showError(text: string) {
             this.snackbar = { text, color: "error", visible: true };
+        },
+        getMediaUrl(url: string) {
+            const ENV = useRuntimeConfig().public.env;
+            if(ENV == 'development') {
+                return 'https://dmmb-test.runme.sk' + url
+            } else {
+                return url
+            }
         },
     },
 });
