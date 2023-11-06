@@ -96,9 +96,6 @@ const config = useRuntimeConfig();
 /* definePageMeta({
   middleware: "auth",
 }); */
-useHead({
-  script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
-});
 
 const isVisible: Ref<boolean> = ref(false);
 const filter: Ref<string> = ref("");
@@ -112,6 +109,16 @@ const museum: Ref<any> = ref([]);
 const { data: subCategories, refresh: refreshCategories } = await useAsyncData("lamp-categories", () =>
   findOne<any>("lamp-categories", route.params.slug)
 );
+
+useHead({
+  title: subCategories.value?.data.attributes.title,
+  meta: [{ name: subCategories.value?.data.attributes.title }],
+  script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
+});
+
+definePageMeta({
+  name: "test1",
+});
 
 const onShow = () => {
   isVisible.value = true;

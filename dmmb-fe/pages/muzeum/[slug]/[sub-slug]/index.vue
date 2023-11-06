@@ -72,9 +72,6 @@ const route = useRoute();
 /* definePageMeta({
   middleware: "auth",
 }); */
-useHead({
-  script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
-});
 
 const isVisible: Ref<boolean> = ref(false);
 const loading: Ref<boolean> = ref(false);
@@ -86,6 +83,15 @@ const images: Ref<any> = ref([]);
 const { find, findOne } = useStrapi();
 
 const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () => findOne<any>("lamps", route.params.subslug));
+
+useHead({
+  title: museum.value?.data.attributes.title,
+  script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
+});
+
+/* definePageMeta({
+  name: "test2",
+}); */
 
 const onShow = () => {
   isVisible.value = true;

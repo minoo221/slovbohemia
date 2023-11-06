@@ -42,10 +42,11 @@ export const useIndexStore = defineStore("index", {
         },
         getMediaUrl(url: string) {
             const ENV = useRuntimeConfig().public.env;
+            const STRAPI_URL = useRuntimeConfig().public.strapi.url;
             if(ENV == 'development') {
                 return 'https://dmmb-test.runme.sk' + url
             } else {
-                return url
+                return STRAPI_URL + url
             }
         },
     },
