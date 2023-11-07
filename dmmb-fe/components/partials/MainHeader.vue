@@ -184,7 +184,8 @@ const { data: menu, refresh } = await useAsyncData("menu", () =>
 
 onMounted(() => {
   console.log(store.title);
-  console.log(menu);
+  console.log("menu", menu);
+  console.log("userHeader", user);
 });
 </script>
 

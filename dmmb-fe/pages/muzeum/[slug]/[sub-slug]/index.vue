@@ -69,9 +69,9 @@ import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 const route = useRoute();
 
-/* definePageMeta({
+definePageMeta({
   middleware: "auth",
-}); */
+});
 
 const isVisible: Ref<boolean> = ref(false);
 const loading: Ref<boolean> = ref(false);

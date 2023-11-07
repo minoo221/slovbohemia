@@ -47,9 +47,6 @@ import type { Categories } from "~/types";
 const emit = defineEmits(["title"]);
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
-useHead({
-  script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
-});
 
 const formData: any = reactive({});
 const form: Ref<any> = ref(null);
@@ -59,6 +56,10 @@ const user = useStrapiUser();
 
 const { create, find } = useStrapi();
 const { login } = useStrapiAuth();
+
+definePageMeta({
+  middleware: "is-logged",
+});
 
 const sendForm = async () => {
   const { valid } = await form.value.validate();

@@ -121,6 +121,10 @@ const user = useStrapiUser();
 const { create, find } = useStrapi();
 const { register } = useStrapiAuth();
 
+definePageMeta({
+  middleware: "is-logged",
+});
+
 const sendForm = async () => {
   const { valid } = await form.value.validate();
   console.log(valid);

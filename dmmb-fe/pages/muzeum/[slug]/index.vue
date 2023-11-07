@@ -93,9 +93,9 @@ const store = useIndexStore();
 const route = useRoute();
 const config = useRuntimeConfig();
 
-/* definePageMeta({
+definePageMeta({
   middleware: "auth",
-}); */
+});
 
 const isVisible: Ref<boolean> = ref(false);
 const filter: Ref<string> = ref("");
@@ -114,10 +114,6 @@ useHead({
   title: subCategories.value?.data.attributes.title,
   meta: [{ name: subCategories.value?.data.attributes.title }],
   script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
-});
-
-definePageMeta({
-  name: "test1",
 });
 
 const onShow = () => {
@@ -144,16 +140,23 @@ const getArticles = async () => {
         pageSize: 6,
       },
       populate: "*",
-      filters: {
-        lamp_categories: {
-          slug: route.params.slug,
-        },
-        subcategories: {
-          slug: {
-            $contains: filter.value,
-          },
-        },
-      },
+      filters:
+        subCategories.value?.data.attributes.subcategories.data.length > 0
+          ? {
+              lamp_categories: {
+                slug: route.params.slug,
+              },
+              subcategories: {
+                slug: {
+                  $contains: filter.value,
+                },
+              },
+            }
+          : {
+              lamp_categories: {
+                slug: route.params.slug,
+              },
+            },
     });
     museum.value = response;
 
@@ -196,6 +199,7 @@ onMounted(async () => {
   await getArticles();
   console.log("museum", museum.value);
   console.log("subcategories", subCategories.value);
+  console.log("route", route.params.slug);
   console.log("env", config.public.env);
 });
 </script>

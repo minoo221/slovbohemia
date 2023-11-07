@@ -63,5 +63,10 @@
   "museum": {
     "showMore": "Zobraziť viac",
     "resetFilter": "Resetovať filter"
+  },
+  "pay": {
+    "title": "Informácie o platbe",
+    "success": "Platba prebehlá úspešne.",
+    "redirect": "Prejsť na hlavnú stránku"
   }
 }
