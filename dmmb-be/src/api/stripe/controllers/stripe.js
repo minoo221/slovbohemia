@@ -32,7 +32,7 @@ module.exports = {
       console.log("sessionInfo");
       const data = await strapi
             .service("api::stripe.stripe")
-            .sessionInfo(ctx.params.sessionId);
+            .sessionInfo(ctx, ctx.params.sessionId);
 
       ctx.body = data;
     } catch (err) {
