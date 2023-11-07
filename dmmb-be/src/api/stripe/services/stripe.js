@@ -5,6 +5,9 @@ const stripe = Stripe('sk_test_51IKj34KbNiX05g6vHD86ezpkOSXzazqwC8qC5NcKoPN8mPS7
 /**
  * stripe service
  */
+var moment = require('moment');
+const { errors } = require('@strapi/utils');
+const { ApplicationError } = errors;
 
 module.exports = {
 
@@ -32,8 +35,12 @@ module.exports = {
    return session.url; 
   },
 
-  sessionInfo: async(sessionId) => {
+  sessionInfo: async(ctx, sessionId) => {
+    // Get sessions
     const session = await stripe.checkout.sessions.retrieve(
+      sessionId
+    );
+    const sessionLineItem = await stripe.checkout.sessions.listLineItems(
       sessionId
     );
 
@@ -41,16 +48,32 @@ module.exports = {
     let stripeCustomerEmail = session.customer_details.email;
     let stripeStatus = session.status;
     let stripePaymentStatus = session.payment_status;
+    
+    if (sessionLineItem.data.length == 0) throw new ApplicationError('Wrong session ID');
+    const priceCheckout = sessionLineItem.data[0].price;
+    // Get price
+    const price = await stripe.prices.retrieve(
+      priceCheckout.id
+    );
+    if (price == null) throw new ApplicationError('No price found');
+    // Get Product
+    const product = await stripe.products.retrieve(
+      price.product
+    );
+    if (price == null) throw new ApplicationError('No product found');
 
     // Get user from DB
     const user = await strapi.db.query('plugin::users-permissions.user').findOne({
       where: {stripeUserId: stripeCustomer},
       populate: ['role'],
     })
-
+    if (user == null) throw new ApplicationError(`User with id ${stripeCustomer} not found`);
     if (user.lastCheckoutId != sessionId) {
       console.log("Update user subscription")
       if (stripeStatus == 'complete' && stripePaymentStatus == 'paid') {
+      // get current date
+      var currentDate = moment().add(product.metadata.months, 'M').format('YYYY-MM-DD');
+      console.log(currentDate);
         // set role subscribed to user + set date
         const editedUser = await strapi.db.query('plugin::users-permissions.user').update({
           where: { stripeUserId: stripeCustomer },
@@ -58,17 +81,13 @@ module.exports = {
             role: {
               id: 3
             },
-            subscribedUntil: '2025-09-01',
+            subscribedUntil: currentDate,
             lastCheckoutId: sessionId
           }
         });
-  
-        
-        //console.log(editedUser);
       }
     }
     
-    console.log(session);
     return sessionId;
   },
 
