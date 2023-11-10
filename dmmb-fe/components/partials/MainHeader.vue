@@ -186,6 +186,7 @@ onMounted(() => {
   console.log(store.title);
   console.log("menu", menu);
   console.log("userHeader", user);
+  console.log("locale", locale.value);
 });
 </script>
 

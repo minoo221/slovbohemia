@@ -8,16 +8,16 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" sm="6" md="4" offset-md="0">
-            <h2 class="mx-4">Kontakt</h2>
+            <h2 class="mx-4">{{ t("footer.contact") }}</h2>
             <v-list bg-color="transparent" color="white" class="mb-6">
               <v-list-item base-color="white" color="#fff" density="comfortable">
                 <template v-slot:prepend>
                   <v-icon color="#fff" class="mr-2">mdi-map-marker</v-icon>
                 </template>
                 <v-list-item-title
-                  >{{ contact?.data.attributes.addressHome.address }}, {{ contact?.data.attributes.addressHome.zip }}
-                  {{ contact?.data.attributes.addressHome.city }}
-                  {{ contact?.data.attributes.addressHome.country }}</v-list-item-title
+                  >{{ contact?.data.attributes.company.address }}, {{ contact?.data.attributes.company.zip }}
+                  {{ contact?.data.attributes.company.city }}
+                  {{ contact?.data.attributes.company.country }}</v-list-item-title
                 >
               </v-list-item>
               <v-list-item
@@ -38,7 +38,7 @@
                 <v-list-item-title>{{ contact?.data.attributes.email }}</v-list-item-title>
               </v-list-item>
             </v-list>
-            <h2 class="mx-4">Informácie</h2>
+            <h2 class="mx-4">{{ t("footer.info") }}</h2>
             <v-list nav bg-color="transparent" density="compact" color="white">
               <v-list-item v-for="(item, i) in info" :key="i" nav base-color="white" link color="#fff">
                 <v-list-item-title v-text="item.title"></v-list-item-title>
@@ -61,7 +61,7 @@ const center: any = reactive({ lat: 49.10315253556189, lng: 19.59352807900453 })
 
 const { find } = useStrapi();
 const { data: contact, refresh } = await useAsyncData("contact-information", () =>
-  find<any>("contact-information", { populate: "*" })
+  find<any>("contact-information", { populate: "*", locale: locale.value })
 );
 
 const menu: Menu[] = reactive([

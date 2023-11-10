@@ -47,6 +47,7 @@ import type { Categories } from "~/types";
 const emit = defineEmits(["title"]);
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
+const router = useRouter();
 
 const formData: any = reactive({});
 const form: Ref<any> = ref(null);
@@ -75,6 +76,7 @@ const sendForm = async () => {
       });
       store.showSuccess(t("login.form.responses.success"));
       await form.value.reset();
+      router.push({ path: "/" });
     } catch (e) {
       console.log(e);
       store.showError(t("login.form.responses.error"));

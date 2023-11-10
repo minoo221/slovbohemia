@@ -7,7 +7,7 @@
       <v-row>
         <v-col cols="12" md="3" v-if="subCategories?.data.attributes.subcategories.data.length > 0">
           <h3 class="ml-2 mb-4">Filter:</h3>
-          <v-radio-group v-model="filter" @update:modelValue="getArticles()">
+          <v-radio-group v-model="filter" @update:modelValue="filterMuseum()">
             <v-radio
               v-for="item in subCategories?.data.attributes.subcategories.data"
               :label="item.attributes.title"
@@ -70,11 +70,10 @@
               </v-col>
             </v-row>
             <v-pagination
-              v-model="page"
+              v-model="currentPage"
               class="my-4"
               :length="museum.meta?.pagination.pageCount"
               :total-visible="4"
-              @update:model-value="getArticles()"
             ></v-pagination>
           </div>
         </v-col>
@@ -92,6 +91,7 @@ import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 const route = useRoute();
 const config = useRuntimeConfig();
+const router = useRouter();
 
 definePageMeta({
   middleware: "auth",
@@ -107,7 +107,7 @@ const { find, findOne } = useStrapi();
 const museum: Ref<any> = ref([]);
 
 const { data: subCategories, refresh: refreshCategories } = await useAsyncData("lamp-categories", () =>
-  findOne<any>("lamp-categories", route.params.slug)
+  findOne<any>("lamp-categories", route.params.slug, { locale: locale.value })
 );
 
 useHead({
@@ -128,6 +128,22 @@ const getMedia = (media: string) => {
   return useStrapiMedia(media);
 };
 
+const currentPage = computed({
+  // getter
+  get() {
+    return Number(route.query.page) || 1;
+  },
+  set(newPage) {
+    // You could alternatively call your API here if you have serverside pagination
+
+    router.push({ query: { ...route.query, page: newPage } }).catch(() => {});
+  },
+});
+
+const filterMuseum = () => {
+  router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
+};
+
 const getArticles = async () => {
   loading.value = true;
   console.log("tu som v metode");
@@ -136,10 +152,11 @@ const getArticles = async () => {
     /* if (filter.value == "") { */
     const response = await find<any>("lamps", {
       pagination: {
-        page: page.value,
+        page: currentPage.value,
         pageSize: 6,
       },
       populate: "*",
+      locale: locale.value,
       filters:
         subCategories.value?.data.attributes.subcategories.data.length > 0
           ? {
@@ -189,13 +206,17 @@ const getArticles = async () => {
 };
 
 const resetFilter = () => {
-  filter.value = "";
-  getArticles();
+  router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
 };
+
+watch(currentPage, (newPage) => {
+  getArticles();
+});
 
 onMounted(async () => {
   store.setTitle(subCategories.value?.data.attributes.title);
   console.log(store.title);
+
   await getArticles();
   console.log("museum", museum.value);
   console.log("subcategories", subCategories.value);
@@ -212,6 +233,7 @@ onMounted(async () => {
     position: relative;
     max-width: 860px;
     margin: 0 auto;
+    min-height: 280px;
 
     &--with-filter {
       max-width: 100%;

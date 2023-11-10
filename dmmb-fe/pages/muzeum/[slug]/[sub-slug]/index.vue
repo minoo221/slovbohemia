@@ -82,7 +82,9 @@ const images: Ref<any> = ref([]);
 
 const { find, findOne } = useStrapi();
 
-const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () => findOne<any>("lamps", route.params.subslug));
+const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () => findOne<any>("lamps", route.params.subslug), {
+  locale: locale.value,
+});
 
 useHead({
   title: museum.value?.data.attributes.title,

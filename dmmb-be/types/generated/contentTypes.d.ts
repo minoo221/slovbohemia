@@ -362,188 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiLampLamp extends Schema.CollectionType {
-  collectionName: 'lamps';
-  info: {
-    singularName: 'lamp';
-    pluralName: 'lamps';
-    displayName: 'Muzeum';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    rotateGallery: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    gallery: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    body: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
-        {
-          output: 'HTML';
-          preset: 'standard';
-        }
-      >;
-    lamp_categories: Attribute.Relation<
-      'api::lamp.lamp',
-      'manyToMany',
-      'api::lamp-category.lamp-category'
-    >;
-    slug: Attribute.UID<'api::lamp.lamp', 'title'>;
-    subcategories: Attribute.Relation<
-      'api::lamp.lamp',
-      'manyToMany',
-      'api::subcategory.subcategory'
-    >;
-    coverImg: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    summaryText: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::lamp.lamp', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::lamp.lamp', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::lamp.lamp',
-      'oneToMany',
-      'api::lamp.lamp'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiLampCategoryLampCategory extends Schema.CollectionType {
-  collectionName: 'lamp_categories';
-  info: {
-    singularName: 'lamp-category';
-    pluralName: 'lamp-categories';
-    displayName: 'Kateg\u00F3rie m\u00FAzea';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    subcategories: Attribute.Relation<
-      'api::lamp-category.lamp-category',
-      'manyToMany',
-      'api::subcategory.subcategory'
-    >;
-    lampies: Attribute.Relation<
-      'api::lamp-category.lamp-category',
-      'manyToMany',
-      'api::lamp.lamp'
-    >;
-    slug: Attribute.UID<'api::lamp-category.lamp-category', 'title'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::lamp-category.lamp-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::lamp-category.lamp-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::lamp-category.lamp-category',
-      'oneToMany',
-      'api::lamp-category.lamp-category'
-    >;
-    locale: Attribute.String;
-  };
-}
-
-export interface ApiSubcategorySubcategory extends Schema.CollectionType {
-  collectionName: 'subcategories';
-  info: {
-    singularName: 'subcategory';
-    pluralName: 'subcategories';
-    displayName: 'Subcategory';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    kategorie_muzeas: Attribute.Relation<
-      'api::subcategory.subcategory',
-      'manyToMany',
-      'api::lamp-category.lamp-category'
-    >;
-    muzeums: Attribute.Relation<
-      'api::subcategory.subcategory',
-      'manyToMany',
-      'api::lamp.lamp'
-    >;
-    slug: Attribute.UID<'api::subcategory.subcategory', 'title'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::subcategory.subcategory',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::subcategory.subcategory',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -862,6 +680,55 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginEmailDesignerEmailTemplate
+  extends Schema.CollectionType {
+  collectionName: 'email_templates';
+  info: {
+    singularName: 'email-template';
+    pluralName: 'email-templates';
+    displayName: 'Email-template';
+    name: 'email-template';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: true;
+    increments: true;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    templateReferenceId: Attribute.Integer & Attribute.Unique;
+    design: Attribute.JSON;
+    name: Attribute.String;
+    subject: Attribute.String;
+    bodyHtml: Attribute.Text;
+    bodyText: Attribute.Text;
+    enabled: Attribute.Boolean & Attribute.DefaultTo<true>;
+    tags: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::email-designer.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::email-designer.email-template',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginNavigationAudience extends Schema.CollectionType {
   collectionName: 'audience';
   info: {
@@ -1072,6 +939,299 @@ export interface PluginNavigationNavigationsItemsRelated
   };
 }
 
+export interface ApiContactContact extends Schema.CollectionType {
+  collectionName: 'contacts';
+  info: {
+    singularName: 'contact';
+    pluralName: 'contacts';
+    displayName: 'Spr\u00E1vy z kontaktn\u00E9ho formul\u00E1ra';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    email: Attribute.Email;
+    subject: Attribute.String;
+    message: Attribute.Text;
+    tel: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact.contact',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactInformationContactInformation
+  extends Schema.SingleType {
+  collectionName: 'contact_informations';
+  info: {
+    singularName: 'contact-information';
+    pluralName: 'contact-informations';
+    displayName: 'Kontaktn\u00E9 inform\u00E1cie';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    company: Attribute.Component<'text.company'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    email: Attribute.Email &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    tel: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-information.contact-information',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-information.contact-information',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::contact-information.contact-information',
+      'oneToMany',
+      'api::contact-information.contact-information'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiLampLamp extends Schema.CollectionType {
+  collectionName: 'lamps';
+  info: {
+    singularName: 'lamp';
+    pluralName: 'lamps';
+    displayName: 'Muzeum';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    rotateGallery: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    gallery: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    body: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'standard';
+        }
+      >;
+    lamp_categories: Attribute.Relation<
+      'api::lamp.lamp',
+      'manyToMany',
+      'api::lamp-category.lamp-category'
+    >;
+    slug: Attribute.UID<'api::lamp.lamp', 'title'>;
+    subcategories: Attribute.Relation<
+      'api::lamp.lamp',
+      'manyToMany',
+      'api::subcategory.subcategory'
+    >;
+    coverImg: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    summaryText: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::lamp.lamp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::lamp.lamp', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::lamp.lamp',
+      'oneToMany',
+      'api::lamp.lamp'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiLampCategoryLampCategory extends Schema.CollectionType {
+  collectionName: 'lamp_categories';
+  info: {
+    singularName: 'lamp-category';
+    pluralName: 'lamp-categories';
+    displayName: 'Kateg\u00F3rie m\u00FAzea';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    subcategories: Attribute.Relation<
+      'api::lamp-category.lamp-category',
+      'manyToMany',
+      'api::subcategory.subcategory'
+    >;
+    lampies: Attribute.Relation<
+      'api::lamp-category.lamp-category',
+      'manyToMany',
+      'api::lamp.lamp'
+    >;
+    slug: Attribute.UID<'api::lamp-category.lamp-category', 'title'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::lamp-category.lamp-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::lamp-category.lamp-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::lamp-category.lamp-category',
+      'oneToMany',
+      'api::lamp-category.lamp-category'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSubcategorySubcategory extends Schema.CollectionType {
+  collectionName: 'subcategories';
+  info: {
+    singularName: 'subcategory';
+    pluralName: 'subcategories';
+    displayName: 'Subcategory';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    kategorie_muzeas: Attribute.Relation<
+      'api::subcategory.subcategory',
+      'manyToMany',
+      'api::lamp-category.lamp-category'
+    >;
+    muzeums: Attribute.Relation<
+      'api::subcategory.subcategory',
+      'manyToMany',
+      'api::lamp.lamp'
+    >;
+    slug: Attribute.UID<'api::subcategory.subcategory', 'title'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::subcategory.subcategory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::subcategory.subcategory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::subcategory.subcategory',
+      'oneToMany',
+      'api::subcategory.subcategory'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1082,19 +1242,22 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::lamp.lamp': ApiLampLamp;
-      'api::lamp-category.lamp-category': ApiLampCategoryLampCategory;
-      'api::subcategory.subcategory': ApiSubcategorySubcategory;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
       'plugin::navigation.audience': PluginNavigationAudience;
       'plugin::navigation.navigation': PluginNavigationNavigation;
       'plugin::navigation.navigation-item': PluginNavigationNavigationItem;
       'plugin::navigation.navigations-items-related': PluginNavigationNavigationsItemsRelated;
+      'api::contact.contact': ApiContactContact;
+      'api::contact-information.contact-information': ApiContactInformationContactInformation;
+      'api::lamp.lamp': ApiLampLamp;
+      'api::lamp-category.lamp-category': ApiLampCategoryLampCategory;
+      'api::subcategory.subcategory': ApiSubcategorySubcategory;
     }
   }
 }

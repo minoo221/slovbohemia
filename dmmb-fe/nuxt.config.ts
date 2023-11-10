@@ -2,7 +2,7 @@ import vuetify from "vite-plugin-vuetify";
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    css: ["vuetify/lib/styles/main.sass", "~/assets/scss/styles.scss"],
+    css: ["vuetify/lib/styles/main.sass", 'lite-youtube-embed/src/lite-yt-embed.css', "~/assets/scss/styles.scss"],
     build: {
 		transpile: ["vuetify"],
 	},
@@ -36,7 +36,8 @@ export default defineNuxtConfig({
         "@pinia/nuxt",
         "@nuxtjs/i18n",
 		'@nuxtjs/strapi',
-		'nuxt-swiper'
+		'nuxt-swiper',
+		'dayjs-nuxt'
     ],
 	runtimeConfig: {
 		public: {

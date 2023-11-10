@@ -38,7 +38,6 @@
                 :rules="[
                   (v) => v?.length >= 6 || t('register.form.rules.minLength'),
                   (value) => !!value || t('register.form.rules.required'),
-                  passwordConfirmationRule,
                 ]"
               ></v-text-field>
             </v-col>
@@ -106,15 +105,15 @@ import type { Categories } from "~/types";
 const emit = defineEmits(["title"]);
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
-useHead({
-  script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
-});
+const router = useRouter();
 
 const formData: any = reactive({});
 const form: Ref<any> = ref(null);
 const loadingSend: Ref<boolean> = ref(false);
 
-const passwordConfirmationRule = computed(() => formData.password === formData.rePassword || "Password must match");
+const passwordConfirmationRule = computed(
+  () => formData.password === formData.rePassword || t("register.form.rules.passwordMatch")
+);
 
 const user = useStrapiUser();
 
@@ -142,6 +141,7 @@ const sendForm = async () => {
       });
       store.showSuccess(t("login.form.responses.success"));
       await form.value.reset();
+      router.push({ path: "/" });
     } catch (e) {
       console.log(e);
       store.showError(t("login.form.responses.error"));

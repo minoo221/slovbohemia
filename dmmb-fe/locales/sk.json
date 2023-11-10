@@ -12,7 +12,9 @@
     "logout": "Odhlásenie"
   },
   "footer": {
-    "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at."
+    "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at.",
+    "contact": "Kontakt",
+    "info": "Informácie"
   },
   "register": {
     "title": "Registrácia",
@@ -30,6 +32,7 @@
         "required": "Toto pole je povinné",
         "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
         "email": "Nesprávny formát emailu",
+        "passwordMatch": "Heslá sa nezhodujú",
         "minLength": "Minimálny počet znakov je 6"
       },
       "responses": {
@@ -68,5 +71,32 @@
     "title": "Informácie o platbe",
     "success": "Platba prebehlá úspešne.",
     "redirect": "Prejsť na hlavnú stránku"
+  },
+  "profile": {
+    "title": "Profil používateľa",
+    "username": "Používateľ:",
+    "email": "Email:",
+    "subscribeUntil": "Predplatné platné do:"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "form": {
+      "fullName": "Celé meno",
+      "tel": "Telefón",
+      "email": "Email",
+      "subject": "Predmet",
+      "text": "Správa",
+      "agree": "Súhlasím so spracovaním osobných údajov",
+      "submit": "Odoslať",
+      "rules": {
+        "required": "Toto pole je povinné",
+        "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
+        "email": "Nesprávny formát emailu"
+      },
+      "responses": {
+        "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
+        "success": "Kontaktný formulár bol úspešne odoslaný"
+      }
+    }
   }
 }
