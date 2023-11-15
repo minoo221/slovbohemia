@@ -2,7 +2,7 @@
   <v-container>
     <div class="text-center">
       <h2 class="mb-4">{{ t("pay.success") }}</h2>
-      <v-btn color="primary">{{ t("pay.redirect") }}</v-btn>
+      <v-btn color="primary" link nuxt to>{{ t("pay.redirect") }}</v-btn>
     </div>
   </v-container>
 </template>

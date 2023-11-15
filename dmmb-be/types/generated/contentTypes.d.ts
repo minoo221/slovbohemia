@@ -1010,6 +1010,12 @@ export interface ApiContactInformationContactInformation
           localized: true;
         };
       }>;
+    homeSlider: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

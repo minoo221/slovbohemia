@@ -27,10 +27,10 @@
         </v-row>
       </v-container>
     </section>
-    <section class="main-info text-center" v-if="!user && user?.role.id != 3">
+    <section class="main-info text-center" v-if="user && user?.role.id != 3">
       <h3>{{ t("home.homeInfo") }}</h3>
     </section>
-    <section class="prices" v-if="!user && user?.role.id != 3">
+    <section class="prices" v-if="user && user?.role.id != 3">
       <v-container>
         <v-row>
           <v-col cols="12" md="3" v-for="(item, index) in prices">
@@ -44,7 +44,7 @@
               </v-card-item>
 
               <v-card-actions class="d-flex justify-end">
-                <v-btn color="warning" variant="outlined" block @click="selectSubscription(item.priceId)"> Vybrať </v-btn>
+                <v-btn color="warning" variant="outlined" block @click="getUser(item.priceId)"> Vybrať </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -90,6 +90,7 @@
                             class="mx-2"
                             color="warning"
                             link
+                            nuxt
                             :to="localePath({ name: 'muzeum-slug-subslug', params: { subslug: itemMuseum.attributes.slug } })"
                             variant="text"
                             append-icon="mdi-arrow-right"
@@ -125,6 +126,7 @@ const loading: Ref<boolean> = ref(false);
 const { findOne, find } = useStrapi();
 const client = useStrapiClient();
 const user = useStrapiUser();
+const { fetchUser } = useStrapiAuth();
 
 const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", () => find<any>("stripe/products"));
 
@@ -153,7 +155,16 @@ const onHide = () => {
   isVisible.value = false;
 };
 
-const selectSubscription = async (priceId: string) => {
+const getUser = async (priceId: string) => {
+  try {
+    const userData = await fetchUser();
+    selectSubscription(userData?.stripeUserId, priceId);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const selectSubscription = async (stripeUserId: any, priceId: string) => {
   try {
     const link = await client<any>("/stripe/charge", {
       method: "POST",
@@ -166,11 +177,13 @@ const selectSubscription = async (priceId: string) => {
   }
 };
 
-onMounted(() => {
+onMounted(async () => {
   store.setTitle(t("home.title"));
   console.log(store.title);
   console.log("prices", prices);
   console.log("museum", museum);
+  const userData = await fetchUser();
+  console.log("user", userData, user);
 });
 </script>
 <style scoped lang="scss">

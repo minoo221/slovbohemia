@@ -106,9 +106,26 @@
       </div>
     </div>
     <div class="header__bottom">
-      <div class="title-cover align-center justify-center">
+      <!-- <div class="title-cover align-center justify-center">
         <h1>{{ title }}</h1>
-      </div>
+      </div> -->
+      <Swiper
+        :modules="[SwiperAutoplay, SwiperEffectFade, SwiperGrid, SwiperNavigation]"
+        :loop="true"
+        :navigation="true"
+        :slidesPerView="1"
+        :autoplay="{
+          delay: 4500,
+          disableOnInteraction: false,
+        }"
+        :effect="'fade'"
+      >
+        <SwiperSlide v-for="(item, index) in contact?.data.attributes.homeSlider.data" :key="item.id">
+          <div class="img-cover">
+            <img :src="'http://localhost:1337' + item.attributes.url" />
+          </div>
+        </SwiperSlide>
+      </Swiper>
     </div>
 
     <v-navigation-drawer v-model="drawer" temporary location="right" color="secondary">
@@ -169,10 +186,14 @@ const { data: contact, refresh } = await useAsyncData("contact-information", () 
 ); */
 
 const { find } = useStrapi();
-const { data: menu, refresh } = await useAsyncData("menu", () =>
+const { data: menu, refresh: refreshMenu } = await useAsyncData("menu", () =>
   find<Menu>("navigation/render/main-navigation", {
     type: "TREE",
   })
+);
+
+const { data: contact, refresh: refreshInfo } = await useAsyncData("contact-information", () =>
+  find<any>("contact-information", { populate: "*", locale: locale.value })
 );
 
 /* const menu: Menu[] = reactive([
@@ -195,13 +216,40 @@ onMounted(() => {
   max-width: 140px;
 }
 .header {
-  background: $primary-80 url("/images/bg-dmmb.jpg") 0 80px no-repeat;
-  background-size: cover;
   &__top {
     /* position: fixed;
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease; */
+    /* position: absolute;
+    top: 0;
+    left: auto;
+    width: 100%;
+    z-index: 10; */
+    background: #fff;
+    /* &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: auto;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.738) 19%,
+        rgba(0, 0, 0, 0.541) 34%,
+        rgba(0, 0, 0, 0.382) 47%,
+        rgba(0, 0, 0, 0.278) 56.5%,
+        rgba(0, 0, 0, 0.194) 65%,
+        rgba(0, 0, 0, 0.126) 73%,
+        rgba(0, 0, 0, 0.075) 80.2%,
+        rgba(0, 0, 0, 0.042) 86.1%,
+        rgba(0, 0, 0, 0.021) 91%,
+        rgba(0, 0, 0, 0.008) 95.2%,
+        rgba(0, 0, 0, 0.002) 98.2%,
+        transparent 100%
+      );
+    } */
     &.isScrolled {
       transform: translateY(-50px);
       background: $secondary-100;
@@ -234,7 +282,7 @@ onMounted(() => {
   }
   &__bottom {
     position: relative;
-    height: 400px;
+    z-index: 4;
     .title-cover {
       display: flex;
       position: absolute;
@@ -245,7 +293,31 @@ onMounted(() => {
       z-index: 12;
     }
     h1 {
-      color: $white;
+      color: #fff;
+    }
+    .swiper {
+      background: #fff;
+      height: 400px;
+      .img-cover {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 100%;
+          height: 400px;
+          object-fit: contain;
+        }
+      }
+      /* &::after {
+        content: "";
+        background: rgba(#000, 0.29);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+      } */
     }
   }
 }
