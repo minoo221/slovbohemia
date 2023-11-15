@@ -26,8 +26,8 @@ module.exports = {
         },
       ],
       mode: 'payment',
-      success_url: `http://localhost:3000/platba-uspesna?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `http://localhost:3000/cancel.html`,
+      success_url: `${process.env.HOST_URL}/platba-uspesna?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: process.env.HOST_URL,
       customer: userStripeId//'cus_OVcD82pxA2YkJE'
     });
       
