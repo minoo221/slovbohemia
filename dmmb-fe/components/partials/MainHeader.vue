@@ -76,7 +76,7 @@
                     </v-list-item>
                   </v-list>
                 </v-menu>
-                <v-menu v-model="languageMenu" offset-y color="transparent">
+                <!-- <v-menu v-model="languageMenu" offset-y color="transparent">
                   <template v-slot:activator="{ props }">
                     <v-btn class="text-capitalize" v-bind="props" variant="plain">
                       {{ activeLang.toUpperCase() }}
@@ -95,7 +95,7 @@
                       {{ lang.code.toUpperCase() }}
                     </v-list-item>
                   </v-list>
-                </v-menu>
+                </v-menu> -->
               </div>
             </v-col>
             <v-col cols="auto" class="d-block d-md-none">
@@ -116,7 +116,7 @@
         <v-btn class="ml-auto" variant="text" size="x-large" icon="mdi-close" color="primary" @click="drawer = false"></v-btn>
       </div>
       <v-list nav bg-color="transparent" density="compact" color="white">
-        <v-list-item v-for="(item, i) in menu" :key="i" :to="item.to" nuxt nav base-color="white" link color="#fff" exact>
+        <v-list-item v-for="(item, i) in menu" :key="i" :to="item.path" nuxt nav base-color="white" link color="#fff" exact>
           <v-list-item-title v-text="item.title"></v-list-item-title>
         </v-list-item>
       </v-list>

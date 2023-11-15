@@ -1,5 +1,32 @@
 <template>
   <div>
+    <section class="about-us">
+      <v-container>
+        <v-row>
+          <v-col cols="12" md="6">
+            <h2 class="mb-4">Zdar Boh,</h2>
+            <p>
+              Vitajte na stánkach digitálneho baníckeho múzea. Toto múzeum má za cieľ významne prispieť k väčšiemu povedomiu o
+              baníctve, baníckych lampách, meracej technike, slávnostných odevoch a iných predmetoch využívaných v baníctve. Našim
+              hlavným cieľom je rozšíriť vedomosti či už laickej verenosti alebo odbornej. Múzeum otvára zbierky širšiemu publiku
+              pomocou digitálnych technológií. Vďaka nemu bližšie nahliadnete do histórie baníckych predmetov a získate nové
+              vedomosti. V múzeu najdete poznatky od staroveku až po koniec 20. storočia a budete sa môcť bližšie pozrieť na
+              najstaršie osvetľovacie telesa z obdobia 1000 p.n.l. až po predmety používané v nedavnej histórii. Návštevníci môžu
+              využívať najaktuálnejšie informácie, fotografie a videá, pričom sa môžu tešit na ďalšie zaujímavé exponáty, ktoré
+              budú pribúdať. Pravidelne budeme pridávať nové predmety a informácie. Pre prístup do digitálneho baníckeho múzea je
+              nutné sa zaregistrovať a zaplatiť na aké časové oddobie chcete mať prístup. Po zaplatení sa vám sprístupní celý
+              aktuálny obsah múzea. O nových exponátoch budeme pravidelne informovať prosterdníctvom emailov uz zaregistrovaných
+              užívateľov. Tešíme sa na Vašu návštevu
+            </p>
+          </v-col>
+          <v-col cols="12" md="6">
+            <div class="img-cover">
+              <img contain src="/images/lamp.JPG" />
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </section>
     <section class="main-info text-center" v-if="!user && user?.role.id != 3">
       <h3>{{ t("home.homeInfo") }}</h3>
     </section>
@@ -178,6 +205,24 @@ onMounted(() => {
         bottom: 5px;
         right: 5px;
       }
+    }
+  }
+}
+
+.about-us {
+  p {
+    line-height: 28px;
+  }
+  .img-cover {
+    border-radius: 60% 40% 40% 20% / 70% 50% 30% 25%;
+    overflow: hidden;
+    height: 500px;
+    width: 100%;
+    background: #fff;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 }

@@ -142,6 +142,7 @@ const currentPage = computed({
 
 const filterMuseum = () => {
   router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
+  getArticles();
 };
 
 const getArticles = async () => {
