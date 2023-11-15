@@ -1,7 +1,7 @@
 'use strict';
 const Stripe = require('stripe');
 // @ts-ignore
-const stripe = Stripe('sk_test_51IKj34KbNiX05g6vHD86ezpkOSXzazqwC8qC5NcKoPN8mPS7Qs1EXSAiaxbrWNtUYwH8GctE8arGHGFU6yw6EhqX0082zFO0ka');
+const stripe = Stripe(process.env.STRAPI_ADMIN_LIVE_STRIPE_SECRET_KEY);
 /**
  * stripe service
  */
@@ -72,7 +72,7 @@ module.exports = {
       console.log("Update user subscription")
       if (stripeStatus == 'complete' && stripePaymentStatus == 'paid') {
       // get current date
-      var currentDate = moment().add(product.metadata.months, 'M').format('YYYY-MM-DD');
+      var currentDate = moment().add(product.metadata.days, 'days').format('YYYY-MM-DD');
       console.log(currentDate);
         // set role subscribed to user + set date
         const editedUser = await strapi.db.query('plugin::users-permissions.user').update({
