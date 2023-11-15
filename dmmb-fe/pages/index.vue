@@ -21,7 +21,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <div class="img-cover">
-              <img contain src="/images/lamp.jpg" />
+              <img src="/images/lamp.jpg" />
             </div>
           </v-col>
         </v-row>
