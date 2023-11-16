@@ -19,6 +19,7 @@
     "@palmabit/strapi-app-version": "^1.1.0",
     "@strapi/plugin-i18n": "4.15.0",
     "@strapi/plugin-users-permissions": "4.15.0",
+    "@strapi/provider-email-nodemailer": "^4.15.0",
     "@strapi/provider-email-sendgrid": "^4.15.2",
     "@strapi/strapi": "4.15.0",
     "better-sqlite3": "8.5.0",
