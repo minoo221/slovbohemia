@@ -27,10 +27,10 @@
         </v-row>
       </v-container>
     </section>
-    <section class="main-info text-center" v-if="user && user?.role.id != 3">
+    <section class="main-info text-center" v-if="user?.role.id != 3">
       <h3>{{ t("home.homeInfo") }}</h3>
     </section>
-    <section class="prices" v-if="user && user?.role.id != 3">
+    <section class="prices" v-if="user?.role.id != 3">
       <v-container>
         <v-row>
           <v-col cols="12" md="3" v-for="(item, index) in prices">
