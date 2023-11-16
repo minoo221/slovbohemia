@@ -1185,7 +1185,7 @@ export interface ApiPagePage extends Schema.CollectionType {
   info: {
     singularName: 'page';
     pluralName: 'pages';
-    displayName: 'Page';
+    displayName: 'Str\u00E1nky';
     description: '';
   };
   options: {

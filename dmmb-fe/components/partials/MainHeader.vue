@@ -122,7 +122,7 @@
       >
         <SwiperSlide v-for="(item, index) in contact?.data.attributes.homeSlider.data" :key="item.id">
           <div class="img-cover">
-            <img :src="'http://localhost:1337' + item.attributes.url" />
+            <img :src="store.getMediaUrl(item.attributes.url)" />
           </div>
         </SwiperSlide>
       </Swiper>

@@ -90,8 +90,7 @@
                             class="mx-2"
                             color="warning"
                             link
-                            nuxt
-                            :to="localePath({ name: 'muzeum-slug-subslug', params: { subslug: itemMuseum.attributes.slug } })"
+                            :to="'muzeum/' + itemMuseum.attributes.slug"
                             variant="text"
                             append-icon="mdi-arrow-right"
                           >
