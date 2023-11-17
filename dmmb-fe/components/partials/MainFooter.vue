@@ -40,7 +40,16 @@
             </v-list>
             <h2 class="mx-4">{{ t("footer.info") }}</h2>
             <v-list nav bg-color="transparent" density="compact" color="white">
-              <v-list-item v-for="(item, i) in info" :key="i" nav base-color="white" link color="#fff">
+              <v-list-item
+                v-for="(item, i) in info"
+                :key="i"
+                :to="localePath({ name: 'page', params: { page: item.path } })"
+                nav
+                base-color="white"
+                link
+                exact
+                color="#fff"
+              >
                 <v-list-item-title v-text="item.title"></v-list-item-title>
               </v-list-item>
             </v-list>
@@ -75,8 +84,8 @@ const menu: Menu[] = reactive([
 ]);
 
 const info: Menu[] = reactive([
-  { title: "Ochrana osobných údajov", to: localePath(""), isReservation: false },
-  { title: "Cookies", to: localePath("apartmany"), isReservation: false },
+  { title: "Ochrana osobných údajov", path: "ochrana-osobnych-udajov", isReservation: false },
+  { title: "Cookies", path: "cookies", isReservation: false },
 ]);
 </script>
 
