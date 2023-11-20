@@ -118,7 +118,7 @@ const passwordConfirmationRule = computed(
 const user = useStrapiUser();
 
 const { create, find } = useStrapi();
-const { register } = useStrapiAuth();
+const { register, sendEmailConfirmation } = useStrapiAuth();
 
 definePageMeta({
   middleware: "is-logged",

@@ -53,7 +53,7 @@
                 </div>
               </div>
             </v-col>
-            <v-col cols="12" md="2" class="d-none d-md-block">
+            <v-col cols="12" md="2" class="d-block">
               <div class="d-flex align-center">
                 <v-menu v-model="accountMenu" location="bottom center" color="transparent">
                   <template v-slot:activator="{ props }">
@@ -68,7 +68,7 @@
                     </v-list-item>
                   </v-list>
                   <v-list dense v-else>
-                    <v-list-item :active="false" density="compact" to="/registracia">
+                    <v-list-item :active="false" density="compact" to="/profil">
                       {{ t("header.profile") }}
                     </v-list-item>
                     <v-list-item :active="false" density="compact" @click="onLogout()">
