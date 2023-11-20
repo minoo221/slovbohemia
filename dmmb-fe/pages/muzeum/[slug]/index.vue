@@ -7,7 +7,7 @@
       <v-row>
         <v-col cols="12" md="3" v-if="subCategories?.data.attributes.subcategories.data.length > 0">
           <h3 class="ml-2 mb-4">Filter:</h3>
-          <v-radio-group v-model="filter" @update:modelValue="filterMuseum()">
+          <v-radio-group v-model="currentFilter">
             <v-radio
               v-for="item in subCategories?.data.attributes.subcategories.data"
               :label="item.attributes.title"
@@ -140,6 +140,18 @@ const currentPage = computed({
   },
 });
 
+const currentFilter = computed({
+  // getter
+  get() {
+    return route.query.filter || null;
+  },
+  set(newFilter) {
+    // You could alternatively call your API here if you have serverside pagination
+
+    router.push({ query: { ...route.query, filter: newFilter } }).catch(() => {});
+  },
+});
+
 const filterMuseum = () => {
   router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
   getArticles();
@@ -166,7 +178,7 @@ const getArticles = async () => {
               },
               subcategories: {
                 slug: {
-                  $contains: filter.value,
+                  $contains: currentFilter.value,
                 },
               },
             }
@@ -208,9 +220,16 @@ const getArticles = async () => {
 
 const resetFilter = () => {
   router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
+  currentPage.value = 1;
+  currentFilter.value = null;
 };
 
 watch(currentPage, (newPage) => {
+  getArticles();
+});
+
+watch(currentFilter, (newFilter) => {
+  router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
   getArticles();
 });
 
