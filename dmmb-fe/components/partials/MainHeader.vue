@@ -133,8 +133,23 @@
         <v-btn class="ml-auto" variant="text" size="x-large" icon="mdi-close" color="primary" @click="drawer = false"></v-btn>
       </div>
       <v-list nav bg-color="transparent" density="compact" color="white">
-        <v-list-item v-for="(item, i) in menu" :key="i" :to="item.path" nuxt nav base-color="white" link color="#fff" exact>
+        <v-list-item
+          v-for="(item, i) in menu"
+          :key="i"
+          :to="item.path"
+          nuxt
+          nav
+          base-color="white"
+          :link="item.items.length == 0"
+          color="#fff"
+          exact
+        >
           <v-list-item-title v-text="item.title"></v-list-item-title>
+          <v-list>
+            <v-list-item v-for="(submenu, index) in item.items" :key="index" :value="index" link nuxt :to="submenu.path">
+              <v-list-item-title>{{ submenu.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -298,6 +313,9 @@ onMounted(() => {
     .swiper {
       background: #fff;
       height: 400px;
+      @media (max-width: 960px) {
+        height: 200px;
+      }
       .img-cover {
         display: flex;
         justify-content: center;
@@ -306,6 +324,9 @@ onMounted(() => {
           width: 100%;
           height: 400px;
           object-fit: contain;
+          @media (max-width: 960px) {
+            height: 200px;
+          }
         }
       }
       /* &::after {

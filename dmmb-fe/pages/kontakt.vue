@@ -77,6 +77,11 @@
           <h2 class="mx-4">Kontakt</h2>
           <v-list bg-color="transparent" color="white" class="mb-6">
             <v-list-item density="comfortable">
+              <v-list-item-title
+                ><strong>{{ contact?.data.attributes.company.companyName }}</strong></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item density="comfortable">
               <template v-slot:prepend>
                 <v-icon color="primary" class="mr-2">mdi-map-marker</v-icon>
               </template>

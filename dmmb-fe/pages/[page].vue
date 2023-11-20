@@ -44,11 +44,11 @@ const { data: page, refresh: refreshPage } = await useAsyncData("pages", () => f
   locale: locale.value,
 });
 
-/* useHead({
+useHead({
   title: page.value?.data.attributes.title,
   script: [{ src: "https://cdn.scaleflex.it/plugins/js-cloudimage-360-view/latest/js-cloudimage-360-view.min.js" }],
 });
- */
+
 /* definePageMeta({
   name: "test2",
 }); */
