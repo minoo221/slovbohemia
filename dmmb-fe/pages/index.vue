@@ -90,7 +90,12 @@
                             class="mx-2"
                             color="warning"
                             link
-                            :to="'muzeum/' + itemMuseum.attributes.slug"
+                            :to="
+                              'muzeum/' +
+                              itemMuseum.attributes.slug +
+                              '/' +
+                              itemMuseum.attributes.subcategories?.data[0].attributes.slug
+                            "
                             variant="text"
                             append-icon="mdi-arrow-right"
                           >

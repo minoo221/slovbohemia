@@ -12,8 +12,6 @@
                   :data-image-list-x="'[' + thumbImage + ']'"
                   :data-amount-x="thumbImage.length"
                   data-transformation="w=400&h=200&func=fit"
-                  data-play-once
-                  data-autoplay
                   data-spin-reverse
                   data-magnifier="2.4"
                   data-fullscreen
@@ -156,6 +154,10 @@ onMounted(async () => {
     console.log(rotateGallery.value.clientHeight);
     swiperHeight.value = rotateGallery.value.clientHeight;
   }, 700);
+});
+
+onBeforeUnmount(async () => {
+  window.CI360.destroy();
 });
 </script>
 <style scoped lang="scss">
