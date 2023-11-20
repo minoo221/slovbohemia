@@ -4,24 +4,14 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="6">
-            <h2 class="mb-4">Zdar Boh,</h2>
-            <p>
-              Vitajte na stánkach digitálneho baníckeho múzea. Toto múzeum má za cieľ významne prispieť k väčšiemu povedomiu o
-              baníctve, baníckych lampách, meracej technike, slávnostných odevoch a iných predmetoch využívaných v baníctve. Našim
-              hlavným cieľom je rozšíriť vedomosti či už laickej verenosti alebo odbornej. Múzeum otvára zbierky širšiemu publiku
-              pomocou digitálnych technológií. Vďaka nemu bližšie nahliadnete do histórie baníckych predmetov a získate nové
-              vedomosti. V múzeu najdete poznatky od staroveku až po koniec 20. storočia a budete sa môcť bližšie pozrieť na
-              najstaršie osvetľovacie telesa z obdobia 1000 p.n.l. až po predmety používané v nedavnej histórii. Návštevníci môžu
-              využívať najaktuálnejšie informácie, fotografie a videá, pričom sa môžu tešit na ďalšie zaujímavé exponáty, ktoré
-              budú pribúdať. Pravidelne budeme pridávať nové predmety a informácie. Pre prístup do digitálneho baníckeho múzea je
-              nutné sa zaregistrovať a zaplatiť na aké časové oddobie chcete mať prístup. Po zaplatení sa vám sprístupní celý
-              aktuálny obsah múzea. O nových exponátoch budeme pravidelne informovať prosterdníctvom emailov uz zaregistrovaných
-              užívateľov. Tešíme sa na Vašu návštevu
-            </p>
+            <h2 class="mb-4">{{ home?.data.attributes.title }}</h2>
+            <client-only>
+              <div v-html="home?.data.attributes.body"></div>
+            </client-only>
           </v-col>
           <v-col cols="12" md="6">
             <div class="img-cover">
-              <img src="/images/lamp.jpg" />
+              <img :src="store.getMediaUrl(home?.data.attributes.image.data.attributes.url)" />
             </div>
           </v-col>
         </v-row>
@@ -143,6 +133,10 @@ const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () 
       pageSize: 4,
     },
   })
+);
+
+const { data: home, refresh: refreshHome } = await useAsyncData("homen", () =>
+  find<any>("home", { populate: "*", locale: locale.value })
 );
 
 /* const prices: any[] = reactive([

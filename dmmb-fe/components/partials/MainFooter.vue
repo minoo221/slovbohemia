@@ -4,7 +4,7 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="4" class="pt-5">
-            <p>{{ t("footer.about") }}</p>
+            <p>{{ home?.data.attributes.footerText }}</p>
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" sm="6" md="4" offset-md="0">
@@ -69,8 +69,12 @@ import type { Menu, Slider } from "~/types";
 const center: any = reactive({ lat: 49.10315253556189, lng: 19.59352807900453 });
 
 const { find } = useStrapi();
-const { data: contact, refresh } = await useAsyncData("contact-information", () =>
+const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*", locale: locale.value })
+);
+
+const { data: home, refresh: refreshHome } = await useAsyncData("homen", () =>
+  find<any>("home", { populate: "*", locale: locale.value })
 );
 
 const menu: Menu[] = reactive([
