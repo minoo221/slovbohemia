@@ -1146,7 +1146,12 @@ export interface ApiLampLamp extends Schema.CollectionType {
           output: 'HTML';
           preset: 'standard';
         }
-      >;
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     lamp_categories: Attribute.Relation<
       'api::lamp.lamp',
       'manyToMany',

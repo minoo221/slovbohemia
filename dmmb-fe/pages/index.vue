@@ -60,7 +60,7 @@
                           :src="store.getMediaUrl(itemMuseum.attributes.coverImg.data?.attributes.url)"
                           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                           height="250px"
-                          cover
+                          contain
                         >
                           <template v-slot:placeholder>
                             <v-row class="fill-height ma-0" align="center" justify="center">
@@ -81,11 +81,14 @@
                             class="mx-2"
                             color="warning"
                             link
-                            :to="
-                              'muzeum/' +
-                              itemMuseum.attributes.slug +
-                              '/' +
-                              itemMuseum.attributes.subcategories?.data[0].attributes.slug
+                            nuxt
+                            :href="
+                              localePath(
+                                '/muzeum/' +
+                                  itemMuseum.attributes.subcategories?.data[0].attributes.slug +
+                                  '/' +
+                                  itemMuseum.attributes.slug
+                              )
                             "
                             variant="text"
                             append-icon="mdi-arrow-right"

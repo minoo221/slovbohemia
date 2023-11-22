@@ -5,15 +5,31 @@
   <section class="museum">
     <v-container>
       <v-row>
-        <v-col cols="12" md="3" v-if="subCategories?.data.attributes.subcategories.data.length > 0">
+        <v-col cols="12" md="3">
           <h3 class="ml-2 mb-4">Filter:</h3>
           <v-radio-group v-model="currentFilter">
             <v-radio
               v-for="item in subCategories?.data.attributes.subcategories.data"
               :label="item.attributes.title"
               :value="item.attributes.slug"
+              v-if="subCategories?.data.attributes.subcategories.data.length > 0"
             ></v-radio>
           </v-radio-group>
+          <v-form @submit.prevent="filterTitle()">
+            <v-text-field
+              :loading="loading"
+              v-model="search"
+              density="compact"
+              variant="solo"
+              :label="t('museum.search')"
+              append-inner-icon="mdi-magnify"
+              single-line
+              hide-details
+              class="mb-4"
+              @click:append-inner="filterTitle()"
+            ></v-text-field>
+            <input type="submit" hidden />
+          </v-form>
           <v-btn class="ml-auto" color="error" variant="text" size="small" @click="resetFilter()">
             {{ t("museum.resetFilter") }}
           </v-btn>
@@ -101,6 +117,7 @@ const isVisible: Ref<boolean> = ref(false);
 const filter: Ref<string> = ref("");
 const loading: Ref<boolean> = ref(false);
 const page: Ref<number> = ref(1);
+const search: Ref<string> = ref("");
 
 const { find, findOne } = useStrapi();
 
@@ -152,6 +169,11 @@ const currentFilter = computed({
   },
 });
 
+const filterTitle = () => {
+  router.push({ query: { ...route.query, searchTitle: search.value } }).catch(() => {});
+  getArticles();
+};
+
 const filterMuseum = () => {
   router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
   getArticles();
@@ -173,6 +195,9 @@ const getArticles = async () => {
       filters:
         subCategories.value?.data.attributes.subcategories.data.length > 0
           ? {
+              title: {
+                $contains: search.value,
+              },
               lamp_categories: {
                 slug: route.params.slug,
               },
@@ -183,6 +208,9 @@ const getArticles = async () => {
               },
             }
           : {
+              title: {
+                $contains: search.value,
+              },
               lamp_categories: {
                 slug: route.params.slug,
               },
@@ -222,6 +250,8 @@ const resetFilter = () => {
   router.push({ query: { ...route.query, page: 1 } }).catch(() => {});
   currentPage.value = 1;
   currentFilter.value = null;
+  search.value = "";
+  router.replace({ query: {} });
 };
 
 watch(currentPage, (newPage) => {
@@ -236,7 +266,7 @@ watch(currentFilter, (newFilter) => {
 onMounted(async () => {
   store.setTitle(subCategories.value?.data.attributes.title);
   console.log(store.title);
-
+  search.value = route.query?.searchTitle ? route.query?.searchTitle : "";
   await getArticles();
   console.log("museum", museum.value);
   console.log("subcategories", subCategories.value);
