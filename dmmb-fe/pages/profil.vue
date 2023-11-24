@@ -9,7 +9,7 @@
           </tr> -->
           <tr>
             <td>
-              <strong>{{ t("profile.user") }}</strong>
+              <strong>{{ t("profile.username") }}</strong>
             </td>
             <td>{{ userData?.username }}</td>
           </tr>
@@ -21,7 +21,7 @@
           </tr>
           <tr>
             <td>
-              <strong>{{ t("profile.subscribedUntil") }}</strong>
+              <strong>{{ t("profile.subscribeUntil") }}</strong>
             </td>
             <td>{{ $dayjs(userData?.subscribedUntil).format("D. M. YYYY") }}</td>
           </tr>
