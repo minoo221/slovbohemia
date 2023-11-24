@@ -48,7 +48,7 @@
           <v-col cols="12" md="12">
             <div class="articles-museum">
               <div class="text-center">
-                <h2 class="h1 mb-8">{{ t("home.actualizations") }}</h2>
+                <h2 class="h1 mb-8">{{ t("museum.actualizations") }}</h2>
               </div>
               <v-row>
                 <v-col cols="12" v-for="itemMuseum in museum?.data" class="mb-4">
