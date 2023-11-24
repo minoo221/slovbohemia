@@ -190,8 +190,8 @@ const handleMenuItemClick = (lang: string, isReload: boolean = false) => {
   activeLang.value = lang;
   if (isReload == false) {
     console.log("som v redirect", lang);
-    setLocale(lang);
     menuKey.value++;
+    setLocale(lang);
     setTimeout(() => {
       router.push(localePath("/"));
     }, 400);

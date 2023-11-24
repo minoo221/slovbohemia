@@ -103,6 +103,10 @@
         "error": "Sorry, there was an error somewhere. Please try it again.",
         "success": "The contact form has been successfully sent"
       }
-    }
+    },
+    "contactUs": "Contact us",
+    "info": "Contact",
+    "ico": "Business ID",
+    "dic": "Tax ID"
   }
 }

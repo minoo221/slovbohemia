@@ -3,7 +3,7 @@
     <v-container>
       <v-row class="mb-12">
         <v-col cols="12" md="6">
-          <h2 class="mb-4">Napíšte nám</h2>
+          <h2 class="mb-4">{{ t("contact.contactUs") }}</h2>
           <v-form ref="form" @submit.prevent="sendForm()">
             <v-row>
               <v-col cols="12" md="6">
@@ -74,7 +74,7 @@
           </v-form>
         </v-col>
         <v-col cols="12" md="6" offset-md="0">
-          <h2 class="mx-4">Kontakt</h2>
+          <h2 class="mx-4">{{ t("contact.info") }}</h2>
           <v-list bg-color="transparent" color="white" class="mb-6">
             <v-list-item density="comfortable">
               <v-list-item-title
@@ -104,13 +104,13 @@
               <v-list-item-title>{{ contact?.data.attributes.email }}</v-list-item-title>
             </v-list-item>
           </v-list>
-          <h4 class="mx-4">IČO:</h4>
+          <h4 class="mx-4">{{ t("contact.ico") }}</h4>
           <v-list bg-color="transparent" color="white" class="pt-0 mb-6">
             <v-list-item density="comfortable">
               <v-list-item-title>{{ contact?.data.attributes.company.ico }}</v-list-item-title>
             </v-list-item>
           </v-list>
-          <h4 class="mx-4">DIČ:</h4>
+          <h4 class="mx-4">{{ t("contact.dic") }}</h4>
           <v-list bg-color="transparent" color="white" class="pt-0 mb-6">
             <v-list-item density="comfortable">
               <v-list-item-title>{{ contact?.data.attributes.company.dic }}</v-list-item-title>

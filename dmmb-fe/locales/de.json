@@ -103,6 +103,10 @@
         "error": "Entschuldigung, irgendwo ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal.",
         "success": "Das Kontaktformular wurde erfolgreich versendet"
       }
-    }
+    },
+    "contactUs": "Kontaktiere uns",
+    "info": "Kontakt",
+    "ico": "Business ID",
+    "dic": "Firmen-Ident.-Nr."
   }
 }

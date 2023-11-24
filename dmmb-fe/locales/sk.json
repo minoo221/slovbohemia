@@ -103,6 +103,10 @@
         "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
         "success": "Kontaktný formulár bol úspešne odoslaný"
       }
-    }
+    },
+    "contactUs": "Napíšte nám",
+    "info": "Kontakt",
+    "ico": "IČO",
+    "dic": "DIČ"
   }
 }
