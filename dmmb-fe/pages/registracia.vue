@@ -139,12 +139,17 @@ const sendForm = async () => {
         phoneNumber: formData.tel,
         newsletter: formData.newsletter,
       });
-      store.showSuccess(t("login.form.responses.success"));
+      store.showSuccess(t("register.form.responses.success"));
       await form.value.reset();
       router.push({ path: "/" });
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
-      store.showError(t("login.form.responses.error"));
+      console.log(e.error.status);
+      if (e.error.status == 400) {
+        store.showError(t("register.form.responses.userExist"));
+      } else {
+        store.showError(t("register.form.responses.error"));
+      }
     } finally {
       loadingSend.value = false;
     }

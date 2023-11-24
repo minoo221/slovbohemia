@@ -14,7 +14,9 @@
   "footer": {
     "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at.",
     "contact": "Kontakt",
-    "info": "Informácie"
+    "info": "Informácie",
+    "privacy": "Ochrana osobých údajov",
+    "cookies": "Cookies"
   },
   "register": {
     "title": "Registrácia",
@@ -37,7 +39,8 @@
       },
       "responses": {
         "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
-        "success": "Kontaktný formulár bol úspešne odoslaný"
+        "success": "Registrácia prebehla úspešne. Boli ste prihlásený.",
+        "userExist": "Prihlasovacie meno alebo email sa už používa."
       }
     }
   },
@@ -59,14 +62,16 @@
       },
       "responses": {
         "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
-        "success": "Kontaktný formulár bol úspešne odoslaný"
+        "success": "Boli ste úspešne prihlasený.",
+        "badCredentials": "Zadali ste zlé prihlasovacie údaje."
       }
     }
   },
   "museum": {
     "showMore": "Zobraziť viac",
     "search": "Vyhľadať podľa názvu",
-    "resetFilter": "Resetovať filter"
+    "resetFilter": "Resetovať filter",
+    "actualizations": "Aktualizácie"
   },
   "pay": {
     "title": "Informácie o platbe",

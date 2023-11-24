@@ -48,7 +48,7 @@
           <v-col cols="12" md="12">
             <div class="articles-museum">
               <div class="text-center">
-                <h2 class="h1 mb-8">Najnovšie clánky</h2>
+                <h2 class="h1 mb-8">{{ t("home.actualizations") }}</h2>
               </div>
               <v-row>
                 <v-col cols="12" v-for="itemMuseum in museum?.data" class="mb-4">
@@ -57,7 +57,7 @@
                       <v-col cols="12" md="4">
                         <v-img
                           class="text-left align-end rounded-md"
-                          :src="store.getMediaUrl(itemMuseum.attributes.coverImg.data?.attributes.url)"
+                          :src="store.getMediaUrl(itemMuseum?.attributes.coverImg.data?.attributes.url)"
                           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                           height="250px"
                           contain
@@ -70,10 +70,10 @@
                         </v-img>
                       </v-col>
                       <v-col md="8">
-                        <v-card-title class="text-left" v-text="itemMuseum.attributes.title"></v-card-title>
+                        <v-card-title class="text-left" v-text="itemMuseum?.attributes.title"></v-card-title>
 
                         <v-card-text>
-                          <p class="mb-4" v-if="itemMuseum.attributes.summaryText">{{ itemMuseum.attributes.summaryText }}</p>
+                          <p class="mb-4" v-if="itemMuseum?.attributes.summaryText">{{ itemMuseum?.attributes.summaryText }}</p>
                         </v-card-text>
                         <v-card-actions>
                           <v-spacer></v-spacer>
@@ -85,9 +85,9 @@
                             :href="
                               localePath(
                                 '/muzeum/' +
-                                  itemMuseum.attributes.subcategories?.data[0].attributes.slug +
+                                  itemMuseum?.attributes.subcategories.data[0]?.attributes.slug +
                                   '/' +
-                                  itemMuseum.attributes.slug
+                                  itemMuseum?.attributes.slug
                               )
                             "
                             variant="text"
@@ -130,6 +130,7 @@ const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", (
 
 const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () =>
   find<any>("lamps", {
+    locale: locale.value,
     populate: "*",
     pagination: {
       page: 1,

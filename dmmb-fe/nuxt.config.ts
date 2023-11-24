@@ -57,6 +57,10 @@ export default defineNuxtConfig({
 			{
 				code: 'sk',
 				name: 'Slovensky'
+			},
+			{
+				code: 'de',
+				name: 'Deutsch'
 			}
 		],  // used in URL path prefix
 		strategy: 'prefix_except_default',

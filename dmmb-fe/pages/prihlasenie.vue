@@ -77,9 +77,13 @@ const sendForm = async () => {
       store.showSuccess(t("login.form.responses.success"));
       await form.value.reset();
       router.push({ path: "/" });
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
-      store.showError(t("login.form.responses.error"));
+      if (e.error.status == 400) {
+        store.showError(t("login.form.responses.badCredentials"));
+      } else {
+        store.showError(t("login.form.responses.error"));
+      }
     } finally {
       loadingSend.value = false;
     }

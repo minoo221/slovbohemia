@@ -5,19 +5,19 @@
         <v-container>
           <v-row class="align-center" justify="space-between">
             <v-col col="12" md="2" class="py-0">
-              <NuxtLink to="/" class="d-block">
+              <NuxtLink :to="localePath('/')" class="d-block">
                 <v-img contain src="/images/logo.png" class="img-logo"></v-img>
               </NuxtLink>
             </v-col>
             <v-col cols="12" md="auto" class="d-none d-md-block">
-              <div class="d-flex">
+              <div class="d-flex" :key="menuKey">
                 <div v-for="item in menu" :key="item.id">
                   <v-btn
                     exact
                     class="mx-0 px-2 mx-lg-2 px-lg-4"
                     color="secondary"
                     link
-                    :to="item.path"
+                    :to="localePath(item.path)"
                     variant="plain"
                     nuxt
                     v-if="item.items.length == 0"
@@ -44,7 +44,7 @@
                         :value="index"
                         link
                         nuxt
-                        :to="submenu.path"
+                        :to="localePath(submenu.path)"
                       >
                         <v-list-item-title>{{ submenu.title }}</v-list-item-title>
                       </v-list-item>
@@ -60,15 +60,15 @@
                     <v-btn icon="mdi-account" v-bind="props" variant="plain" density="compact"> </v-btn>
                   </template>
                   <v-list dense v-if="!user">
-                    <v-list-item :active="false" density="compact" to="/prihlasenie">
+                    <v-list-item :active="false" density="compact" :to="localePath('/prihlasenie')">
                       {{ t("header.login") }}
                     </v-list-item>
-                    <v-list-item :active="false" density="compact" to="/registracia">
+                    <v-list-item :active="false" density="compact" :to="localePath('/registracia')">
                       {{ t("header.register") }}
                     </v-list-item>
                   </v-list>
                   <v-list dense v-else>
-                    <v-list-item :active="false" density="compact" to="/profil">
+                    <v-list-item :active="false" density="compact" :to="localePath('/profil')">
                       {{ t("header.profile") }}
                     </v-list-item>
                     <v-list-item :active="false" density="compact" @click="onLogout()">
@@ -76,7 +76,7 @@
                     </v-list-item>
                   </v-list>
                 </v-menu>
-                <!-- <v-menu v-model="languageMenu" offset-y color="transparent">
+                <v-menu v-model="languageMenu" offset-y color="transparent">
                   <template v-slot:activator="{ props }">
                     <v-btn class="text-capitalize" v-bind="props" variant="plain">
                       {{ activeLang.toUpperCase() }}
@@ -89,13 +89,12 @@
                       :key="index"
                       :active="false"
                       density="compact"
-                      @click="handleMenuItemClick(lang.code)"
-                      :to="switchLocalePath(lang.code)"
+                      @click.prevent="handleMenuItemClick(lang.code)"
                     >
                       {{ lang.code.toUpperCase() }}
                     </v-list-item>
                   </v-list>
-                </v-menu> -->
+                </v-menu>
               </div>
             </v-col>
             <v-col cols="auto" class="d-block d-md-none">
@@ -159,7 +158,7 @@
 <script setup lang="ts">
 import { useLocalePath, useSwitchLocalePath, useLocaleHead, useBrowserLocale } from "#i18n";
 import type { Menu, Slider } from "~/types";
-const { locale, t, locales } = useI18n();
+const { locale, t, locales, setLocale } = useI18n();
 import { storeToRefs } from "pinia";
 
 import { useIndexStore } from "@/stores/";
@@ -167,6 +166,7 @@ const store = useIndexStore();
 const user = useStrapiUser();
 const { logout } = useStrapiAuth();
 const router = useRouter();
+const route = useRoute();
 
 const { title } = storeToRefs(store);
 
@@ -183,9 +183,19 @@ const drawer: Ref<boolean> = ref(false);
 const activeLang: Ref<string> = ref("SK");
 const languageMenu: Ref<boolean> = ref(false);
 const accountMenu: Ref<boolean> = ref(false);
+const menuKey: Ref<number> = ref(0);
+const menu: Ref<any> = ref([]);
 
-const handleMenuItemClick = (lang: string) => {
+const handleMenuItemClick = (lang: string, isReload: boolean = false) => {
   activeLang.value = lang;
+  if (isReload == false) {
+    console.log("som v redirect", lang);
+    setLocale(lang);
+    menuKey.value++;
+    setTimeout(() => {
+      router.push(localePath("/"));
+    }, 400);
+  }
 };
 
 const onLogout = () => {
@@ -201,11 +211,25 @@ const { data: contact, refresh } = await useAsyncData("contact-information", () 
 ); */
 
 const { find } = useStrapi();
-const { data: menu, refresh: refreshMenu } = await useAsyncData("menu", () =>
+/* const { data: menu, refresh: refreshMenu } = await useAsyncData("menu", () =>
   find<Menu>("navigation/render/main-navigation", {
     type: "TREE",
+    locale: locale.value,
   })
-);
+); */
+
+const getMenu = async () => {
+  try {
+    /* if (filter.value == "") { */
+    const response = await find<Menu>("navigation/render/main-navigation", {
+      type: "TREE",
+      locale: locale.value,
+    });
+    menu.value = response;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 const { data: contact, refresh: refreshInfo } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*", locale: locale.value })
@@ -218,11 +242,17 @@ const { data: contact, refresh: refreshInfo } = await useAsyncData("contact-info
   { title: "Obchodné podmienky", to: localePath("obchodne-podmienky"), childrens: [] },
 ]); */
 
+watch(locale, (newLocale) => {
+  getMenu();
+});
+
 onMounted(() => {
   console.log(store.title);
   console.log("menu", menu);
   console.log("userHeader", user);
   console.log("locale", locale.value);
+  handleMenuItemClick(locale.value, true);
+  getMenu();
 });
 </script>
 

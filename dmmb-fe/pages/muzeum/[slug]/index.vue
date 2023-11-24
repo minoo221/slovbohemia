@@ -188,7 +188,7 @@ const getArticles = async () => {
     const response = await find<any>("lamps", {
       pagination: {
         page: currentPage.value,
-        pageSize: 6,
+        pageSize: 10,
       },
       populate: "*",
       locale: locale.value,

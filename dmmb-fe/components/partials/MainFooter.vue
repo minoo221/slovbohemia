@@ -43,7 +43,7 @@
               <v-list-item
                 v-for="(item, i) in info"
                 :key="i"
-                :to="localePath({ name: 'page', params: { page: item.path } })"
+                :to="localePath({ name: 'page', params: { page: item.related.slug } })"
                 nav
                 base-color="white"
                 link
@@ -67,6 +67,7 @@ const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 import type { Menu, Slider } from "~/types";
 const center: any = reactive({ lat: 49.10315253556189, lng: 19.59352807900453 });
+const info: Ref<any> = ref([]);
 
 const { find } = useStrapi();
 const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
@@ -87,10 +88,28 @@ const menu: Menu[] = reactive([
   { title: "Rezervácia", to: localePath("rezervacia"), isReservation: true },
 ]);
 
-const info: Menu[] = reactive([
-  { title: "Ochrana osobných údajov", path: "ochrana-osobnych-udajov", isReservation: false },
-  { title: "Cookies", path: "cookies", isReservation: false },
-]);
+const getMenu = async () => {
+  console.log("menu", locale.value);
+
+  try {
+    /* if (filter.value == "") { */
+    const response = await find<Menu>("navigation/render/footer", {
+      type: "TREE",
+      locale: locale.value,
+    });
+    info.value = response;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+watch(locale, (newLocale) => {
+  getMenu();
+});
+
+onMounted(() => {
+  getMenu();
+});
 </script>
 
 <style scoped lang="scss">

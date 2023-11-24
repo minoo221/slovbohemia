@@ -8,15 +8,21 @@
             <td>{{ item.calories }}</td>
           </tr> -->
           <tr>
-            <td><strong>Používateľ:</strong></td>
+            <td>
+              <strong>{{ t("profile.user") }}</strong>
+            </td>
             <td>{{ userData?.username }}</td>
           </tr>
           <tr>
-            <td><strong>Email:</strong></td>
+            <td>
+              <strong>{{ t("profile.email") }}</strong>
+            </td>
             <td>{{ userData?.email }}</td>
           </tr>
           <tr>
-            <td><strong>Predplatné platné do:</strong></td>
+            <td>
+              <strong>{{ t("profile.subscribedUntil") }}</strong>
+            </td>
             <td>{{ $dayjs(userData?.subscribedUntil).format("D. M. YYYY") }}</td>
           </tr>
         </tbody>
