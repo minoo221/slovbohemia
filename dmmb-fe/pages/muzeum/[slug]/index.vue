@@ -34,7 +34,7 @@
             {{ t("museum.resetFilter") }}
           </v-btn>
         </v-col>
-        <v-col cols="12" :md="subCategories?.data.attributes.subcategories.data.length > 0 ? '9' : '12'">
+        <v-col cols="12" md="9">
           <div
             class="articles-museum"
             :class="{ 'articles-museum--with-filter': subCategories?.data.attributes.subcategories.data.length > 0 }"
