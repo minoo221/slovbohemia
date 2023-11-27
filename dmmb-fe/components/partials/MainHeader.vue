@@ -202,7 +202,7 @@ const onLogout = () => {
   console.log("logout");
 
   logout();
-  router.push("/");
+  router.push(localePath("/"));
 };
 
 /* const { find } = useStrapi();
