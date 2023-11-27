@@ -126,7 +126,9 @@ const client = useStrapiClient();
 const user = useStrapiUser();
 const { fetchUser } = useStrapiAuth();
 
-const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", () => find<any>("stripe/products"));
+const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", () =>
+  find<any>("stripe/products", { locale: locale.value })
+);
 
 const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () =>
   find<any>("lamps", {
