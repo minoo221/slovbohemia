@@ -91,7 +91,7 @@ module.exports = {
     return sessionId;
   },
 
-  listOfProducts: async(limit) => {
+  listOfProducts: async(limit, locale) => {
     const prices = await stripe.prices.list({
       limit: limit,
     });
@@ -103,12 +103,13 @@ module.exports = {
       const product = await stripe.products.retrieve(
         price.product
       );
+      console.log(product);
       let item = {
-        name: product.name,
+        name: getLocaleProductName(locale, product),
         priceId: price.id,
         price: price.unit_amount / 100,
         currency: price.currency,
-        description: product.description
+        description: getLocaleProductDescription(locale, product)
       }
       res.push(item)
 
@@ -116,3 +117,22 @@ module.exports = {
     return res;
   }
 };
+
+
+function getLocaleProductName(locale, product) {
+  if (locale == null) return product.name;
+  if (locale == "en")
+    return product.metadata.name_en;
+  if (locale == "de")
+    return product.metadata.name_de;
+  return product.name;
+}
+
+function getLocaleProductDescription(locale, product) {
+  if (locale == null) return product.description;
+  if (locale == "en")
+    return product.metadata.description_en;
+  if (locale == "de")
+    return product.metadata.description_de;
+  return product.description;
+}

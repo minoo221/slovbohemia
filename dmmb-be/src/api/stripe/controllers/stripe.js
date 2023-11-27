@@ -44,10 +44,10 @@ module.exports = {
   async listOfProducts(ctx, next) {
     try {
       console.log("listOfProducts");
-      console.log(ctx.params);
+      console.log(ctx.request.query);
       const data = await strapi
             .service("api::stripe.stripe")
-            .listOfProducts(5);
+            .listOfProducts(5, ctx.request.query.locale);
 
       ctx.body = data;
     } catch (err) {
