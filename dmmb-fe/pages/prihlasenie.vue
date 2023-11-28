@@ -47,6 +47,7 @@ import type { Categories } from "~/types";
 const emit = defineEmits(["title"]);
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
+const localePath = useLocalePath();
 const router = useRouter();
 
 const formData: any = reactive({});
@@ -76,7 +77,7 @@ const sendForm = async () => {
       });
       store.showSuccess(t("login.form.responses.success"));
       await form.value.reset();
-      router.push({ path: "/" });
+      router.push({ path: localePath("/") });
     } catch (e: any) {
       console.log(e);
       if (e.error.status == 400) {
