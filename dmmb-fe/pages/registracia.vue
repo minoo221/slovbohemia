@@ -103,6 +103,7 @@
 const { locale, t } = useI18n();
 import type { Categories } from "~/types";
 const emit = defineEmits(["title"]);
+const localePath = useLocalePath();
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 const router = useRouter();
@@ -141,7 +142,7 @@ const sendForm = async () => {
       });
       store.showSuccess(t("register.form.responses.success"));
       await form.value.reset();
-      router.push({ path: "/" });
+      router.push({ path: localePath("/") });
     } catch (e: any) {
       console.log(e);
       console.log(e.error.status);

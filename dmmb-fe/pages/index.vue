@@ -23,7 +23,7 @@
     <section class="prices" v-if="user?.role.id != 3">
       <v-container>
         <v-row>
-          <v-col cols="12" md="3" v-for="(item, index) in prices">
+          <v-col cols="12" sm="6" md="3" v-for="(item, index) in prices">
             <v-card class="mr-0 px-4 py-4" elevation="4" rounded="lg" width="100%">
               <v-card-item>
                 <div>

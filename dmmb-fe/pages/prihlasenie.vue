@@ -46,8 +46,8 @@ const { locale, t } = useI18n();
 import type { Categories } from "~/types";
 const emit = defineEmits(["title"]);
 import { useIndexStore } from "@/stores/";
-const store = useIndexStore();
 const localePath = useLocalePath();
+const store = useIndexStore();
 const router = useRouter();
 
 const formData: any = reactive({});

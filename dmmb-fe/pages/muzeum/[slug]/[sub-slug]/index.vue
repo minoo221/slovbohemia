@@ -215,5 +215,11 @@ onBeforeUnmount(async () => {
       }
     }
   } */
+
+  .text {
+    p {
+      word-wrap: break-word;
+    }
+  }
 }
 </style>

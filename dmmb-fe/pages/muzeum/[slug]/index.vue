@@ -5,7 +5,7 @@
   <section class="museum">
     <v-container>
       <v-row>
-        <v-col cols="12" md="3">
+        <v-col cols="12" sm="4" md="3">
           <h3 class="ml-2 mb-4">Filter:</h3>
           <v-radio-group v-model="currentFilter">
             <v-radio
@@ -34,7 +34,7 @@
             {{ t("museum.resetFilter") }}
           </v-btn>
         </v-col>
-        <v-col cols="12" md="9">
+        <v-col cols="12" sm="8" md="9">
           <div
             class="articles-museum"
             :class="{ 'articles-museum--with-filter': subCategories?.data.attributes.subcategories.data.length > 0 }"

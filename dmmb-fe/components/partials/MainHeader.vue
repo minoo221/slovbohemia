@@ -4,7 +4,7 @@
       <div class="header-menu">
         <v-container>
           <v-row class="align-center" justify="space-between">
-            <v-col col="12" md="2" class="py-0">
+            <v-col col="2" md="2" class="py-0">
               <NuxtLink :to="localePath('/')" class="d-block">
                 <v-img contain src="/images/logo.png" class="img-logo"></v-img>
               </NuxtLink>
@@ -53,7 +53,7 @@
                 </div>
               </div>
             </v-col>
-            <v-col cols="12" md="2" class="d-block">
+            <v-col cols="4" md="2" class="d-block">
               <div class="d-flex align-center">
                 <v-menu v-model="accountMenu" location="bottom center" color="transparent">
                   <template v-slot:activator="{ props }">
