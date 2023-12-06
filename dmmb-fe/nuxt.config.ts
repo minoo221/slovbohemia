@@ -37,7 +37,7 @@ export default defineNuxtConfig({
         "@nuxtjs/i18n",
 		'@nuxtjs/strapi',
 		'nuxt-swiper',
-		'dayjs-nuxt'
+		'dayjs-nuxt',
     ],
 	runtimeConfig: {
 		public: {

@@ -135,7 +135,7 @@
         <v-list-item
           v-for="(item, i) in menu"
           :key="i"
-          :to="item.path"
+          :to="localePath(item.path)"
           nuxt
           nav
           base-color="white"
