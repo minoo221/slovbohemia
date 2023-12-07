@@ -34,8 +34,12 @@
               </v-card-item>
 
               <v-card-actions class="d-flex justify-end">
-                <v-btn color="warning" variant="outlined" block :to="localePath('/registracia')" v-if="!user"> Vybrať </v-btn>
-                <v-btn color="warning" variant="outlined" block @click="getUser(item.priceId)" v-else> Vybrať </v-btn>
+                <v-btn color="warning" variant="outlined" block :to="localePath('/registracia')" v-if="!user">
+                  {{ t("home.select") }}
+                </v-btn>
+                <v-btn color="warning" variant="outlined" block @click="getUser(item.priceId)" v-else>
+                  {{ t("home.select") }}
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>

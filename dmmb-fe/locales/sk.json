@@ -3,7 +3,8 @@
   "test": "test",
   "home": {
     "homeInfo": "Vyberte si z možností, na aké obdobie chcete získať prístup pre náš exkluzívny obsah",
-    "title": "Vitajte na našej stránke"
+    "title": "Vitajte na našej stránke",
+    "select": "Vybrať"
   },
   "header": {
     "login": "Prihlásenie",

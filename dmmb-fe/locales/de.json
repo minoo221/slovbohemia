@@ -3,7 +3,8 @@
   "test": "test",
   "home": {
     "homeInfo": "Wählen Sie aus den Optionen, wie lange Sie Zugriff auf unsere exklusiven Inhalte erhalten möchten",
-    "title": "Willkommen auf unserer Website"
+    "title": "Willkommen auf unserer Website",
+    "select": "Wählen"
   },
   "header": {
     "login": "Einloggen",

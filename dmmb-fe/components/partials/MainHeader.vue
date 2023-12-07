@@ -145,7 +145,14 @@
         >
           <v-list-item-title v-text="item.title"></v-list-item-title>
           <v-list>
-            <v-list-item v-for="(submenu, index) in item.items" :key="index" :value="index" link nuxt :to="submenu.path">
+            <v-list-item
+              v-for="(submenu, index) in item.items"
+              :key="index"
+              :value="index"
+              link
+              nuxt
+              :to="localePath(submenu.path)"
+            >
               <v-list-item-title>{{ submenu.title }}</v-list-item-title>
             </v-list-item>
           </v-list>
