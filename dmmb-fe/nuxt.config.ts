@@ -67,7 +67,14 @@ export default defineNuxtConfig({
 	    defaultLocale: 'sk',
         vueI18n: "./i18n.config.ts",
 		customRoutes: 'config',
-		detectBrowserLanguage: false
+		detectBrowserLanguage: false,
+		pages: {
+			nahlad: {
+				sk: '/nahlad', // -> accessible at /about-us (no prefix since it's the default locale)
+				en: '/insight', // -> accessible at /fr/a-propos
+				de: '/ansicht'     // -> accessible at /es/sobre
+			}
+		}
 		/* pages: {
 			contact: {
 				sk: '/kontakt',

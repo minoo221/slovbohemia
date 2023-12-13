@@ -72,7 +72,8 @@
     "showMore": "Zeig mehr",
     "search": "Suche mit Name",
     "resetFilter": "Setzen Sie den Filter zurück",
-    "actualizations": "Aktualisierung"
+    "actualizations": "Aktualisierung",
+    "insight": "Ansicht"
   },
   "pay": {
     "title": "Zahlungsinformationen",

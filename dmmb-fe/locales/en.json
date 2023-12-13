@@ -72,7 +72,8 @@
     "showMore": "Show more",
     "search": "Search by name",
     "resetFilter": "Reset the filter",
-    "actualizations": "Updates"
+    "actualizations": "Updates",
+    "insight": "Insight"
   },
   "pay": {
     "title": "Payment Information",
