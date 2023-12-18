@@ -89,7 +89,7 @@ const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () 
     populate: "*",
     pagination: {
       page: 1,
-      pageSize: 4,
+      pageSize: 10,
     },
     filters: {
       lamp_categories: {
