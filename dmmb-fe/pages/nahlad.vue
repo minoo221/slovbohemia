@@ -41,14 +41,7 @@
                           color="warning"
                           link
                           nuxt
-                          :href="
-                            localePath(
-                              '/muzeum/' +
-                                insightMuseum?.attributes.subcategories.data[0]?.attributes.slug +
-                                '/' +
-                                insightMuseum?.attributes.slug
-                            )
-                          "
+                          :href="localePath({ name: 'nahladSlug', params: { nahladSlug: insightMuseum.attributes.slug } })"
                           variant="text"
                           append-icon="mdi-arrow-right"
                         >
