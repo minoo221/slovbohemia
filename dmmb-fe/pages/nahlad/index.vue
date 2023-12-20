@@ -41,7 +41,7 @@
                           color="warning"
                           link
                           nuxt
-                          :href="localePath({ name: 'nahladSlug', params: { nahladSlug: insightMuseum.attributes.slug } })"
+                          :href="localePath('/nahlad/' + insightMuseum?.attributes.slug)"
                           variant="text"
                           append-icon="mdi-arrow-right"
                         >
