@@ -69,7 +69,12 @@ export default defineNuxtConfig({
 		customRoutes: 'config',
 		detectBrowserLanguage: false,
 		pages: {
-			nahlad: {
+			/* nahlad: {
+				sk: '/nahlad', // -> accessible at /about-us (no prefix since it's the default locale)
+				en: '/insight', // -> accessible at /fr/a-propos
+				de: '/ansicht'     // -> accessible at /es/sobre
+			}, */
+			'nahlad/index': {
 				sk: '/nahlad', // -> accessible at /about-us (no prefix since it's the default locale)
 				en: '/insight', // -> accessible at /fr/a-propos
 				de: '/ansicht'     // -> accessible at /es/sobre

@@ -94,7 +94,10 @@ const { data: museum, refresh: refreshPrices } = await useAsyncData("lamps", () 
     filters: {
       lamp_categories: {
         slug: {
-          $eq: route.path.substring(1),
+          $eq:
+            route.path.substring(0, 3) == "/en" || route.path.substring(0, 3) == "/de"
+              ? route.path.substring(4)
+              : route.path.substring(1),
         },
       },
     },
@@ -123,7 +126,7 @@ onMounted(async () => {
   store.setTitle(t("museum.insight"));
   console.log("museum", museum.value);
   console.log("subcategories", subCategories.value);
-  console.log("route", route.path.substring(1));
+  console.log("route", route);
   console.log("env", config.public.env);
 });
 </script>
