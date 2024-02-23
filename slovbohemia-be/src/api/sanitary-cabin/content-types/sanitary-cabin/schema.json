@@ -61,22 +61,6 @@
       },
       "component": "products.colors"
     },
-    "standartFittings": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "stainlessSteelFittings": {
       "type": "media",
       "multiple": true,
@@ -101,6 +85,21 @@
       },
       "type": "uid",
       "targetField": "title"
+    },
+    "standartFittings": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

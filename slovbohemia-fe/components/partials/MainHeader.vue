@@ -3,9 +3,9 @@
     <div class="header__top" ref="header">
       <v-container>
         <v-row class="align-center" justify="space-between">
-          <v-col col="2" md="2" class="py-0">
+          <v-col col="3" md="3" class="py-0">
             <NuxtLink :to="localePath('/')" class="d-block">
-              <h1 class="h2">Logo</h1>
+              <v-img src="/images/logo.svg" alt="Slovbohemia" width="100%" contain></v-img>
             </NuxtLink>
           </v-col>
           <v-spacer></v-spacer>

@@ -16,7 +16,9 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="3" lg="3">
-            <h2>Logo</h2>
+            <NuxtLink to="/" class="d-block">
+              <v-img src="/images/logo-footer.svg" alt="Slovbohemia" width="320" contain class="pt-6 mb-4"></v-img>
+            </NuxtLink>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni totam, aut ducimus a commodi ipsam placeat? Eum
               officia nobis similique.

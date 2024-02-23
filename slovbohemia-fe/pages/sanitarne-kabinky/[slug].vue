@@ -41,14 +41,34 @@
         <div class="d-flex">
           <div class="img-cover" v-for="(fitting, index) in product?.data.attributes.standartFittings?.data" :key="fitting.id">
             <v-img
-              :src="fitting.attributes.formats.small.url"
+              :src="store.getMediaUrl(fitting.attributes.formats.small.url)"
               width="100%"
-              height="350px"
+              height="100px"
               cover
               class="mb-4"
-              @click="showGalleryFittings(index)"
-            ></v-img
-            >>
+              @click="showGalleryFittings(index, product?.data.attributes.standartFittings?.data)"
+            ></v-img>
+          </div>
+        </div>
+      </v-container>
+    </div>
+    <div class="product-fittings" v-if="product?.data.attributes.stainlessSteelFittings?.data">
+      <v-container>
+        <h2>Aplikované kovania - štandardné kovanie</h2>
+        <div class="d-flex">
+          <div
+            class="img-cover"
+            v-for="(fitting, index) in product?.data.attributes.stainlessSteelFittings?.data"
+            :key="fitting.id"
+          >
+            <v-img
+              :src="store.getMediaUrl(fitting.attributes.formats.small.url)"
+              width="100%"
+              height="100px"
+              cover
+              class="mb-4"
+              @click="showGalleryFittings(index, product?.data.attributes.stainlessSteelFittings?.data)"
+            ></v-img>
           </div>
         </div>
       </v-container>
@@ -131,15 +151,15 @@ function showGallery(index: number) {
   /* gallery.silentbox.openOverlay(item, index); */
 }
 
-function showGalleryFittings(index: number) {
+function showGalleryFittings(index: number, imgs: any) {
   /* images.value = apartments[index].value.gallery; */
 
-  const result = product.value?.data.attributes.standartFittings?.data.map((obj: any) => {
+  const result = imgs.map((obj: any) => {
     console.log(obj);
 
     return {
       text: obj.id,
-      src: obj.attributes.url,
+      src: store.getMediaUrl(obj.attributes.url),
     };
   });
 
@@ -148,7 +168,7 @@ function showGalleryFittings(index: number) {
   imgIndex.value = index;
 
   console.log("result", result);
-  console.log("result", result);
+  console.log("result", images.value);
 
   onShow();
   /* gallery.silentbox.openOverlay(item, index); */
@@ -160,6 +180,7 @@ onMounted(async () => {
 </script>
 <style scoped lang="scss">
 .product-detail {
+  padding-bottom: 160px;
   h2 {
     margin-bottom: 30px;
   }
@@ -204,6 +225,20 @@ onMounted(async () => {
       border: 1px solid $grey-9;
       border-radius: 16px;
       height: 100%;
+    }
+  }
+}
+.product-fittings {
+  .img-cover {
+    width: 10%;
+    flex: 0 0 10%;
+    height: 100px;
+    padding: 0 2.5px;
+    .v-img {
+      border: 1px solid $grey-9;
+      border-radius: 16px;
+      height: 100%;
+      cursor: pointer;
     }
   }
 }

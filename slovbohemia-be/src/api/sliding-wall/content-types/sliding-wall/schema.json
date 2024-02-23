@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "sliding_walls",
+  "info": {
+    "singularName": "sliding-wall",
+    "pluralName": "sliding-walls",
+    "displayName": "Posuvné steny",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "offer": {
+      "displayName": "offer",
+      "type": "component",
+      "repeatable": true,
+      "component": "products.offer"
+    }
+  }
+}
