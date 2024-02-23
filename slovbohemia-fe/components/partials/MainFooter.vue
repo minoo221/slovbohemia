@@ -77,43 +77,20 @@ const center: any = reactive({ lat: 49.10315253556189, lng: 19.59352807900453 })
 const info: Ref<any> = ref([]);
 
 const { find } = useStrapi();
-const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
+/* const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*", locale: locale.value })
 );
 
 const { data: home, refresh: refreshHome } = await useAsyncData("homen", () =>
   find<any>("home", { populate: "*", locale: locale.value })
 );
-
+ */
 const menu: any[] = reactive([
-  { title: "Sanitárne kabíny", to: localePath("/") },
+  { title: "Sanitárne kabíny", to: localePath("/sanitarne-kabinky") },
   { title: "Šatňové skrinky", to: localePath("apartmany") },
   { title: "Posuvné steny", to: localePath("cennik") },
   { title: "Detské ihriská", to: localePath("okolie") },
 ]);
-
-const getMenu = async () => {
-  console.log("menu", locale.value);
-
-  try {
-    /* if (filter.value == "") { */
-    const response = await find<Menu>("navigation/render/footer", {
-      type: "TREE",
-      locale: locale.value,
-    });
-    info.value = response;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-watch(locale, (newLocale) => {
-  getMenu();
-});
-
-onMounted(() => {
-  getMenu();
-});
 </script>
 
 <style scoped lang="scss">

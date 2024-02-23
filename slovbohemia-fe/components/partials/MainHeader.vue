@@ -16,14 +16,14 @@
                   class="mx-0 px-2 mx-lg-2 px-lg-4"
                   color="white"
                   link
-                  :to="localePath(item.path)"
+                  :to="item.to"
                   variant="plain"
                   nuxt
                   v-if="item.isContact == false"
                 >
                   {{ item.title }}
                 </v-btn>
-                <v-btn class="mx-0 px-2 mx-lg-2 px-lg-8" color="primary" link :to="localePath(item.path)" nuxt v-else>
+                <v-btn class="mx-0 px-2 mx-lg-2 px-lg-8" color="primary" link :to="item.to" nuxt v-else>
                   {{ item.title }}
                 </v-btn>
               </div>

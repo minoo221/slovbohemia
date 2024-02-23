@@ -151,70 +151,70 @@ body {
                 border-radius: 32px;
             }
         }
-                .blog {
-                    padding: 72px 0 60px 0;
-                    background: $grey-3;
+        .blog {
+            padding: 72px 0 60px 0;
+            background: $grey-3;
 
-                    &__title {
-                        text-align: center;
-                        margin: 0 auto;
-                        max-width: 560px;
-                        margin-bottom: 70px;
+            &__title {
+                text-align: center;
+                margin: 0 auto;
+                max-width: 560px;
+                margin-bottom: 70px;
 
-                        h2 {
-                            margin-bottom: 20px;
+                h2 {
+                    margin-bottom: 20px;
+                }
+
+                p {
+                    font-size: 22px;
+                    line-height: 27px;
+                    font-weight: 500;
+                    margin-bottom: 0;
+                }
+            }
+
+            article {
+                .v-img {
+                    border-radius: 32px;
+                }
+
+                ul {
+                    list-style: none;
+                    display: flex;
+
+                    li {
+                        position: relative;
+                        padding-right: 10px;
+                        font-size: 16px;
+                        color: $grey-7;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            top: 50%;
+                            right: 0;
+                            transform: translateY(-50%);
+                            width: 1px;
+                            height: 16px;
+                            border-right: 2px solid $grey-7;
                         }
 
-                        p {
-                            font-size: 22px;
-                            line-height: 27px;
-                            font-weight: 500;
-                            margin-bottom: 0;
-                        }
-                    }
-
-                    article {
-                        .v-img {
-                            border-radius: 32px;
+                        &:not(:first-child) {
+                            margin-left: 10px;
                         }
 
-                        ul {
-                            list-style: none;
-                            display: flex;
-
-                            li {
-                                position: relative;
-                                padding-right: 10px;
-                                font-size: 16px;
-                                color: $grey-7;
-
-                                &:after {
-                                    content: "";
-                                    position: absolute;
-                                    top: 50%;
-                                    right: 0;
-                                    transform: translateY(-50%);
-                                    width: 1px;
-                                    height: 16px;
-                                    border-right: 2px solid $grey-7;
-                                }
-
-                                &:not(:first-child) {
-                                    margin-left: 10px;
-                                }
-
-                                &:last-child {
-                                    &:after {
-                                        display: none;
-                                    }
-                                }
+                        &:last-child {
+                            &:after {
+                                display: none;
                             }
-                        }
-
-                        p {
-                            font-size: 16px;
-                            color: $grey-7;
                         }
                     }
                 }
+
+                p {
+                    font-size: 16px;
+                    color: $grey-7;
+                }
+            }
+        }
 }

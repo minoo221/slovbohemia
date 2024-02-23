@@ -44,7 +44,7 @@ export const useIndexStore = defineStore("index", {
             const ENV = useRuntimeConfig().public.env;
             const STRAPI_URL = useRuntimeConfig().public.strapi.url;
             if(ENV == 'development') {
-                return 'https://dmmb-test.runme.sk' + url
+                return 'http://localhost:1337' + url
             } else {
                 return STRAPI_URL + url
             }

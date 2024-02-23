@@ -521,6 +521,89 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiSanitaryCabinSanitaryCabin extends Schema.CollectionType {
+  collectionName: 'sanitary_cabins';
+  info: {
+    singularName: 'sanitary-cabin';
+    pluralName: 'sanitary-cabins';
+    displayName: 'Sanit\u00E1rne kab\u00EDny';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    gallery: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    parameters: Attribute.Component<'products.parameters', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    colors: Attribute.Component<'products.colors', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    standartFittings: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    stainlessSteelFittings: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::sanitary-cabin.sanitary-cabin', 'title'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sanitary-cabin.sanitary-cabin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sanitary-cabin.sanitary-cabin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::sanitary-cabin.sanitary-cabin',
+      'oneToMany',
+      'api::sanitary-cabin.sanitary-cabin'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -1111,6 +1194,7 @@ declare module '@strapi/types' {
       'api::contact.contact': ApiContactContact;
       'api::contact-information.contact-information': ApiContactInformationContactInformation;
       'api::page.page': ApiPagePage;
+      'api::sanitary-cabin.sanitary-cabin': ApiSanitaryCabinSanitaryCabin;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

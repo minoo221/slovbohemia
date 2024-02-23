@@ -86,11 +86,10 @@
             <GoogleMap
               api-key="AIzaSyDzsvWr8eGPYF4RQqavfNmuMJuu0HpSbqw"
               style="width: 100%; height: 100%"
-              :center="{ lat: 49.08187605869418, lng: 19.6253826469723 }""
+              :center="{ lat: 49.08187605869418, lng: 19.6253826469723 }"
               :zoom="15"
             >
-              <Marker :options="{ position: {lat:49.08187605869418, lng: 19.62538264697} }">
-
+              <Marker :options="{ position: { lat: 49.08187605869418, lng: 19.62538264697 } }">
                 <InfoWindow>
                   <div id="content">
                     <p>Slovbohemia</p>
@@ -175,9 +174,9 @@ onMounted(async () => {
       color: #585858;
       opacity: 1;
     }
-	.mapdiv {
-		border-radius: 32px;
-	}
+    .mapdiv {
+      border-radius: 32px;
+    }
   }
 }
 </style>

@@ -1,6 +1,6 @@
 export interface Menu {
   title: string;
-  path?: any;
+  to?: any;
   id?: number;
   slug?: string;
   items?: any[];
