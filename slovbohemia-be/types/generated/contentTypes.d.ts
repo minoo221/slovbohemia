@@ -1196,6 +1196,7 @@ export interface ApiSlidingWallSlidingWall extends Schema.SingleType {
     title: Attribute.String;
     desc: Attribute.Text;
     offer: Attribute.Component<'products.offer', true>;
+    gallery: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

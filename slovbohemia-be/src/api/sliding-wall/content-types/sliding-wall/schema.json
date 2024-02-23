@@ -23,6 +23,16 @@
       "type": "component",
       "repeatable": true,
       "component": "products.offer"
+    },
+    "gallery": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
