@@ -44,7 +44,7 @@ export const useIndexStore = defineStore("index", {
             const ENV = useRuntimeConfig().public.env;
             const STRAPI_URL = useRuntimeConfig().public.strapi.url;
             if(ENV == 'development') {
-                return 'http://localhost:1337' + url
+                return 'http://194.163.176.146:1337' + url
             } else {
                 return STRAPI_URL + url
             }

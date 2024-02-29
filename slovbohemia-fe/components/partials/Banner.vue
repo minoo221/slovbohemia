@@ -24,6 +24,7 @@
         delay: 4500,
         disableOnInteraction: false,
       }"
+      :autoHeight="true"
       :effect="'fade'"
     >
       <SwiperSlide v-for="(slide, index) in data.slides" :key="index">
@@ -82,7 +83,7 @@ defineProps<{
   }
   .swiper {
     background: #fff;
-    height: 100%;
+    /* height: 100%; */
     position: relative;
     overflow: initial;
 
@@ -103,7 +104,7 @@ defineProps<{
       align-items: center;
       img {
         width: 100%;
-        height: 480px;
+        max-height: 615px;
         object-fit: cover;
         @media (max-width: 960px) {
           height: 200px;

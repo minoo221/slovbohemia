@@ -23,6 +23,16 @@ export interface ProductsColors extends Schema.Component {
   };
 }
 
+export interface ProductsItems extends Schema.Component {
+  collectionName: 'components_products_items';
+  info: {
+    displayName: 'items';
+  };
+  attributes: {
+    item: Attribute.String;
+  };
+}
+
 export interface ProductsOffer extends Schema.Component {
   collectionName: 'components_products_offers';
   info: {
@@ -69,6 +79,7 @@ declare module '@strapi/types' {
     export interface Components {
       'products.colors-category': ProductsColorsCategory;
       'products.colors': ProductsColors;
+      'products.items': ProductsItems;
       'products.offer': ProductsOffer;
       'products.parameters': ProductsParameters;
       'text.company': TextCompany;
