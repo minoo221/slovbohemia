@@ -27,7 +27,9 @@
     "@pinia/nuxt": "^0.4.11",
     "editorjs-html": "^3.4.3",
     "nuxt-swiper": "^1.2.2",
+    "purify": "^3.5.0",
     "sass": "^1.62.1",
+    "vue-dompurify-html": "^5.0.1",
     "vue-easy-lightbox": "^1.16.0",
     "vue3-google-map": "^0.15.0",
     "vuetify": "^3.4.0"

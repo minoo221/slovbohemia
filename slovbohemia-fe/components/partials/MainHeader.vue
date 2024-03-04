@@ -133,9 +133,9 @@ const { data: contact, refresh: refreshInfo } = await useAsyncData("contact-info
 
 const menu: Menu[] = reactive([
   { title: "Domov", to: localePath("/"), childrens: [], isContact: false },
-  { title: "Ponuka", to: localePath("muzeum"), childrens: [], isContact: false },
-  { title: "O nás", to: localePath("kontakt"), childrens: [], isContact: false },
-  { title: "Blog", to: localePath("obchodne-podmienky"), childrens: [], isContact: false },
+  { title: "Ponuka", to: localePath("ponuka"), childrens: [], isContact: false },
+  { title: "O nás", to: localePath("o-nas"), childrens: [], isContact: false },
+  { title: "Blog", to: localePath("blog"), childrens: [], isContact: false },
   { title: "Kontakt", to: localePath("kontakt"), childrens: [], isContact: true },
 ]);
 

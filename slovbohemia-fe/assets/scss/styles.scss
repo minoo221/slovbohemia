@@ -81,8 +81,9 @@ body {
         height: 48px;
         &--active {
             &.v-btn--variant-plain {
-                text-transform: none;
+                text-transform: uppercase;
                 .v-btn__content {
+                    color: $primary;
                     font-weight: 400;
                     font-family: $primary-font;
                 }

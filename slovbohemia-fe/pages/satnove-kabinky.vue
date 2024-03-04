@@ -1,40 +1,46 @@
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
-  <section class="offer">
-    <div class="offer__item" v-for="wall in walls?.data.attributes.offer" :key="wall.id">
-      <v-container>
-        <v-row class="align-start">
-          <v-col cols="12" md="6">
-            <h2>{{ wall.title }}</h2>
-            <p>
-              {{ wall.desc }}
-            </p>
+  <section class="catalog">
+    <v-container class="text-center">
+      <h2 class="text-uppercase mb-4">Katalóg na stiahnutie</h2>
+      <v-btn color="black" link class="px-6"> Prezrieť katalóg </v-btn>
+    </v-container>
+  </section>
+  <section class="benefits">
+    <v-container>
+      <h2 class="h1 text-uppercase">Zariaďujú</h2>
+      <p class="desc mb-12">Šatňové skrinky umožňujú estetickým a funkčným spôsobom zariadiť:</p>
+      <v-row class="justify-center">
+        <v-col cols="12" md="4" class="px-8 text-center" v-for="(item, index) in usages">
+          <v-img width="90px" contain :src="item.img" position="center" class="mx-auto mb-8"></v-img>
+          <span class="text-grey-6">{{ item.desc }}</span>
+        </v-col>
+      </v-row>
+    </v-container>
+  </section>
+  <section class="wardrobes">
+    <v-container>
+      <div class="wardrobe-item" v-for="item in wardrobes?.data" :key="item.id">
+        <v-row>
+          <v-col cols="12" md="6" class="pt-4">
+            <h2 class="mb-8">{{ item.attributes.title }}</h2>
+            <h3 class="mb-4 text-uppercase">Zariadenie</h3>
+            <ul class="pl-6">
+              <li v-for="device in item.attributes.items" :key="device.id">
+                {{ device.item }}
+              </li>
+            </ul>
           </v-col>
           <v-col cols="12" md="6">
-            <v-img :src="store.getMediaUrl(wall.image.data.attributes.url)" width="100%" height="400px" cover></v-img
+            <v-img :src="store.getMediaUrl(item.attributes.image.data.attributes.url)" height="400px" contain></v-img
           ></v-col>
+          <v-col cols="12">
+            <h3 class="mb-4 text-uppercase">Technické údaje</h3>
+            <div class="parameters v-table" v-dompurify-html="item.attributes.parameters"></div>
+          </v-col>
         </v-row>
-      </v-container>
-    </div>
-    <div class="gallery">
-      <v-container>
-        <div class="gallery-cover" v-if="walls?.data.attributes.gallery.data">
-          <div class="img-cover" v-for="(image, index) in walls?.data.attributes.gallery.data.slice(0, 5)" :key="index">
-            <v-img
-              :src="store.getMediaUrl(image.attributes.url)"
-              width="100%"
-              height="150px"
-              cover
-              class="mb-4"
-              @click="showGallery(index, walls?.data.attributes.gallery.data)"
-            ></v-img>
-          </div>
-        </div>
-      </v-container>
-      <client-only>
-        <vue-easy-lightbox :visible="isVisible" :imgs="images" :index="imgIndex" @hide="onHide"></vue-easy-lightbox>
-      </client-only>
-    </div>
+      </div>
+    </v-container>
   </section>
 </template>
 
@@ -44,25 +50,18 @@ const emit = defineEmits(["title"]);
 const localePath = useLocalePath();
 
 import { useIndexStore } from "@/stores/";
+import { buildVueDompurifyHTMLDirective } from "vue-dompurify-html";
 const store = useIndexStore();
 
 const { findOne, find } = useStrapi();
-const client = useStrapiClient();
-const user = useStrapiUser();
-const { fetchUser } = useStrapiAuth();
 
 const isVisible: Ref<boolean> = ref(false);
 const imgIndex: Ref<number> = ref(0);
 const images: Ref<any> = ref([]);
 
-const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
-  findOne<any>("sliding-wall", {
-    populate: {
-      gallery: true,
-      offer: {
-        populate: ["image"],
-      },
-    },
+const { data: wardrobes, refresh: refreshWardrobes } = await useAsyncData("wardrobes", () =>
+  find<any>("wardrobes", {
+    populate: "*",
   })
 );
 
@@ -73,6 +72,17 @@ const banner: Ref<any> = ref({
   slides: [{ img: "/images/slider.jpg" }],
   maxWidth: "790px",
 });
+
+const usages: any[] = reactive([
+  { img: "/images/employee.png", desc: "šatne pre zamestnancov (zamestnanecké skrinky),," },
+  {
+    img: "/images/pool.png",
+    desc: "kúpaliská, bazény (bazénové skrinky),",
+  },
+  { img: "/images/sports-2.png", desc: "všetky druhy športových zariadení (šatňové skrinky)," },
+  { img: "/images/dumbell.png", desc: "objekty typu fitness (šatňové skrinky, trezorové skrinky)," },
+  { img: "/images/knowledge-1.png", desc: "školy (šatňové skrinky)." },
+]);
 
 const onShow = () => {
   isVisible.value = true;
@@ -106,51 +116,58 @@ function showGallery(index: number, imgs: any) {
 }
 
 onMounted(async () => {
-  console.log(walls.value);
+  console.log(wardrobes.value);
 });
 </script>
 <style scoped lang="scss">
-.offer {
-  padding: 80px 0 60px 0;
-  &__item {
-    align-items: center;
-    padding: 60px 16px;
+.catalog {
+  background: $secondary-1;
+  padding: 50px 0;
+}
+.benefits {
+  text-align: center;
+  padding: 32px 0 45px 0;
+  background: $grey-3;
 
-    h2 {
-      font-size: 56px;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 22px;
-      line-height: 27px;
-      margin-bottom: 39px;
-    }
-    .v-img {
-      border-radius: 32px;
-    }
-    &:nth-of-type(odd) {
-      .v-row {
-        flex-direction: row-reverse;
-      }
-    }
-    &:nth-of-type(even) {
-      background: $grey-3;
-    }
-    &:last-of-type {
-      padding-bottom: 60px;
-    }
+  p {
+    font-size: 22px;
+    line-height: 27px;
+    font-weight: 500;
   }
 }
-.gallery {
-  .gallery-cover {
-    display: flex;
-    flex-wrap: wrap;
-    .img-cover {
-      width: 20%;
-      flex: 0 0 20%;
-      padding: 0 8px;
-      .v-img {
-        border-radius: 16px;
+.wardrobes {
+  ul {
+    li {
+      font-size: 22px;
+      line-height: 27px;
+      font-weight: 500;
+    }
+  }
+  .wardrobe-item {
+    margin-bottom: 130px;
+  }
+  .parameters {
+    &:deep(table) {
+      width: 100%;
+      border: none;
+      border-collapse: collapse;
+      tr {
+        &:nth-child(even) {
+          th {
+            background: $grey-3;
+          }
+          td {
+            background: $grey-3;
+          }
+        }
+        th {
+          font-size: 22px;
+        }
+        td {
+          font-size: 18px;
+          padding: 12px 4px;
+          text-align: center;
+        }
       }
     }
   }
