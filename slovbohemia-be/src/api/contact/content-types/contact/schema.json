@@ -18,14 +18,8 @@
     "email": {
       "type": "email"
     },
-    "subject": {
-      "type": "string"
-    },
     "message": {
       "type": "text"
-    },
-    "tel": {
-      "type": "string"
     }
   }
 }

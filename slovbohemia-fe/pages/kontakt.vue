@@ -26,10 +26,11 @@
                 <v-list-item-title>slovbohemia@slovbohemia.sk</v-list-item-title>
               </v-list-item>
             </v-list>
-            <v-form>
+            <v-form ref="form" @submit.prevent="sendForm()">
               <v-row>
                 <v-col cols="12" md="6">
                   <v-text-field
+                    v-model="formData.name"
                     :label="t('contact.form.fullName')"
                     variant="solo"
                     :rounded="0"
@@ -41,6 +42,7 @@
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-text-field
+                    v-model="formData.email"
                     :label="t('contact.form.email')"
                     variant="solo"
                     :rounded="0"
@@ -55,6 +57,7 @@
                 </v-col>
                 <v-col cols="12">
                   <v-textarea
+                    v-model="formData.email"
                     :label="t('contact.form.text')"
                     variant="solo"
                     :rounded="0"
@@ -77,7 +80,7 @@
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col cols="12">
-                  <v-btn type="submit" class="mt-2 ml-auto d-block w-100" color="primary">{{ t("contact.form.submit") }}</v-btn>
+                  <v-btn type="submit" class="mt-2 ml-auto d-block w-100" color="primary">Odoslať</v-btn>
                 </v-col>
               </v-row>
             </v-form>
@@ -112,19 +115,45 @@ const localePath = useLocalePath();
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 
-const { findOne, find } = useStrapi();
-const client = useStrapiClient();
-const user = useStrapiUser();
-const { fetchUser } = useStrapiAuth();
 import { GoogleMap, Marker, InfoWindow } from "vue3-google-map";
 
 const banner: Ref<any> = ref({
   title: "Kontakt",
-  desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+  desc: "Ak máte akékoľvek otázky, kedykoľvek nás kontaktujte.",
   btns: [],
-  slides: [{ img: "/images/slider.jpg" }],
+  slides: [{ img: "/images/offer-2.jpg" }],
   maxWidth: "920px",
 });
+
+const formData: any = reactive({});
+const form: Ref<any> = ref(null);
+const loadingSend: Ref<boolean> = ref(false);
+
+const { create } = useStrapi();
+
+const sendForm = async () => {
+  const { valid } = await form.value.validate();
+  console.log(valid);
+  console.log(form.value);
+
+  if (valid) {
+    loadingSend.value = true;
+    try {
+      await create<any>("send-contact", {
+        name: formData.name,
+        email: formData.email,
+        message: formData.text,
+      });
+      store.showSuccess("Kontaktný formulár bol úspešne odoslaný");
+      await form.value.reset();
+    } catch (e) {
+      console.log(e);
+      store.showError(t("NIekde sa stala chyba. Skúste to prosím znova"));
+    } finally {
+      loadingSend.value = false;
+    }
+  }
+};
 
 /* const prices: any[] = reactive([
   { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
@@ -140,6 +169,7 @@ onMounted(async () => {
 </script>
 <style lang="scss">
 .contact {
+  padding: 30px 0;
   .v-container {
     max-width: 880px;
   }

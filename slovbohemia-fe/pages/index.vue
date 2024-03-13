@@ -1,7 +1,7 @@
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
   <section class="offer">
-    <div class="text-center mb-12">
+    <div class="text-center mb-0 mb-sm-12">
       <h2 class="h1">Naša ponuka</h2>
     </div>
     <div class="offer__item">
@@ -13,7 +13,7 @@
               Náš systém je postavený na báze dosiek z vysokotlakového laminátu alebo drevotrieskových dosiek a konštrukcie z
               hliníka alebo nerezu.
             </p>
-            <v-btn color="secondary" link> Zistiť viac </v-btn>
+            <v-btn color="secondary" link to="/sanitarne-kabinky"> Zistiť viac </v-btn>
           </v-col>
           <v-col cols="12" md="6"> <v-img src="/images/offer-1.jpg" width="100%" height="400px" cover></v-img></v-col>
         </v-row>
@@ -23,14 +23,29 @@
       <v-container>
         <v-row class="align-center">
           <v-col cols="12" md="6">
-            <h2>Sanitárne kabíny</h2>
+            <h2>Šatňové skrinky</h2>
             <p>
-              Náš systém je postavený na báze dosiek z vysokotlakového laminátu alebo drevotrieskových dosiek a konštrukcie z
-              hliníka alebo nerezu.
+              Naše skrinky sa vyznačujú estetickým vzhľadom a ergonomikou. Sú vyrobené z liateho laminátu HPL v rôznych farbách a
+              vzoroch.
             </p>
-            <v-btn color="secondary" link> Zistiť viac </v-btn>
+            <v-btn color="secondary" link to="/satnove-skrinky"> Zistiť viac </v-btn>
           </v-col>
           <v-col cols="12" md="6"> <v-img src="/images/offer-2.jpg" width="100%" height="400px" cover></v-img></v-col>
+        </v-row>
+      </v-container>
+    </div>
+    <div class="offer__item">
+      <v-container>
+        <v-row class="align-center">
+          <v-col cols="12" md="6">
+            <h2>Posuvné steny</h2>
+            <p>
+              Systém posuvných stien rýchlym a atraktívnym spôsobom rozdelí veľké sály na menšie časti kedykoľvek v čase rokovania
+              alebo prezentácie.
+            </p>
+            <v-btn color="secondary" link to="/posuvne-steny"> Zistiť viac </v-btn>
+          </v-col>
+          <v-col cols="12" md="6"> <v-img src="/images/offer-3.jpg" width="100%" height="400px" cover></v-img></v-col>
         </v-row>
       </v-container>
     </div>
@@ -45,8 +60,8 @@
             eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Excepteur sint occaecat cupidatat
             non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
-          <v-btn color="secondary" link class="mr-4"> Zistiť viac </v-btn>
-          <v-btn color="primary" link> Kotnaktujte nás </v-btn>
+          <v-btn color="secondary" link class="mr-4 mb-4 mb-sm-0"> Zistiť viac </v-btn>
+          <v-btn color="primary" link class="mr-4 mb-4 mb-sm-0"> Kontaktujte nás </v-btn>
         </v-col>
         <v-col cols="12" md="6" offset-lg="1">
           <v-row>
@@ -129,22 +144,6 @@ const localePath = useLocalePath();
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 
-const { findOne, find } = useStrapi();
-const client = useStrapiClient();
-const user = useStrapiUser();
-const { fetchUser } = useStrapiAuth();
-
-const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", () =>
-  find<any>("stripe/products", { locale: locale.value })
-);
-
-/* const prices: any[] = reactive([
-  { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
-  { title: "1 mesiac", desc: "Členstvo platí 1 mesiac od zakúpenia", price: "10" },
-  { title: "Polrok", desc: "Členstvo platí 6 mesiacov od zakúpenia", price: "40" },
-  { title: "Rok", desc: "Členstvo platí 12 mesiacov od zakúpenia", price: "70" },
-]); */
-
 const banner: Ref<any> = ref({
   title: "SLOVBOHEMIA",
   desc: "Slogan: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -152,7 +151,7 @@ const banner: Ref<any> = ref({
     { title: "Pozrieť ponuku", link: localePath("/"), color: "primary" },
     { title: "Kontaktovať", link: localePath("/"), color: "secondary" },
   ],
-  slides: [{ img: "/images/slider.jpg" }, { img: "/images/slider.jpg" }, { img: "/images/slider.jpg" }],
+  slides: [{ img: "/images/offer-1.jpg" }, { img: "/images/sanitarne-kabinky.jpg" }, { img: "/images/offer-2.jpg" }],
 });
 
 onMounted(async () => {
@@ -163,21 +162,36 @@ onMounted(async () => {
 <style scoped lang="scss">
 .offer {
   padding: 80px 0 60px 0;
+  @media (max-width: 960px) {
+    padding: 60px 0 0 0;
+  }
   &__item {
     align-items: center;
     padding: 60px 16px;
+    @media (max-width: 960px) {
+      padding: 30px 0;
+    }
 
     h2 {
       font-size: 56px;
       margin-bottom: 20px;
+      @media (max-width: 960px) {
+        font-size: 38px;
+      }
     }
     p {
       font-size: 22px;
       line-height: 27px;
       margin-bottom: 39px;
+      @media (max-width: 960px) {
+        font-size: 18px;
+      }
     }
     .v-img {
       border-radius: 32px;
+    }
+    &:first-child {
+      padding-top: 10px;
     }
     &:nth-of-type(odd) {
       background: $grey-3;

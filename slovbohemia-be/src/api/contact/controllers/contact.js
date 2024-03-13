@@ -11,7 +11,7 @@ module.exports = createCoreController('api::contact.contact', ({strapi}) => ({
 		// some more logic
 		try {
 			const response = await super.create(ctx);
-			const {subject, name, tel, email, message  } = ctx.request.body.data;
+			const { name, email, message  } = ctx.request.body.data;
 			console.log(ctx.request.body.data);
 			await strapi
 			.plugin('email-designer')
@@ -19,7 +19,7 @@ module.exports = createCoreController('api::contact.contact', ({strapi}) => ({
 			.sendTemplatedEmail(
 				{
 					// required
-					to: 'muzeum.eu.sk@gmail.com',
+					to: 'milanblasko28@gmail.com',
 
 					// optional if /config/plugins.js -> email.settings.defaultFrom is set
 
@@ -33,14 +33,12 @@ module.exports = createCoreController('api::contact.contact', ({strapi}) => ({
 
 					// If provided here will override the template's subject.
 					// Can include variables like `Thank you for your order {{= USER.firstName }}!`
-					subject: subject,
+					subject: "Správa z kontaktného formulára",
 					},
 					{
 						// this object must include all variables you're using in your email template
 						name: name,
 						email: email,
-						tel: tel,
-						subject: subject,
 						message: message
 					}
 				)

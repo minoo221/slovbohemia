@@ -97,7 +97,7 @@ const { data: product, refresh: refreshProducts } = await useAsyncData("sanitary
 const banner: Ref<any> = ref({
   title: "Sanitárne kabínky " + product.value?.data.attributes.title,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/slider.jpg" }],
+  slides: [{ img: "/images/sanitanre-kabinky.jpg" }],
   maxWidth: "100%",
 });
 

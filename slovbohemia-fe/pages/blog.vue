@@ -66,9 +66,9 @@ const { fetchUser } = useStrapiAuth();
 
 const banner: Ref<any> = ref({
   title: "Blog",
-  desc: "Sanitárne kabíny sú vyrobené z dosiek z vysokotlakového laminátu HPL hrúbky 10 a 13 mm, drevotrieskové dosky s hrúbkou 24 až 28 mm pokrytých laminátom alebo melamínom. Konštrukcia je založená na hliníkových profiloch, eloxovaných alebo práškovaných farbou podľa zadanej farby. Na výber je aj konštrukcia z prvkov z nerezovej ocele alebo nylonu. Kovanie je chrómové, plastové alebo z nerezu.",
-  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/slider.jpg" }],
+  desc: "Chcete sa dozvedieť novinky zo sveta skriniek, kabínok či posuvných stien? Alebo chcete vedieť, čo je nové v našej firme? Prečítajte si niektorý z našich článkov.",
+  btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
+  slides: [{ img: "/images/offer-1.jpg" }],
   maxWidth: "920px",
 });
 

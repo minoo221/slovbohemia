@@ -4,7 +4,7 @@
       <v-container>
         <div class="newsletter">
           <h2 class="h1">Newsletter</h2>
-          <p>Priíhlaste sa na odber noviniek a dostávajte vždý nové informácie.</p>
+          <p>Prihláste sa na odber noviniek a dostávajte vždý nové informácie.</p>
           <div class="d-flex">
             <v-text-field class="mr-4" placeholder="Váš email" variant="solo" :rounded="0" hide-details></v-text-field>
             <v-btn color="primary">Odoberať</v-btn>
@@ -17,11 +17,10 @@
         <v-row>
           <v-col cols="12" md="3" lg="3">
             <NuxtLink to="/" class="d-block">
-              <v-img src="/images/logo-footer.svg" alt="Slovbohemia" width="320" contain class="pt-6 mb-4"></v-img>
+              <v-img src="/images/logo-footer.svg" alt="Slovbohemia" width="320" height="60" contain class="pt-6 mb-4"></v-img>
             </NuxtLink>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni totam, aut ducimus a commodi ipsam placeat? Eum
-              officia nobis similique.
+              Spoľahnite sa na nás pre kvalitu a inováciu vo výrobe šatňových skriniek, sanitárnych kabínok a posuvných stien.
             </p>
           </v-col>
           <v-col cols="12" sm="6" md="4" lg="3" offset-lg="1">
@@ -32,20 +31,28 @@
               </v-list-item>
             </v-list>
           </v-col>
-          <v-col cols="12" sm="6" md="4" lg="3" offset-md="0">
+          <v-col cols="12" sm="6" md="5" lg="5" offset-md="0">
             <h2 class="mx-4">Kontakt</h2>
             <v-list bg-color="transparent" density="compact" color="grey-10">
               <v-list-item base-color="grey-10" color="grey-10">
-                <v-list-item-title>IČO:</v-list-item-title>
+                <v-list-item-title>IČO: {{ contact.data?.attributes.company.ico }}</v-list-item-title>
               </v-list-item>
               <v-list-item base-color="grey-10" color="grey-10">
-                <v-list-item-title>DIČ:</v-list-item-title>
+                <v-list-item-title>DIČ: {{ contact.data?.attributes.company.dic }}</v-list-item-title>
               </v-list-item>
               <v-list-item base-color="grey-10" color="grey-10">
-                <v-list-item-title>EMAIL:</v-list-item-title>
+                <v-list-item-title>
+                  EMAIL:
+                  <a :href="`mailto:${contact.data?.attributes.email}`" class="contact-link">{{
+                    contact.data?.attributes.email
+                  }}</a>
+                </v-list-item-title>
               </v-list-item>
               <v-list-item base-color="grey-10" color="grey-10">
-                <v-list-item-title>TEL:</v-list-item-title>
+                <v-list-item-title
+                  >TEL:
+                  <a :href="`tel:${contact.data?.attributes.tel}`" class="contact-link">{{ contact.data?.attributes.tel }}</a>
+                </v-list-item-title>
               </v-list-item>
             </v-list>
           </v-col>
@@ -70,26 +77,18 @@
 </template>
 
 <script setup lang="ts">
-import { GoogleMap, Marker, InfoWindow } from "vue3-google-map";
 const { locale, t } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
-import type { Menu, Slider } from "~/types";
-const center: any = reactive({ lat: 49.10315253556189, lng: 19.59352807900453 });
-const info: Ref<any> = ref([]);
 
 const { find } = useStrapi();
-/* const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
-  find<any>("contact-information", { populate: "*", locale: locale.value })
+const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
+  find<any>("contact-information", { populate: "*" })
 );
 
-const { data: home, refresh: refreshHome } = await useAsyncData("homen", () =>
-  find<any>("home", { populate: "*", locale: locale.value })
-);
- */
 const menu: any[] = reactive([
   { title: "Sanitárne kabíny", to: localePath("/sanitarne-kabinky") },
-  { title: "Šatňové skrinky", to: localePath("apartmany") },
+  { title: "Šatňové skrinky", to: localePath("satnove-skrinky") },
   { title: "Posuvné steny", to: localePath("cennik") },
   { title: "Detské ihriská", to: localePath("okolie") },
 ]);
@@ -137,11 +136,20 @@ const menu: any[] = reactive([
     .v-list-item-title {
       font-size: 22px;
       font-weight: 600;
+      white-space: initial;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
   }
 
   &__bottom {
     background: $secondary;
+    @media (max-width: 960px) {
+      text-align: center;
+    }
     &:deep(.v-btn__content) {
       color: $grey-10;
     }

@@ -6,14 +6,21 @@
         <v-col cols="12" md="5">
           <h2 class="h1">O nás</h2>
           <p class="mb-8">
-            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
-            eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            SlovBohemia je vaším spoľahlivým partnerom v oblasti komerčných riešení! Naša firma sa špecializuje nielen na výrobu
+            šatňových skriniek. Sme hrdí na naše moderné a funkčné šatňové skrinky, ktoré poskytujú praktické úložné riešenia a
+            zároveň pridávajú štýlový dotyk do každého prostredia. Okrem toho, naša ponuka zahŕňa aj špeciálne navrhnuté sanitárne
+            kabínky, ktoré spĺňajú najvyššie hygienické normy a sú ideálne pre použitie v rôznych verejných či komerčných
+            priestoroch. Navyše, naša firma ponúka široký výber posuvných stien, ktoré sú ideálne pre efektívne využitie priestoru
+            v kancelárskych a komerčných prostrediach. Sú navrhnuté s dôrazom na estetiku a funkčnosť, aby poskytovali maximálnu
+            flexibilitu a pohodlie pre vašich zamestnancov alebo návštevníkov. Spoľahnite sa na SlovBohemia pre špičkové
+            interiérové riešenia, ktoré kombinujú praktickosť, štýl a kvalitu. Naši skúsení odborníci sú pripravení splniť vaše
+            individuálne potreby a poskytnúť vám osobitnú starostlivosť od začiatku až do konca každého projektu. Dovolte nám
+            pomôcť vám vytvoriť priestory, ktoré vás nadchnú svojou funkčnosťou a krásou!
           </p>
-          <v-btn color="secondary" link class="mr-4"> Zistiť viac </v-btn>
-          <v-btn color="primary" link> Kotnaktujte nás </v-btn>
+          <v-btn color="secondary" class="mr-4" link :to="localePath('ponuka')"> Zistiť viac </v-btn>
+          <v-btn color="primary" link :to="localePath('kontakt')"> Kontaktujte nás </v-btn>
         </v-col>
-        <v-col cols="12" md="6" offset-lg="1">
+        <v-col cols="12" md="6" offset-lg="1" class="d-flex align-center">
           <v-row>
             <v-col cols="12" md="6">
               <v-img src="/images/offer-2.jpg" width="100%" height="200px" cover></v-img>
@@ -39,22 +46,13 @@ const localePath = useLocalePath();
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 
-const { findOne, find } = useStrapi();
-const client = useStrapiClient();
-const user = useStrapiUser();
-const { fetchUser } = useStrapiAuth();
-
 const banner: Ref<any> = ref({
   title: "O nás",
-  desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/slider.jpg" }],
+  desc: "Štýlové riešenia pre vaše priestory. Šatňové skrinky, sanitárne kabínky a posuvné steny od nás vám prinášajú spoľahlivosť a eleganciu v každom kroku.",
+  btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
+  slides: [{ img: "/images/offer-1.jpg" }],
   maxWidth: "920px",
 });
-
-const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", () =>
-  find<any>("stripe/products", { locale: locale.value })
-);
 
 /* const prices: any[] = reactive([
   { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
@@ -63,10 +61,7 @@ const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", (
   { title: "Rok", desc: "Členstvo platí 12 mesiacov od zakúpenia", price: "70" },
 ]); */
 
-onMounted(async () => {
-  store.setTitle(t("home.title"));
-  console.log(store.title);
-});
+onMounted(async () => {});
 </script>
 <style scoped lang="scss">
 .offer {

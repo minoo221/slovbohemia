@@ -1059,9 +1059,7 @@ export interface ApiContactContact extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     email: Attribute.Email;
-    subject: Attribute.String;
     message: Attribute.Text;
-    tel: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1111,12 +1109,6 @@ export interface ApiContactInformationContactInformation
         };
       }>;
     tel: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    homeSlider: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

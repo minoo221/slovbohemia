@@ -13,7 +13,7 @@
               Náš systém je postavený na báze dosiek z vysokotlakového laminátu alebo drevotrieskových dosiek a konštrukcie z
               hliníka alebo nerezu.
             </p>
-            <v-btn color="secondary" link> Zistiť viac </v-btn>
+            <v-btn color="secondary" link to="/sanitarne-kabinky"> Zistiť viac </v-btn>
           </v-col>
           <v-col cols="12" md="6"> <v-img src="/images/offer-1.jpg" width="100%" height="400px" cover></v-img></v-col>
         </v-row>
@@ -23,14 +23,29 @@
       <v-container>
         <v-row class="align-center">
           <v-col cols="12" md="6">
-            <h2>Sanitárne kabíny</h2>
+            <h2>Šatňové skrinky</h2>
             <p>
-              Náš systém je postavený na báze dosiek z vysokotlakového laminátu alebo drevotrieskových dosiek a konštrukcie z
-              hliníka alebo nerezu.
+              Naše skrinky sa vyznačujú estetickým vzhľadom a ergonomikou. Sú vyrobené z liateho laminátu HPL v rôznych farbách a
+              vzoroch.
             </p>
-            <v-btn color="secondary" link> Zistiť viac </v-btn>
+            <v-btn color="secondary" link to="/satnove-skrinky"> Zistiť viac </v-btn>
           </v-col>
           <v-col cols="12" md="6"> <v-img src="/images/offer-2.jpg" width="100%" height="400px" cover></v-img></v-col>
+        </v-row>
+      </v-container>
+    </div>
+    <div class="offer__item">
+      <v-container>
+        <v-row class="align-center">
+          <v-col cols="12" md="6">
+            <h2>Posuvné steny</h2>
+            <p>
+              Systém posuvných stien rýchlym a atraktívnym spôsobom rozdelí veľké sály na menšie časti kedykoľvek v čase rokovania
+              alebo prezentácie.
+            </p>
+            <v-btn color="secondary" link to="/posuvne-steny"> Zistiť viac </v-btn>
+          </v-col>
+          <v-col cols="12" md="6"> <v-img src="/images/offer-3.jpg" width="100%" height="400px" cover></v-img></v-col>
         </v-row>
       </v-container>
     </div>
@@ -52,22 +67,11 @@ const { fetchUser } = useStrapiAuth();
 
 const banner: Ref<any> = ref({
   title: "Ponuka",
-  desc: "Sanitárne kabíny sú vyrobené z dosiek z vysokotlakového laminátu HPL hrúbky 10 a 13 mm, drevotrieskové dosky s hrúbkou 24 až 28 mm pokrytých laminátom alebo melamínom. Konštrukcia je založená na hliníkových profiloch, eloxovaných alebo práškovaných farbou podľa zadanej farby. Na výber je aj konštrukcia z prvkov z nerezovej ocele alebo nylonu. Kovanie je chrómové, plastové alebo z nerezu.",
-  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/slider.jpg" }],
+  desc: "Vyberte si zo širokej ponuky našich produktov.",
+  btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
+  slides: [{ img: "/images/offer-2.jpg" }],
   maxWidth: "920px",
 });
-
-const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", () =>
-  find<any>("stripe/products", { locale: locale.value })
-);
-
-/* const prices: any[] = reactive([
-  { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
-  { title: "1 mesiac", desc: "Členstvo platí 1 mesiac od zakúpenia", price: "10" },
-  { title: "Polrok", desc: "Členstvo platí 6 mesiacov od zakúpenia", price: "40" },
-  { title: "Rok", desc: "Členstvo platí 12 mesiacov od zakúpenia", price: "70" },
-]); */
 
 onMounted(async () => {
   store.setTitle(t("home.title"));
@@ -77,18 +81,30 @@ onMounted(async () => {
 <style scoped lang="scss">
 .offer {
   padding: 80px 0 60px 0;
+  @media (max-width: 960px) {
+    padding: 60px 0 0 0;
+  }
   &__item {
     align-items: center;
     padding: 60px 16px;
+    @media (max-width: 960px) {
+      padding: 30px 0;
+    }
 
     h2 {
       font-size: 56px;
       margin-bottom: 20px;
+      @media (max-width: 960px) {
+        font-size: 38px;
+      }
     }
     p {
       font-size: 22px;
       line-height: 27px;
       margin-bottom: 39px;
+      @media (max-width: 960px) {
+        font-size: 18px;
+      }
     }
     .v-img {
       border-radius: 32px;

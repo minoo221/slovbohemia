@@ -16,6 +16,7 @@
 <script setup lang="ts">
 const nuxtApp = useNuxtApp();
 const loading: Ref<boolean> = ref(false);
+const route = useRoute();
 
 addRouteMiddleware(
   "global-loader",

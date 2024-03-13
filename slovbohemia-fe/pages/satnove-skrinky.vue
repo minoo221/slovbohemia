@@ -69,7 +69,7 @@ const banner: Ref<any> = ref({
   title: "Šatňové kabínky",
   desc: "Skrine sú vyrobené v zostavách. Ich počet a typ je ľubovolný. Ponúkame možnosť výroby skriniek podľa potrieb zákazníka, prispôsobením sa požiadavkám priestoru. Nadštardardné požiadavky na použité materiály tam, kde sa nachádza voda, vyžadujú použitie materiálov výnimočnej kvality. Systém šatňových skríň PBM je založený na použití vysokotlakových laminovaných dosiek HPL (high-pressure laminate). Použitie tohto typu dosiek spolu s vynikajúcou technikou vytvára riešenie pre spoľahlivú a dlhodobú trvanlivosť. V miestnostiach, kde existuje len malá koncentrácia vodných pár, je možné použiť drevotrieskovú dosku. Technológia výroby skriniek SLOVBOHEMIA navrhuje také riešenia, ktoré budú poskytovať mnoho rokov spoľahlivej prevádzky a trvanlivosti vzhľadu.",
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/slider.jpg" }],
+  slides: [{ img: "/images/offer-2.jpg" }],
   maxWidth: "790px",
 });
 

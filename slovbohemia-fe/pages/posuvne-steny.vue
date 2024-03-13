@@ -70,7 +70,7 @@ const banner: Ref<any> = ref({
   title: walls.value?.data.attributes.title,
   desc: walls.value?.data.attributes.desc,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/slider.jpg" }],
+  slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
 });
 

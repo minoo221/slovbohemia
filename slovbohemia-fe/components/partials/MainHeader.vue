@@ -3,14 +3,14 @@
     <div class="header__top" ref="header">
       <v-container>
         <v-row class="align-center" justify="space-between">
-          <v-col col="3" md="3" class="py-0">
+          <v-col cols="7" sm="3" class="py-0">
             <NuxtLink :to="localePath('/')" class="d-block">
               <v-img src="/images/logo.svg" alt="Slovbohemia" width="100%" contain></v-img>
             </NuxtLink>
           </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="12" md="auto" class="d-none d-md-block">
-            <div class="d-flex" :key="menuKey">
+          <v-spacer class="d-none d-lg-block"></v-spacer>
+          <v-col cols="12" md="8" sm="auto" class="d-none d-md-block">
+            <div class="d-flex justify-space-around justify-lg-end" :key="menuKey">
               <div v-for="(item, index) in menu" :key="index">
                 <v-btn
                   class="mx-0 px-2 mx-lg-2 px-lg-4"
@@ -40,33 +40,21 @@
       <div class="d-flex justify-end">
         <v-btn class="ml-auto" variant="text" size="x-large" icon="mdi-close" color="primary" @click="drawer = false"></v-btn>
       </div>
-      <!-- <v-list nav bg-color="transparent" density="compact" color="white">
+      <v-list nav bg-color="transparent" density="compact" color="white">
         <v-list-item
           v-for="(item, i) in menu"
           :key="i"
-          :to="localePath(item.path)"
+          :to="localePath(item.to)"
           nuxt
           nav
           base-color="white"
-          :link="item.items.length == 0"
+          link
           color="#fff"
           exact
         >
           <v-list-item-title v-text="item.title"></v-list-item-title>
-          <v-list>
-            <v-list-item
-              v-for="(submenu, index) in item.items"
-              :key="index"
-              :value="index"
-              link
-              nuxt
-              :to="localePath(submenu.path)"
-            >
-              <v-list-item-title>{{ submenu.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
         </v-list-item>
-      </v-list> -->
+      </v-list>
     </v-navigation-drawer>
   </header>
 </template>
@@ -161,7 +149,7 @@ onMounted(() => {
   .header-menu {
     @media (max-width: 1250px) {
       .v-btn {
-        font-size: 12px;
+        font-size: 16px;
       }
     }
   }
