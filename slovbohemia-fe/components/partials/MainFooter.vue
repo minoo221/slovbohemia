@@ -92,6 +92,10 @@ const menu: any[] = reactive([
   { title: "Posuvné steny", to: localePath("cennik") },
   { title: "Detské ihriská", to: localePath("okolie") },
 ]);
+
+onMounted(() => {
+  console.log(contact.value);
+});
 </script>
 
 <style scoped lang="scss">
