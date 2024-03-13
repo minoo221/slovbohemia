@@ -35,16 +35,16 @@
             <h2 class="mx-4">Kontakt</h2>
             <v-list bg-color="transparent" density="compact" color="grey-10">
               <v-list-item base-color="grey-10" color="grey-10">
-                <v-list-item-title>IČO: {{ contact.data?.attributes.company?.ico }}</v-list-item-title>
+                <v-list-item-title>IČO: {{ contact?.data.attributes.company?.ico }}</v-list-item-title>
               </v-list-item>
               <v-list-item base-color="grey-10" color="grey-10">
-                <v-list-item-title>DIČ: {{ contact.data?.attributes.company?.dic }}</v-list-item-title>
+                <v-list-item-title>DIČ: {{ contact?.data.attributes.company?.dic }}</v-list-item-title>
               </v-list-item>
               <v-list-item base-color="grey-10" color="grey-10">
                 <v-list-item-title>
                   EMAIL:
-                  <a :href="`mailto:${contact.data?.attributes.email}`" class="contact-link">{{
-                    contact.data?.attributes.email
+                  <a :href="`mailto:${contact?.data.attributes.email}`" class="contact-link">{{
+                    contact?.data.attributes.email
                   }}</a>
                 </v-list-item-title>
               </v-list-item>

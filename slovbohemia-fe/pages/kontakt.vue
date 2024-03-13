@@ -11,19 +11,30 @@
                 <template v-slot:prepend>
                   <v-icon icon="mdi-map-marker-outline"></v-icon>
                 </template>
-                <v-list-item-title>Družstevná 4, 031 01, <br />Liptovský Mikuláš</v-list-item-title>
-              </v-list-item>
-              <v-list-item base-color="grey-10" color="grey-10" class="mb-2 pl-0">
-                <template v-slot:prepend>
-                  <v-icon icon="mdi-phone"></v-icon>
-                </template>
-                <v-list-item-title>+421 905 346724</v-list-item-title>
+                <v-list-item-title
+                  >{{ contact?.data.attributes.company?.address + "," }} {{ contact?.data.attributes.company?.zip + "," }}
+                  <br />{{ contact?.data.attributes.company?.city }}</v-list-item-title
+                >
               </v-list-item>
               <v-list-item base-color="grey-10" color="grey-10" class="pl-0">
                 <template v-slot:prepend>
                   <v-icon icon="mdi-email-outline"></v-icon>
                 </template>
-                <v-list-item-title>slovbohemia@slovbohemia.sk</v-list-item-title>
+                <v-list-item-title>
+                  EMAIL:
+                  <a :href="`mailto:${contact.data?.attributes.email}`" class="contact-link">{{
+                    contact.data?.attributes.email
+                  }}</a>
+                </v-list-item-title>
+              </v-list-item>
+              <v-list-item base-color="grey-10" color="grey-10" class="pl-0">
+                <template v-slot:prepend>
+                  <v-icon icon="mdi-phone-outline"></v-icon>
+                </template>
+                <v-list-item-title
+                  >TEL:
+                  <a :href="`tel:${contact.data?.attributes.tel}`" class="contact-link">{{ contact.data?.attributes.tel }}</a>
+                </v-list-item-title>
               </v-list-item>
             </v-list>
             <v-form ref="form" @submit.prevent="sendForm()">
@@ -129,7 +140,10 @@ const formData: any = reactive({});
 const form: Ref<any> = ref(null);
 const loadingSend: Ref<boolean> = ref(false);
 
-const { create } = useStrapi();
+const { create, find } = useStrapi();
+const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
+  find<any>("contact-information", { populate: "*" })
+);
 
 const sendForm = async () => {
   const { valid } = await form.value.validate();
@@ -154,13 +168,6 @@ const sendForm = async () => {
     }
   }
 };
-
-/* const prices: any[] = reactive([
-  { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
-  { title: "1 mesiac", desc: "Členstvo platí 1 mesiac od zakúpenia", price: "10" },
-  { title: "Polrok", desc: "Členstvo platí 6 mesiacov od zakúpenia", price: "40" },
-  { title: "Rok", desc: "Členstvo platí 12 mesiacov od zakúpenia", price: "70" },
-]); */
 
 onMounted(async () => {
   store.setTitle(t("home.title"));
@@ -192,9 +199,14 @@ onMounted(async () => {
       opacity: 1;
     }
     .v-list-item-title {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 500;
       line-height: 27px;
+      white-space: initial;
+    }
+    .contact-link {
+      color: inherit;
+      text-decoration: none;
     }
     .v-text-field {
       border: 2px solid #b0c9e9;
