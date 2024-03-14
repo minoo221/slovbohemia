@@ -42,7 +42,7 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			strapi: {
-				url: process.env.NODE_ENV == 'development' ? process.env.STRAPI_URL : 'http://194.163.176.146:1337', // can be overridden by NUXT_PUBLIC_STRAPI_URL environment variable
+				url: 'http://194.163.176.146:1337', // can be overridden by NUXT_PUBLIC_STRAPI_URL environment variable
 				populate: ['role']
 			},
 			env: process.env.NODE_ENV
