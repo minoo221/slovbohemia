@@ -82,18 +82,18 @@ const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 
 const { find } = useStrapi();
-/* const { data: contact, refresh } = await useAsyncData("contact-information", () =>
+const { data: contact, refresh } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*" })
-); */
+);
 
-const {
+/* const {
   data: contact,
   pending,
   error,
   refresh,
 } = await useFetch("contact-information", {
   query: { populate: "*" },
-});
+}); */
 
 const menu: any[] = reactive([
   { title: "Sanitárne kabíny", to: localePath("/sanitarne-kabinky") },
