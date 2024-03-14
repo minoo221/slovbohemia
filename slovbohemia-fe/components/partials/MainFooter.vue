@@ -33,7 +33,7 @@
           </v-col>
           <v-col cols="12" sm="6" md="5" lg="5" offset-md="0">
             <h2 class="mx-4">Kontakt</h2>
-            <!-- <v-list bg-color="transparent" density="compact" color="grey-10">
+            <v-list bg-color="transparent" density="compact" color="grey-10">
               <v-list-item base-color="grey-10" color="grey-10">
                 <v-list-item-title>IČO: {{ contact?.data.attributes.company?.ico }}</v-list-item-title>
               </v-list-item>
@@ -54,7 +54,7 @@
                   <a :href="`tel:${contact.data?.attributes.tel}`" class="contact-link">{{ contact.data?.attributes.tel }}</a>
                 </v-list-item-title>
               </v-list-item>
-            </v-list> -->
+            </v-list>
           </v-col>
         </v-row>
       </v-container>
@@ -82,7 +82,7 @@ const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
 
 const { find } = useStrapi();
-const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
+const { data: contact, refresh } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*" })
 );
 
@@ -95,6 +95,7 @@ const menu: any[] = reactive([
 
 onMounted(() => {
   console.log("contact", contact.value);
+  refresh();
 });
 </script>
 
