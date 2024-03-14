@@ -3,7 +3,7 @@
     <v-container v-if="loading" class="d-flex justify-center py-16">
       <PartialsLoader color="grey"></PartialsLoader>
     </v-container>
-    <div v-show="!loading">
+    <div v-if="!loading">
       <Suspense>
         <NuxtLayout>
           <NuxtLoadingIndicator color="#f2c514" :height="7" />
