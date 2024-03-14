@@ -1,5 +1,5 @@
 <template>
-  <PartialsBanner :data="banner"></PartialsBanner>
+  <!-- <PartialsBanner :data="banner"></PartialsBanner> -->
   <section class="offer">
     <div class="text-center mb-0 mb-sm-12">
       <h2 class="h1">Naša ponuka</h2>
