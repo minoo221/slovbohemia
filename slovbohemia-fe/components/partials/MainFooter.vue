@@ -85,9 +85,9 @@ const localePath = useLocalePath();
 const { find } = useStrapi();
 const url = useStrapiUrl();
 
-/* const { data: contact, refresh } = await useAsyncData("contact-information", () =>
+const { data: contactD, refresh: refreshC } = useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*" })
-); */
+);
 
 const {
   data: contact,
@@ -106,7 +106,8 @@ const menu: any[] = reactive([
 ]);
 
 onMounted(() => {
-  console.log("contact", contact);
+  console.log("contact", contact.value);
+  console.log("contactD", contactD);
   refresh();
 });
 </script>
