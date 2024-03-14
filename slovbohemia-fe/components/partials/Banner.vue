@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <Swiper
+    <!-- <Swiper
       :modules="[SwiperAutoplay, SwiperEffectFade, SwiperNavigation, SwiperPagination]"
       :loop="true"
       :pagination="{
@@ -32,7 +32,7 @@
           <img :src="slide.img" />
         </div>
       </SwiperSlide>
-    </Swiper>
+    </Swiper> -->
     <div className="swiper-custom-pagination"></div>
   </div>
 </template>
