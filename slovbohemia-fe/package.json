@@ -20,7 +20,7 @@
     "@nuxtjs/strapi": "^1.11.0",
     "@types/node": "^18",
     "dayjs-nuxt": "^2.1.9",
-    "nuxt": "^3.6.2",
+    "nuxt": ">=3.6.2 <3.7.4",
     "vite-plugin-vuetify": "^1.0.2"
   },
   "dependencies": {
