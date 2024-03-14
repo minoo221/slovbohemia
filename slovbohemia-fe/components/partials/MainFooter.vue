@@ -85,7 +85,7 @@ const localePath = useLocalePath();
 const { find } = useStrapi();
 const url = useStrapiUrl();
 
-const { data: contactD, refresh: refreshC } = useAsyncData("contact-information", () =>
+const { data: contactD, refresh: refreshC } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*" })
 );
 
