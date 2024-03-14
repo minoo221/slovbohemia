@@ -11,7 +11,7 @@
             </p>
           </v-col>
           <v-col cols="12" md="6">
-            <v-img :src="store.getMediaUrl(wall.image.data?.attributes.url)" width="100%" height="400px" cover></v-img
+            <v-img :src="store.getMediaUrl(wall?.image?.data?.attributes.url)" width="100%" height="400px" cover></v-img
           ></v-col>
         </v-row>
       </v-container>
@@ -19,7 +19,7 @@
     <div class="gallery">
       <v-container>
         <div class="gallery-cover" v-if="walls?.data?.attributes.gallery.data">
-          <div class="img-cover" v-for="(image, index) in walls?.data?.attributes.gallery.data.slice(0, 5)" :key="index">
+          <div class="img-cover" v-for="(image, index) in walls?.data?.attributes.gallery.data?.slice(0, 5)" :key="index">
             <v-img
               :src="store.getMediaUrl(image.attributes.url)"
               width="100%"

@@ -94,7 +94,7 @@ const {
   pending,
   error,
   refresh,
-} = await useFetch(url + "/products", {
+} = await useFetch(url + "/sanitary-cabins", {
   query: { populate: "*" },
 });
 
