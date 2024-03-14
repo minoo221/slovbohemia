@@ -56,12 +56,15 @@
         <v-col cols="12" md="5">
           <h2 class="h1">O nás</h2>
           <p class="mb-8">
-            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
-            eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            SlovBohemia je vaším spoľahlivým partnerom v oblasti komerčných riešení! Naša firma sa špecializuje nielen na výrobu
+            šatňových skriniek. Sme hrdí na naše moderné a funkčné šatňové skrinky, ktoré poskytujú praktické úložné riešenia a
+            zároveň pridávajú štýlový dotyk do každého prostredia. Okrem toho, naša ponuka zahŕňa aj špeciálne navrhnuté sanitárne
+            kabínky, ktoré spĺňajú najvyššie hygienické normy a sú ideálne pre použitie v rôznych verejných či komerčných
+            priestoroch. Navyše, naša firma ponúka široký výber posuvných stien, ktoré sú ideálne pre efektívne využitie priestoru
+            v kancelárskych a komerčných prostrediach.
           </p>
-          <v-btn color="secondary" link class="mr-4 mb-4 mb-sm-0"> Zistiť viac </v-btn>
-          <v-btn color="primary" link class="mr-4 mb-4 mb-sm-0"> Kontaktujte nás </v-btn>
+          <v-btn color="secondary" link class="mr-4 mb-4 mb-sm-0" to="/o-nas"> Zistiť viac </v-btn>
+          <v-btn color="primary" link class="mr-4 mb-4 mb-sm-0" to="/kontakt"> Kontaktujte nás </v-btn>
         </v-col>
         <v-col cols="12" md="6" offset-lg="1">
           <v-row>
@@ -130,7 +133,7 @@
         </v-col>
       </v-row>
       <div class="text-center">
-        <v-btn color="secondary" link class="px-10"> Pozrieť všetky </v-btn>
+        <v-btn color="secondary" link class="px-10" to="/blog"> Pozrieť všetky </v-btn>
       </div>
     </v-container>
   </section>
@@ -146,12 +149,27 @@ const store = useIndexStore();
 
 const banner: Ref<any> = ref({
   title: "SLOVBOHEMIA",
-  desc: "Slogan: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  desc: "Vitajte na stránkach firmy Slovebohemia Systems, ktorá sa zaoberá dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
   btns: [
-    { title: "Pozrieť ponuku", link: localePath("/"), color: "primary" },
-    { title: "Kontaktovať", link: localePath("/"), color: "secondary" },
+    { title: "Pozrieť ponuku", link: localePath("/ponuka"), color: "primary" },
+    { title: "Kontaktovať", link: localePath("/kontakt"), color: "secondary" },
   ],
   slides: [{ img: "/images/offer-1.jpg" }, { img: "/images/sanitarne-kabinky.jpg" }, { img: "/images/offer-2.jpg" }],
+});
+
+useServerSeoMeta({
+  ogTitle: () => "Slovbohemia systems",
+  title: () => "Slovbohemia systems | Hlavná stránka",
+  description: () =>
+    "Vitajte na stránkach firmy Slovebohemia Systems, ktorá sa zaoberá dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
+  ogDescription: () =>
+    "Slovebohemia Systems, firma ktorá sa zaoberá dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
+  /* ogImage: () => productDetails.thumbnail,
+    ogImageUrl: () => productDetails.thumbnail,
+    twitterCard: () => 'summary_large_image',
+    twitterTitle: () => title,
+    twitterDescription: () => productDetails.description,
+    twitterImage: () => productDetails.thumbnail */
 });
 
 onMounted(async () => {
