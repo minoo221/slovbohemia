@@ -1,7 +1,7 @@
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
   <section class="offer">
-    <div class="offer__item" v-for="wall in walls?.data.attributes.offer" :key="wall.id">
+    <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
       <v-container>
         <v-row class="align-start">
           <v-col cols="12" md="6">
@@ -11,22 +11,22 @@
             </p>
           </v-col>
           <v-col cols="12" md="6">
-            <v-img :src="store.getMediaUrl(wall.image.data.attributes.url)" width="100%" height="400px" cover></v-img
+            <v-img :src="store.getMediaUrl(wall.image.data?.attributes.url)" width="100%" height="400px" cover></v-img
           ></v-col>
         </v-row>
       </v-container>
     </div>
     <div class="gallery">
       <v-container>
-        <div class="gallery-cover" v-if="walls?.data.attributes.gallery.data">
-          <div class="img-cover" v-for="(image, index) in walls?.data.attributes.gallery.data.slice(0, 5)" :key="index">
+        <div class="gallery-cover" v-if="walls?.data?.attributes.gallery.data">
+          <div class="img-cover" v-for="(image, index) in walls?.data?.attributes.gallery.data.slice(0, 5)" :key="index">
             <v-img
               :src="store.getMediaUrl(image.attributes.url)"
               width="100%"
               height="150px"
               cover
               class="mb-4"
-              @click="showGallery(index, walls?.data.attributes.gallery.data)"
+              @click="showGallery(index, walls?.data?.attributes.gallery.data)"
             ></v-img>
           </div>
         </div>
@@ -54,8 +54,8 @@ const { fetchUser } = useStrapiAuth();
 const isVisible: Ref<boolean> = ref(false);
 const imgIndex: Ref<number> = ref(0);
 const images: Ref<any> = ref([]);
-
-const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
+const url = useStrapiUrl();
+/* const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
   findOne<any>("sliding-wall", {
     populate: {
       gallery: true,
@@ -64,11 +64,27 @@ const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wal
       },
     },
   })
-);
+); */
+
+const {
+  data: walls,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/sliding-wall", {
+  query: {
+    populate: {
+      gallery: true,
+      offer: {
+        populate: ["image"],
+      },
+    },
+  },
+});
 
 const banner: Ref<any> = ref({
-  title: walls.value?.data.attributes.title,
-  desc: walls.value?.data.attributes.desc,
+  title: walls.value?.data?.attributes.title,
+  desc: walls.value?.data?.attributes.desc,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",

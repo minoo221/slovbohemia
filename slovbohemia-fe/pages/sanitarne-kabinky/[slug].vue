@@ -87,15 +87,18 @@ const localePath = useLocalePath();
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 const route = useRoute();
+const url = useStrapiUrl();
 
-const { findOne } = useStrapi();
+/* const { findOne } = useStrapi();
 
 const { data: product, refresh: refreshProducts } = await useAsyncData("sanitary-cabins", () =>
   findOne<any>("sanitary-cabins", route.params.slug)
-);
+); */
+
+const { data: product, pending, error, refresh } = await useFetch(url + "/products/" + route.params.slug);
 
 const banner: Ref<any> = ref({
-  title: "Sanitárne kabínky " + product.value?.data.attributes.title,
+  title: "Sanitárne kabínky " + product?.value?.data.attributes.title,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/sanitanre-kabinky.jpg" }],
   maxWidth: "100%",
@@ -113,7 +116,7 @@ const onHide = () => {
   isVisible.value = false;
 };
 const galleryImages = computed(() => {
-  return (product.value?.data.attributes.gallery.data || []).map((obj: any) => {
+  return (product?.value?.data.attributes.gallery.data || []).map((obj: any) => {
     /* console.log(obj); */
     /* return obj.id; */
     return {

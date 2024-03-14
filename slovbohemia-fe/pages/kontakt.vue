@@ -12,8 +12,8 @@
                   <v-icon icon="mdi-map-marker-outline"></v-icon>
                 </template>
                 <v-list-item-title
-                  >{{ contact?.data.attributes.company?.address + "," }} {{ contact?.data.attributes.company?.zip + "," }}
-                  <br />{{ contact?.data.attributes.company?.city }}</v-list-item-title
+                  >{{ contact?.data?.attributes.company?.address + "," }} {{ contact?.data?.attributes.company?.zip + "," }}
+                  <br />{{ contact?.data?.attributes.company?.city }}</v-list-item-title
                 >
               </v-list-item>
               <v-list-item base-color="grey-10" color="grey-10" class="pl-0">
@@ -139,11 +139,20 @@ const banner: Ref<any> = ref({
 const formData: any = reactive({});
 const form: Ref<any> = ref(null);
 const loadingSend: Ref<boolean> = ref(false);
-
-const { create, find } = useStrapi();
+const url = useStrapiUrl();
+/* const { create, find } = useStrapi();
 const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*" })
-);
+); */
+
+const {
+  data: contact,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/contact-information", {
+  query: { populate: "*" },
+});
 
 const sendForm = async () => {
   const { valid } = await form.value.validate();

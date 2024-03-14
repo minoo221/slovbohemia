@@ -39,8 +39,8 @@
           <article>
             <v-img
               :src="
-                product.attributes.gallery?.data && product.attributes.gallery.data[0]?.attributes.formats.medium.url
-                  ? store.getMediaUrl(product.attributes.gallery.data[0].attributes.formats.medium.url)
+                product?.attributes.gallery?.data && product?.attributes.gallery.data[0]?.attributes.formats.medium.url
+                  ? store.getMediaUrl(product?.attributes.gallery.data[0].attributes.formats.medium.url)
                   : ''
               "
               width="100%"
@@ -48,11 +48,11 @@
               cover
               class="mb-4"
             ></v-img>
-            <h3 class="mb-4">{{ product.attributes.title }}</h3>
+            <h3 class="mb-4">{{ product?.attributes.title }}</h3>
             <v-btn
               color="secondary"
               link
-              :to="localePath({ name: 'sanitarne-kabinky-slug', params: { slug: product.attributes.slug } })"
+              :to="localePath({ name: 'sanitarne-kabinky-slug', params: { slug: product?.attributes.slug } })"
               class="px-10"
             >
               Pozrieť produkt
@@ -81,12 +81,22 @@ const banner: Ref<any> = ref({
 });
 
 const { find } = useStrapi();
+const url = useStrapiUrl();
 
 /* const { data: products, refresh: refreshProducts } = await useAsyncData("sanitary-cabins", () =>
   find<any>("sanitary-cabins", { populate: "*" })
 ); */
 
-const products = await find<any>("sanitary-cabins", { populate: "*" });
+/* const products = await find<any>("sanitary-cabins", { populate: "*" }); */
+
+const {
+  data: products,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/products", {
+  query: { populate: "*" },
+});
 
 const benefits: any[] = reactive([
   { img: "/images/clock.png", desc: "dlhá životnosť vzhľadom na pevnú konštrukciu," },

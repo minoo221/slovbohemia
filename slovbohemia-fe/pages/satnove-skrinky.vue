@@ -20,7 +20,7 @@
   </section>
   <section class="wardrobes">
     <v-container>
-      <div class="wardrobe-item" v-for="item in wardrobes?.data" :key="item.id">
+      <div class="wardrobe-item" v-for="item in wardrobes?.data?" :key="item.id">
         <v-row>
           <v-col cols="12" md="6" class="pt-4">
             <h2 class="mb-8">{{ item.attributes.title }}</h2>
@@ -32,11 +32,11 @@
             </ul>
           </v-col>
           <v-col cols="12" md="6">
-            <v-img :src="store.getMediaUrl(item.attributes.image.data.attributes.url)" height="400px" contain></v-img
+            <v-img :src="store.getMediaUrl(item?.attributes.image.data?.attributes.url)" height="400px" contain></v-img
           ></v-col>
           <v-col cols="12">
             <h3 class="mb-4 text-uppercase">Technické údaje</h3>
-            <div class="parameters v-table" v-dompurify-html="item.attributes.parameters"></div>
+            <div class="parameters v-table" v-dompurify-html="item?.attributes.parameters"></div>
           </v-col>
         </v-row>
       </div>
@@ -58,12 +58,22 @@ const { findOne, find } = useStrapi();
 const isVisible: Ref<boolean> = ref(false);
 const imgIndex: Ref<number> = ref(0);
 const images: Ref<any> = ref([]);
+const url = useStrapiUrl();
 
-const { data: wardrobes, refresh: refreshWardrobes } = await useAsyncData("wardrobes", () =>
+/* const { data: wardrobes, refresh: refreshWardrobes } = await useAsyncData("wardrobes", () =>
   find<any>("wardrobes", {
     populate: "*",
   })
-);
+); */
+
+const {
+  data: wardrobes,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/wardrobes", {
+  query: { populate: "*" },
+});
 
 const banner: Ref<any> = ref({
   title: "Šatňové kabínky",
