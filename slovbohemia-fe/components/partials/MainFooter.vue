@@ -105,7 +105,7 @@ const menu: any[] = reactive([
 ]);
 
 onMounted(() => {
-  console.log("contact", contact.value);
+  console.log("contact", contact);
   refresh();
 });
 </script>
