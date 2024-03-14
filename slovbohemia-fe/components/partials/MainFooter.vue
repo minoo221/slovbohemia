@@ -33,7 +33,7 @@
           </v-col>
           <v-col cols="12" sm="6" md="5" lg="5" offset-md="0">
             <h2 class="mx-4">Kontakt</h2>
-            {{ contact.data.attributes.email }}
+            {{ contact?.data?.attributes.email }}
             <!-- <v-list bg-color="transparent" density="compact" color="grey-10">
               <v-list-item base-color="grey-10" color="grey-10">
                 <v-list-item-title>IČO: {{ contact?.data.attributes.company?.ico }}</v-list-item-title>
