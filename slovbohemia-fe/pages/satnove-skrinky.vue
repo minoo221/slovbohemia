@@ -20,7 +20,7 @@
   </section>
   <section class="wardrobes">
     <v-container>
-      <div class="wardrobe-item" v-for="item in wardrobes?.data?" :key="item.id">
+      <div class="wardrobe-item" v-for="item in wardrobes?.data" :key="item.id">
         <v-row>
           <v-col cols="12" md="6" class="pt-4">
             <h2 class="mb-8">{{ item.attributes.title }}</h2>
