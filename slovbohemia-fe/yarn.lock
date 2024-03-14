@@ -4272,7 +4272,7 @@ nuxt-swiper@^1.2.2:
     "@nuxt/kit" "^3.7.0"
     swiper "^10.2.0"
 
-nuxt@^3.10.3:
+nuxt@^3.6.2:
   version "3.10.3"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.10.3.tgz#5cc62f20a20efe59e245efa28b9a9949075a38aa"
   integrity sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==
@@ -6018,7 +6018,7 @@ vue@^3.4.19:
     "@vue/server-renderer" "3.4.21"
     "@vue/shared" "3.4.21"
 
-vuetify@^3.4.0:
+vuetify@^3.3.0:
   version "3.5.9"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.5.9.tgz#9cb3554f4b9bb7f3c277a10b99ab5944e6d04b03"
   integrity sha512-tA3N2uWZFNSZRFNnXN841x4rWozYXKC0fGW/mJIwcKkQiI0+gmVCETtjF8bnOS7L1s0buWzw94uYTlXQa5AQ4w==

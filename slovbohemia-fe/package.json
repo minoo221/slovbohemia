@@ -20,7 +20,7 @@
     "@nuxtjs/strapi": "^1.11.0",
     "@types/node": "^18",
     "dayjs-nuxt": "^2.1.9",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.6.2",
     "vite-plugin-vuetify": "^1.0.2"
   },
   "dependencies": {
@@ -32,6 +32,6 @@
     "vue-dompurify-html": "^5.0.1",
     "vue-easy-lightbox": "^1.16.0",
     "vue3-google-map": "^0.15.0",
-    "vuetify": "^3.4.0"
+    "vuetify": "^3.3.0"
   }
 }
