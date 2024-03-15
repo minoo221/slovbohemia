@@ -40,12 +40,9 @@ export default defineNuxtConfig({
 		'dayjs-nuxt',
     ],
 	runtimeConfig: {
-		strapi: {
-			url: 'http://localhost:1337'
-		},
 		public: {
 			strapi: {
-				url: 'http://194.163.176.146:1337', // can be overridden by NUXT_PUBLIC_STRAPI_URL environment variable
+				url: process.env.NODE_ENV == 'development' ? process.env.STRAPI_URL : 'http://194.163.176.146:1337', // can be overridden by NUXT_PUBLIC_STRAPI_URL environment variable
 				populate: ['role']
 			},
 			env: process.env.NODE_ENV
