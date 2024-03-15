@@ -74,17 +74,13 @@ const {
   pending,
   error,
   refresh,
-} = await useFetch(url + "/sliding-wall", {
+} = await useLazyFetch(url + "/sliding-wall", {
   immediate: true,
 });
 
-let wallsD = await $fetch(url + "/sliding-wall", {
-  method: "GET",
-});
-
 const banner: Ref<any> = ref({
-  title: wallsD.data?.attributes?.title,
-  desc: wallsD.data?.attributes?.desc,
+  title: walls.value?.data?.attributes?.title,
+  desc: walls.value?.data?.attributes?.desc,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
@@ -130,7 +126,6 @@ function showGallery(index: number, imgs: any) {
 onMounted(() => {
   /*  getWalls(); */
   console.log("walls", walls.value);
-  console.log("wallsD", wallsD.data);
 });
 </script>
 <style scoped lang="scss">
