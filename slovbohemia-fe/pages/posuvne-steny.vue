@@ -72,14 +72,7 @@ const {
   error,
   refresh,
 } = await useFetch(url + "/sliding-wall", {
-  query: {
-    populate: {
-      gallery: true,
-      offer: {
-        populate: ["image"],
-      },
-    },
-  },
+  immediate: true,
 });
 
 const banner: Ref<any> = ref({
