@@ -73,8 +73,8 @@ const url = useStrapiUrl();
 const { data, pending, error, refresh } = await useFetch(url + "/sliding-wall", {});
 
 const banner: Ref<any> = ref({
-  title: walls.value?.data?.attributes?.title,
-  desc: walls.value?.data?.attributes?.desc,
+  title: "",
+  desc: "",
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
