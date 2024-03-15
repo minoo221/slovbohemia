@@ -69,14 +69,7 @@ const url = useStrapiUrl();
 
 /* let wallsD: Ref<any> = ref({}); */
 
-const {
-  data: walls,
-  pending,
-  error,
-  refresh,
-} = await useLazyFetch(url + "/sliding-wall", {
-  immediate: true,
-});
+const { data: walls, pending, error, refresh } = await useLazyFetch(url + "/sliding-wall", {});
 
 const banner: Ref<any> = ref({
   title: walls.value?.data?.attributes?.title,
@@ -125,7 +118,7 @@ function showGallery(index: number, imgs: any) {
 
 onMounted(() => {
   /*  getWalls(); */
-  console.log("walls", walls);
+  console.log("walls", walls.value);
 });
 </script>
 <style scoped lang="scss">
