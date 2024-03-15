@@ -1,6 +1,6 @@
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
-  {{ walls?.data?.attributes?.title }}
+  <!-- {{ walls?.data?.attributes?.title }} -->
   <!-- <section class="offer">
     <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
       <v-container>
