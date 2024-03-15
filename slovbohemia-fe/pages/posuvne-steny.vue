@@ -1,5 +1,6 @@
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
+  {{ walls?.data?.attributes?.title }}
   <!-- <section class="offer">
     <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
       <v-container>
@@ -66,7 +67,14 @@ const url = useStrapiUrl();
   })
 ); */
 
-const wallsD: Ref<any> = ref({});
+const menu: any[] = reactive([
+  { title: "Sanitárne kabíny", to: localePath("/sanitarne-kabinky") },
+  { title: "Šatňové skrinky", to: localePath("satnove-skrinky") },
+  { title: "Posuvné steny", to: localePath("cennik") },
+  { title: "Detské ihriská", to: localePath("okolie") },
+]);
+
+let wallsD: any = reactive({});
 
 const {
   data: walls,
@@ -117,15 +125,15 @@ function showGallery(index: number, imgs: any) {
 }
 
 const getWalls = async () => {
-  const walls = await $fetch(url + "/sliding-wall", {
+  wallsD = await $fetch(url + "/sliding-wall", {
     method: "GET",
   });
-  wallsD.value = walls;
 };
 
 onMounted(() => {
   getWalls();
-  console.log("walls", wallsD);
+  console.log("walls", walls);
+  console.log("wallsD", wallsD);
 });
 </script>
 <style scoped lang="scss">
