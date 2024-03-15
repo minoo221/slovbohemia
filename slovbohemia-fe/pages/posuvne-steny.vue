@@ -67,14 +67,7 @@ const url = useStrapiUrl();
   })
 ); */
 
-const menu: any[] = reactive([
-  { title: "Sanitárne kabíny", to: localePath("/sanitarne-kabinky") },
-  { title: "Šatňové skrinky", to: localePath("satnove-skrinky") },
-  { title: "Posuvné steny", to: localePath("cennik") },
-  { title: "Detské ihriská", to: localePath("okolie") },
-]);
-
-let wallsD: any = reactive({});
+let wallsD: Ref<any> = ref({});
 
 const {
   data: walls,
@@ -83,14 +76,6 @@ const {
   refresh,
 } = await useFetch(url + "/sliding-wall", {
   immediate: true,
-});
-
-const banner: Ref<any> = ref({
-  title: wallsD.value?.data?.attributes?.title,
-  desc: wallsD.value?.data?.attributes?.desc,
-  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/offer-3.jpg" }],
-  maxWidth: "790px",
 });
 
 const onShow = () => {
@@ -125,15 +110,23 @@ function showGallery(index: number, imgs: any) {
 }
 
 const getWalls = async () => {
-  wallsD = await $fetch(url + "/sliding-wall", {
+  wallsD.value = await $fetch(url + "/sliding-wall", {
     method: "GET",
   });
 };
 
 onMounted(() => {
   getWalls();
-  console.log("walls", walls);
-  console.log("wallsD", wallsD);
+  console.log("walls", walls.value);
+  console.log("wallsD", wallsD.value);
+});
+
+const banner: Ref<any> = ref({
+  title: walls.value?.data?.attributes?.title,
+  desc: walls.value?.data?.attributes?.desc,
+  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
+  slides: [{ img: "/images/offer-3.jpg" }],
+  maxWidth: "790px",
 });
 </script>
 <style scoped lang="scss">
