@@ -1,7 +1,7 @@
 <template>
   <div class="info" v-resize="onResize" :style="{ height: titleCoverHeight + 25 + 'px' }">
     <div class="title-cover align-center justify-center">
-      <div class="content-center" :style="{ 'max-width': data.maxWidth ? data.maxWidth : "980px" }" ref="titleCover">
+      <div class="content-center" :style="{ 'max-width': data.maxWidth }" ref="titleCover">
         <h1>{{ data.title }}</h1>
         <p>
           {{ data.desc }}
