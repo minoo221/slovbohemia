@@ -70,7 +70,7 @@ const url = useStrapiUrl();
 
 /* let wallsD: Ref<any> = ref({}); */
 
-const { data: walls, pending, error, refresh } = await useFetch(url + "/sliding-wall", {});
+const { data, pending, error, refresh } = await useFetch(url + "/sliding-wall", {});
 
 const banner: Ref<any> = ref({
   title: walls.value?.data?.attributes?.title,
