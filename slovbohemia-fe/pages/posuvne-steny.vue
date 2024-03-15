@@ -119,8 +119,7 @@ function showGallery(index: number, imgs: any) {
 
 onMounted(async () => {
   /*  getWalls(); */
-  await nextTick();
-  console.log("walls", data.value);
+  console.log("walls", data);
 });
 </script>
 <style scoped lang="scss">
