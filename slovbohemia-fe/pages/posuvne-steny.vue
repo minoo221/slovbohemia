@@ -66,6 +66,8 @@ const url = useStrapiUrl();
   })
 ); */
 
+const wallsD: Ref<any> = ref({});
+
 const {
   data: walls,
   pending,
@@ -76,8 +78,8 @@ const {
 });
 
 const banner: Ref<any> = ref({
-  title: walls.value?.data.attributes.title,
-  desc: walls.value?.data.attributes.desc,
+  title: wallsD.value?.data.attributes.title,
+  desc: wallsD.value?.data.attributes.desc,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
@@ -114,8 +116,16 @@ function showGallery(index: number, imgs: any) {
   /* gallery.silentbox.openOverlay(item, index); */
 }
 
+const getWalls = async () => {
+  const walls = await $fetch(url + "/sliding-wall", {
+    method: "GET",
+  });
+  wallsD.value = walls;
+};
+
 onMounted(() => {
-  console.log("walls", walls?.value);
+  getWalls();
+  console.log("walls", wallsD);
 });
 </script>
 <style scoped lang="scss">
