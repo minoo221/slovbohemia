@@ -71,7 +71,6 @@ const url = useStrapiUrl();
 /* let wallsD: Ref<any> = ref({}); */
 
 const { data: walls, pending, error, refresh } = await useFetch(url + "/sliding-wall", {});
-await nextTick();
 
 const banner: Ref<any> = ref({
   title: walls.value?.data?.attributes?.title,
@@ -118,9 +117,10 @@ function showGallery(index: number, imgs: any) {
   });
 }; */
 
-onMounted(() => {
+onMounted(async () => {
   /*  getWalls(); */
-  console.log("walls", walls);
+  await nextTick();
+  console.log("walls", walls.value);
 });
 </script>
 <style scoped lang="scss">
