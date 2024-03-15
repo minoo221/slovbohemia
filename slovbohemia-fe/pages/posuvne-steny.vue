@@ -120,7 +120,7 @@ function showGallery(index: number, imgs: any) {
 onMounted(async () => {
   /*  getWalls(); */
   await nextTick();
-  console.log("walls", walls.value);
+  console.log("walls", data.value);
 });
 </script>
 <style scoped lang="scss">
