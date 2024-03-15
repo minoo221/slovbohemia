@@ -1,6 +1,6 @@
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
-  <section class="offer">
+  <!-- <section class="offer">
     <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
       <v-container>
         <v-row class="align-start">
@@ -35,7 +35,7 @@
         <vue-easy-lightbox :visible="isVisible" :imgs="images" :index="imgIndex" @hide="onHide"></vue-easy-lightbox>
       </client-only>
     </div>
-  </section>
+  </section> -->
 </template>
 
 <script setup lang="ts">
@@ -122,7 +122,7 @@ function showGallery(index: number, imgs: any) {
 }
 
 onMounted(async () => {
-  console.log("walls", walls.value);
+  console.log("walls", walls);
 });
 </script>
 <style scoped lang="scss">
