@@ -67,7 +67,7 @@ const url = useStrapiUrl();
   })
 ); */
 
-let wallsD: Ref<any> = ref({});
+/* let wallsD: Ref<any> = ref({}); */
 
 const {
   data: walls,
@@ -76,6 +76,18 @@ const {
   refresh,
 } = await useFetch(url + "/sliding-wall", {
   immediate: true,
+});
+
+let wallsD = await $fetch(url + "/sliding-wall", {
+  method: "GET",
+});
+
+const banner: Ref<any> = ref({
+  title: wallsD.data?.attributes?.title,
+  desc: wallsD.data?.attributes?.desc,
+  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
+  slides: [{ img: "/images/offer-3.jpg" }],
+  maxWidth: "790px",
 });
 
 const onShow = () => {
@@ -109,24 +121,16 @@ function showGallery(index: number, imgs: any) {
   /* gallery.silentbox.openOverlay(item, index); */
 }
 
-const getWalls = async () => {
+/* const getWalls = async () => {
   wallsD.value = await $fetch(url + "/sliding-wall", {
     method: "GET",
   });
-};
+}; */
 
 onMounted(() => {
-  getWalls();
+  /*  getWalls(); */
   console.log("walls", walls.value);
-  console.log("wallsD", wallsD.value);
-});
-
-const banner: Ref<any> = ref({
-  title: walls.value?.data?.attributes?.title,
-  desc: walls.value?.data?.attributes?.desc,
-  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/offer-3.jpg" }],
-  maxWidth: "790px",
+  console.log("wallsD", wallsD.data);
 });
 </script>
 <style scoped lang="scss">
