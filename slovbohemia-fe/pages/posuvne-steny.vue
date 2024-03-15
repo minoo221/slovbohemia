@@ -76,8 +76,8 @@ const {
 });
 
 const banner: Ref<any> = ref({
-  title: walls.value?.data?.attributes.title,
-  desc: walls.value?.data?.attributes.desc,
+  title: walls.value?.data.attributes.title,
+  desc: walls.value?.data.attributes.desc,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
@@ -115,7 +115,7 @@ function showGallery(index: number, imgs: any) {
 }
 
 onMounted(async () => {
-  console.log("walls", walls.value);
+  console.log("walls", walls.value.data.attributes);
 });
 </script>
 <style scoped lang="scss">
