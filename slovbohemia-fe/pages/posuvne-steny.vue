@@ -56,6 +56,7 @@ const isVisible: Ref<boolean> = ref(false);
 const imgIndex: Ref<number> = ref(0);
 const images: Ref<any> = ref([]);
 const url = useStrapiUrl();
+
 /* const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
   findOne<any>("sliding-wall", {
     populate: {
@@ -69,8 +70,8 @@ const url = useStrapiUrl();
 
 /* let wallsD: Ref<any> = ref({}); */
 
-/* const { data: walls, pending, error, refresh } = await useAsyncData(url + "/sliding-wall"); */
-const { data: walls } = await useAsyncData("sliding-wall", () => $fetch(url + "/sliding-wall"));
+const { data: walls, pending, error, refresh } = await useFetch(url + "/sliding-wall", {});
+await nextTick();
 
 const banner: Ref<any> = ref({
   title: walls.value?.data?.attributes?.title,
