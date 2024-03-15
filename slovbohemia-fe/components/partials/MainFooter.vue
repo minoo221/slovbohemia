@@ -106,6 +106,8 @@ const menu: any[] = reactive([
 
 onMounted(() => {
   /* console.log("contactD", contactD); */
+  console.log("contract", contact);
+
   /* refresh(); */
 });
 </script>

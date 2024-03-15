@@ -122,7 +122,7 @@ function showGallery(index: number, imgs: any) {
 }
 
 onMounted(async () => {
-  console.log(walls.value);
+  console.log("walls", walls.value);
 });
 </script>
 <style scoped lang="scss">
