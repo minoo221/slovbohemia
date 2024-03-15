@@ -114,8 +114,8 @@ function showGallery(index: number, imgs: any) {
   /* gallery.silentbox.openOverlay(item, index); */
 }
 
-onMounted(async () => {
-  console.log("walls", walls.value.data.attributes);
+onMounted(() => {
+  console.log("walls", walls?.value);
 });
 </script>
 <style scoped lang="scss">

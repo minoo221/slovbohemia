@@ -7,7 +7,7 @@
       <Suspense>
         <NuxtLayout>
           <NuxtLoadingIndicator color="#f2c514" :height="7" />
-          <NuxtPage :key="$route.fullPath" />
+          <NuxtPage />
         </NuxtLayout>
       </Suspense>
     </div>
