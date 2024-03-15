@@ -77,13 +77,13 @@ const {
   immediate: true,
 });
 
-const banner: Ref<any> = ref({
+/* const banner: Ref<any> = ref({
   title: wallsD.value?.data.attributes.title,
   desc: wallsD.value?.data.attributes.desc,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
-});
+}); */
 
 const onShow = () => {
   isVisible.value = true;
