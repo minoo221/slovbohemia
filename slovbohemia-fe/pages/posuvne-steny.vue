@@ -120,7 +120,7 @@ function showGallery(index: number, imgs: any) {
 
 onMounted(() => {
   /*  getWalls(); */
-  console.log("walls", walls);
+  console.log("walls", toRaw(walls));
 });
 </script>
 <style scoped lang="scss">
