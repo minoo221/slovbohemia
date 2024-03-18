@@ -1,5 +1,5 @@
 <template>
-  <PartialsBanner :data="getBannerData(data)"></PartialsBanner>
+  <PartialsBanner :data="getBannerData(walls)"></PartialsBanner>
   <!-- {{ walls?.data?.attributes?.title }} -->
   <!-- <section class="offer">
     <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
