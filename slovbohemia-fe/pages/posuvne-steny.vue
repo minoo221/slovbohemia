@@ -1,5 +1,5 @@
 <template>
-  <PartialsBanner :data="getBannerData(walls)"></PartialsBanner>
+  <PartialsBanner :data="walls"></PartialsBanner>
   <!-- {{ walls?.data?.attributes?.title }} -->
   <!-- <section class="offer">
     <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
@@ -70,7 +70,14 @@ const url = useStrapiUrl();
 
 /* let wallsD: Ref<any> = ref({}); */
 
-const { data: walls, pending, error, refresh } = await useFetch(url + "/sliding-wall", {});
+const {
+  data: walls,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/sliding-wall", {
+  query: { populate: "*" },
+});
 
 const banner: Ref<any> = ref({
   title: "",
