@@ -1,5 +1,5 @@
 <template>
-  <PartialsBanner :data="walls"></PartialsBanner>
+  <PartialsBanner :data="getBannerData(data)"></PartialsBanner>
   <!-- {{ walls?.data?.attributes?.title }} -->
   <!-- <section class="offer">
     <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
@@ -117,6 +117,16 @@ function showGallery(index: number, imgs: any) {
   onShow();
   /* gallery.silentbox.openOverlay(item, index); */
 }
+
+const getBannerData = (data: any) => {
+  return {
+    title: data?.data?.attributes?.title,
+    desc: data?.data?.attributes?.desc,
+    btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
+    slides: [{ img: store.getMediaUrl(data?.data?.attributes?.image?.data?.attributes.url) }],
+    maxWidth: "920px",
+  };
+};
 
 /* const getWalls = async () => {
   wallsD.value = await $fetch(url + "/sliding-wall", {
