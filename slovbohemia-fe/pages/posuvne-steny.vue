@@ -57,7 +57,7 @@ const imgIndex: Ref<number> = ref(0);
 const images: Ref<any> = ref([]);
 const url = useStrapiUrl();
 
-/* const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
+const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
   findOne<any>("sliding-wall", {
     populate: {
       gallery: true,
@@ -66,11 +66,11 @@ const url = useStrapiUrl();
       },
     },
   })
-); */
+);
 
 /* let wallsD: Ref<any> = ref({}); */
 
-const {
+/* const {
   data: walls,
   pending,
   error,
@@ -85,7 +85,7 @@ const banner: Ref<any> = ref({
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
-});
+}); */
 
 const onShow = () => {
   isVisible.value = true;
@@ -123,7 +123,7 @@ const getBannerData = (data: any) => {
     title: data?.data?.attributes?.title,
     desc: data?.data?.attributes?.desc,
     btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
-    slides: [{ img: store.getMediaUrl(data?.data?.attributes?.image?.data?.attributes.url) }],
+    slides: [{ img: "/images/offer-3.jpg" }],
     maxWidth: "920px",
   };
 };
@@ -134,7 +134,7 @@ const getBannerData = (data: any) => {
   });
 }; */
 
-onMounted(async () => {
+onMounted(() => {
   /*  getWalls(); */
   console.log("walls", walls);
 });
