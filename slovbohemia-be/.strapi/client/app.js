@@ -11,7 +11,11 @@ import emailDesigner from "strapi-plugin-email-designer/strapi-admin";
 import navigation from "strapi-plugin-navigation/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
 
+import customisations from "../../src/admin/app.js";
+
 renderAdmin(document.getElementById("strapi"), {
+  customisations,
+
   plugins: {
     ckeditor5: ckeditor5,
     "strapi-app-version": strapiAppVersion,
