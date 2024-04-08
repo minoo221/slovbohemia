@@ -72,10 +72,6 @@ const banner: Ref<any> = ref({
   maxWidth: "920px",
 });
 
-const { data: prices, refresh: refreshReviews } = await useAsyncData("prices", () =>
-  find<any>("stripe/products", { locale: locale.value })
-);
-
 /* const prices: any[] = reactive([
   { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
   { title: "1 mesiac", desc: "Členstvo platí 1 mesiac od zakúpenia", price: "10" },

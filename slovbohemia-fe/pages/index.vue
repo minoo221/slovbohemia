@@ -1,3 +1,4 @@
+N
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
   <section class="offer">
@@ -86,48 +87,29 @@
     <v-container>
       <div class="blog__title">
         <h2 class="h1">Náš blog</h2>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Prečítajte si novinky v oblasti sanitárnych kabíniek, šatňových skriniek či posuvných stien.</p>
       </div>
       <v-row class="mb-16">
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" v-for="blog in blogs?.data" :key="blog.id">
           <article>
-            <v-img src="/images/offer-2.jpg" width="100%" height="230px" cover class="mb-4"></v-img>
+            <v-img
+              :src="store.getMediaUrl(blog?.attributes.mainImg.data?.attributes.url)"
+              width="100%"
+              height="230px"
+              cover
+              class="mb-4"
+            ></v-img>
             <ul class="mb-4">
-              <li>Kategória</li>
-              <li>Dátum</li>
+              <li>{{ blog?.attributes?.category }}</li>
+              <li>{{ $dayjs(blog?.attributes?.createdAt).format("DD.MM.YYYY") }}</li>
             </ul>
-            <h3 class="mb-4">Lorem ipsum dolor sit amet, consectetur.</h3>
+            <h3 class="mb-4">
+              <NuxtLink :to="localePath({ name: 'blog-slug', params: { slug: blog?.attributes.slug } })">{{
+                blog?.attributes?.title
+              }}</NuxtLink>
+            </h3>
             <p>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia in deserunt mollit anim id est sint
-              laborum.
-            </p>
-          </article>
-        </v-col>
-        <v-col cols="12" md="4">
-          <article>
-            <v-img src="/images/offer-2.jpg" width="100%" height="230px" cover class="mb-4"></v-img>
-            <ul class="mb-4">
-              <li>Kategória</li>
-              <li>Dátum</li>
-            </ul>
-            <h3 class="mb-4">Lorem ipsum dolor sit amet, consectetur.</h3>
-            <p>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia in deserunt mollit anim id est sint
-              laborum.
-            </p>
-          </article>
-        </v-col>
-        <v-col cols="12" md="4">
-          <article>
-            <v-img src="/images/offer-2.jpg" width="100%" height="230px" cover class="mb-4"></v-img>
-            <ul class="mb-4">
-              <li>Kategória</li>
-              <li>Dátum</li>
-            </ul>
-            <h3 class="mb-4">Lorem ipsum dolor sit amet, consectetur.</h3>
-            <p>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia in deserunt mollit anim id est sint
-              laborum.
+              {{ blog?.attributes?.info }}
             </p>
           </article>
         </v-col>
@@ -146,6 +128,8 @@ const localePath = useLocalePath();
 
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
+const url = useStrapiUrl();
+const route = useRoute();
 
 const banner: Ref<any> = ref({
   title: "SLOVBOHEMIA",
@@ -157,24 +141,35 @@ const banner: Ref<any> = ref({
   slides: [{ img: "/images/offer-1.jpg" }, { img: "/images/sanitarne-kabinky.jpg" }, { img: "/images/offer-2.jpg" }],
 });
 
+const {
+  data: blogs,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/blogs", {
+  query: { populate: "*" },
+});
+
 useServerSeoMeta({
   ogTitle: () => "Slovbohemia systems",
   title: () => "Slovbohemia systems | Hlavná stránka",
   description: () =>
     "Vitajte na stránkach firmy Slovebohemia Systems, ktorá sa zaoberá dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
   ogDescription: () =>
-    "Slovebohemia Systems, firma ktorá sa zaoberá dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
-  /* ogImage: () => productDetails.thumbnail,
-    ogImageUrl: () => productDetails.thumbnail,
-    twitterCard: () => 'summary_large_image',
-    twitterTitle: () => title,
-    twitterDescription: () => productDetails.description,
-    twitterImage: () => productDetails.thumbnail */
+    "Slovebohemia Systems, firma zaoberajúca sa dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
+  ogImage: () => "/images/offer-2.jpg",
+  ogImageUrl: () => "/images/offer-2.jpg",
+  twitterCard: () => "summary_large_image",
+  twitterTitle: () => "Slovbohemia systems",
+  twitterDescription: () =>
+    "Slovebohemia Systems, firma zaoberajúca sa dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
+  twitterImage: () => "/images/offer-2.jpg",
 });
 
 onMounted(async () => {
   store.setTitle(t("home.title"));
   console.log(store.title);
+  console.log(route);
 });
 </script>
 <style scoped lang="scss">

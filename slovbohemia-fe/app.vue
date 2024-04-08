@@ -10,6 +10,7 @@
           <NuxtPage />
         </NuxtLayout>
       </Suspense>
+      <CookieControl locale="sk" />
     </div>
   </v-app>
 </template>

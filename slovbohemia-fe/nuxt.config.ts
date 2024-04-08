@@ -11,6 +11,11 @@ export default defineNuxtConfig({
       		isCustomElement: (tag) => ['silent-box'].includes(tag),
 		},
 	}, */
+	app: {
+        head: {
+            htmlAttrs: { lang: 'sk' },
+        },
+    },
 	vite: {
 		ssr: {
 			noExternal: ["vuetify"],
@@ -37,6 +42,7 @@ export default defineNuxtConfig({
         "@nuxtjs/i18n",
 		'@nuxtjs/strapi',
 		'nuxt-swiper',
+		'@dargmuesli/nuxt-cookie-control',
 		'dayjs-nuxt',
     ],
 	runtimeConfig: {
@@ -48,6 +54,38 @@ export default defineNuxtConfig({
 			env: process.env.NODE_ENV
 		}
 	},
+	cookieControl: {
+		colors: {
+			barBackground: '#ffffff',
+			checkboxActiveBackground: '#00A34A', // text-green-600
+			barButtonBackground: '#FB923C',
+			barButtonColor: '#ffffff',
+			barTextColor: "#000000",
+			modalBackground: '#ffffff',
+			modalButtonBackground: '#FB923C',
+			modalButtonColor: '#ffffff',
+			modalTextColor: '#000000',
+		},
+		closeModalOnClickOutside: true,
+		cookies: {
+			necessary: [
+				{
+				description:
+					"Tieto súbory cookie sú nevyhnutné na to, aby sme vám mohli poskytovať služby dostupné prostredníctvom našej webovej stránky a aby ste mohli používať určité funkcie našej webovej stránky. Bez týchto súborov cookie vám nemôžeme poskytnúť určité služby na našom webe.",
+				name:
+					'Nevyhnutne potrebné cookies',
+				targetCookieIds: ['NEC'],
+				links: {
+					'https://www.penzion-harmonia.sk/sukromie/ochrana-osobnych': 'Ochrana osobných údajov',
+					'https://www.penzion-harmonia.sk/sukromie/cookies': 'Cookies',
+				},
+        	},
+      ],
+    },
+	isCookieIdVisible: true,
+	isIframeBlocked: true,
+	locales: ['sk'],
+  },
     i18n: {
 		 locales: [
 			{

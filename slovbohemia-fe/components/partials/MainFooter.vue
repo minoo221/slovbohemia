@@ -5,10 +5,32 @@
         <div class="newsletter">
           <h2 class="h1">Newsletter</h2>
           <p>Prihláste sa na odber noviniek a dostávajte vždý nové informácie.</p>
-          <div class="d-flex">
-            <v-text-field class="mr-4" placeholder="Váš email" variant="solo" :rounded="0" hide-details></v-text-field>
-            <v-btn color="primary">Odoberať</v-btn>
-          </div>
+          <v-form ref="newsletter">
+            <div class="d-flex justify-start">
+              <v-text-field
+                v-model="formData.email"
+                class="mr-4 text-left"
+                placeholder="Váš email"
+                variant="solo"
+                :rounded="0"
+                hide-details="auto"
+                required
+                :rules="[(v: any) => !!v || t('contact.form.rules.required')]"
+              ></v-text-field>
+
+              <v-btn color="primary" :loading="loadingSend" :disabled="loadingSend" @click="sendForm()">Odoberať</v-btn>
+            </div>
+            <v-checkbox
+              v-model="formData.agree"
+              label="Súhlasím so spracovaním osobných údajov na marketingové účely."
+              color="primary"
+              value="agree"
+              density="compact"
+              hide-details="auto"
+              class="text-left"
+              :rules="[(v: any) => !!v || t('contact.form.rules.requiredAgree')]"
+            ></v-checkbox>
+          </v-form>
         </div>
       </v-container>
     </div>
@@ -80,13 +102,23 @@
 const { locale, t } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const localePath = useLocalePath();
+import { useIndexStore } from "@/stores/";
+const store = useIndexStore();
 
-const { find } = useStrapi();
+const { find, create } = useStrapi();
 const url = useStrapiUrl();
 
 /* const { data: contactD, refresh: refreshC } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*" })
 ); */
+
+const formData = reactive({
+  email: "",
+  agree: false,
+});
+
+const newsletter: Ref<any> = ref(null);
+const loadingSend: Ref<boolean> = ref(false);
 
 const {
   data: contact,
@@ -96,6 +128,28 @@ const {
 } = await useFetch(url + "/contact-information", {
   query: { populate: "*" },
 });
+
+const sendForm = async () => {
+  const { valid } = await newsletter.value.validate();
+  console.log(valid);
+  console.log(newsletter.value);
+
+  if (valid) {
+    loadingSend.value = true;
+    try {
+      await create<any>("create-subscriber", {
+        email: formData.email,
+      });
+      store.showSuccess("Úspešne ste sa prihlásili na odber noviniek.");
+      await newsletter.value.reset();
+    } catch (e) {
+      console.log(e);
+      store.showError("Nepodarilo sa odoslať formulár. Skúste to prosím neskôr.");
+    } finally {
+      loadingSend.value = false;
+    }
+  }
+};
 
 const menu: any[] = reactive([
   { title: "Sanitárne kabíny", to: localePath("/sanitarne-kabinky") },

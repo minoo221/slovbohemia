@@ -1,7 +1,6 @@
 <template>
   <PartialsBanner :data="getBannerData(walls)"></PartialsBanner>
-  <!-- {{ walls?.data?.attributes?.title }} -->
-  <!-- <section class="offer">
+  <section class="offer">
     <div class="offer__item" v-for="wall in walls?.data?.attributes.offer" :key="wall.id">
       <v-container>
         <v-row class="align-start">
@@ -36,10 +35,12 @@
         <vue-easy-lightbox :visible="isVisible" :imgs="images" :index="imgIndex" @hide="onHide"></vue-easy-lightbox>
       </client-only>
     </div>
-  </section> -->
+  </section>
 </template>
 
 <script setup lang="ts">
+import qs from "qs";
+
 const { locale, t } = useI18n();
 const emit = defineEmits(["title"]);
 const localePath = useLocalePath();
@@ -57,7 +58,7 @@ const imgIndex: Ref<number> = ref(0);
 const images: Ref<any> = ref([]);
 const url = useStrapiUrl();
 
-const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
+/* const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wall", () =>
   findOne<any>("sliding-wall", {
     populate: {
       gallery: true,
@@ -66,18 +67,23 @@ const { data: walls, refresh: refreshReviews } = await useAsyncData("sliding-wal
       },
     },
   })
-);
+); */
 
 /* let wallsD: Ref<any> = ref({}); */
 
-/* const {
-  data: walls,
-  pending,
-  error,
-  refresh,
-} = await useFetch(url + "/sliding-wall", {
-  query: { populate: "*" },
-});
+const query = qs.stringify(
+  {
+    populate: {
+      gallery: true,
+      offer: {
+        populate: ["image"],
+      },
+    },
+  },
+  { encode: false }
+);
+
+const { data: walls, pending, error, refresh } = await useFetch(url + "/sliding-wall?" + query);
 
 const banner: Ref<any> = ref({
   title: "",
@@ -85,7 +91,7 @@ const banner: Ref<any> = ref({
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
   slides: [{ img: "/images/offer-3.jpg" }],
   maxWidth: "790px",
-}); */
+});
 
 const onShow = () => {
   isVisible.value = true;

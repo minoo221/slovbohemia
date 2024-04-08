@@ -1045,6 +1045,40 @@ export interface PluginNavigationNavigationsItemsRelated
   };
 }
 
+export interface ApiBlogBlog extends Schema.CollectionType {
+  collectionName: 'blogs';
+  info: {
+    singularName: 'blog';
+    pluralName: 'blogs';
+    displayName: 'Blog';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    body: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+    category: Attribute.String;
+    slug: Attribute.UID<'api::blog.blog', 'title'>;
+    mainImg: Attribute.Media;
+    info: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiContactContact extends Schema.CollectionType {
   collectionName: 'contacts';
   info: {
@@ -1135,6 +1169,36 @@ export interface ApiContactInformationContactInformation
       'api::contact-information.contact-information'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiNewsletterNewsletter extends Schema.CollectionType {
+  collectionName: 'newsletters';
+  info: {
+    singularName: 'newsletter';
+    pluralName: 'newsletters';
+    displayName: 'Newsletter';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    email: Attribute.Email;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1363,8 +1427,10 @@ declare module '@strapi/types' {
       'plugin::navigation.navigation': PluginNavigationNavigation;
       'plugin::navigation.navigation-item': PluginNavigationNavigationItem;
       'plugin::navigation.navigations-items-related': PluginNavigationNavigationsItemsRelated;
+      'api::blog.blog': ApiBlogBlog;
       'api::contact.contact': ApiContactContact;
       'api::contact-information.contact-information': ApiContactInformationContactInformation;
+      'api::newsletter.newsletter': ApiNewsletterNewsletter;
       'api::page.page': ApiPagePage;
       'api::sanitary-cabin.sanitary-cabin': ApiSanitaryCabinSanitaryCabin;
       'api::sliding-wall.sliding-wall': ApiSlidingWallSlidingWall;
