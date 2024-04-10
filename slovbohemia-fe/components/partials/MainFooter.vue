@@ -152,10 +152,9 @@ const sendForm = async () => {
 };
 
 const menu: any[] = reactive([
-  { title: "Sanitárne kabíny", to: localePath("/sanitarne-kabinky") },
+  { title: "Sanitárne kabíny", to: localePath("sanitarne-kabinky") },
   { title: "Šatňové skrinky", to: localePath("satnove-skrinky") },
-  { title: "Posuvné steny", to: localePath("cennik") },
-  { title: "Detské ihriská", to: localePath("okolie") },
+  { title: "Posuvné steny", to: localePath("posuvne-steny") },
 ]);
 
 onMounted(() => {
