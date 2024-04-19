@@ -4,45 +4,26 @@
     <v-container>
       <div class="blog__title"></div>
       <v-row class="mb-16">
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="4" v-for="blog in blogs?.data" :key="blog.id">
           <article>
-            <v-img src="/images/offer-2.jpg" width="100%" height="230px" cover class="mb-4"></v-img>
+            <v-img
+              :src="store.getMediaUrl(blog?.attributes.mainImg.data?.attributes.url)"
+              width="100%"
+              height="230px"
+              cover
+              class="mb-4"
+            ></v-img>
             <ul class="mb-4">
-              <li>Kategória</li>
-              <li>Dátum</li>
+              <li>{{ blog?.attributes?.category }}</li>
+              <li>{{ $dayjs(blog?.attributes?.createdAt).format("DD.MM.YYYY") }}</li>
             </ul>
-            <h3 class="mb-4">Lorem ipsum dolor sit amet, consectetur.</h3>
+            <h3 class="mb-4">
+              <NuxtLink :to="localePath({ name: 'blog-slug', params: { slug: blog?.attributes.slug } })">{{
+                blog?.attributes?.title
+              }}</NuxtLink>
+            </h3>
             <p>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia in deserunt mollit anim id est sint
-              laborum.
-            </p>
-          </article>
-        </v-col>
-        <v-col cols="12" md="4">
-          <article>
-            <v-img src="/images/offer-2.jpg" width="100%" height="230px" cover class="mb-4"></v-img>
-            <ul class="mb-4">
-              <li>Kategória</li>
-              <li>Dátum</li>
-            </ul>
-            <h3 class="mb-4">Lorem ipsum dolor sit amet, consectetur.</h3>
-            <p>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia in deserunt mollit anim id est sint
-              laborum.
-            </p>
-          </article>
-        </v-col>
-        <v-col cols="12" md="4">
-          <article>
-            <v-img src="/images/offer-2.jpg" width="100%" height="230px" cover class="mb-4"></v-img>
-            <ul class="mb-4">
-              <li>Kategória</li>
-              <li>Dátum</li>
-            </ul>
-            <h3 class="mb-4">Lorem ipsum dolor sit amet, consectetur.</h3>
-            <p>
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia in deserunt mollit anim id est sint
-              laborum.
+              {{ blog?.attributes?.info }}
             </p>
           </article>
         </v-col>
@@ -59,10 +40,7 @@ const localePath = useLocalePath();
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 
-const { findOne, find } = useStrapi();
-const client = useStrapiClient();
-const user = useStrapiUser();
-const { fetchUser } = useStrapiAuth();
+const url = useStrapiUrl();
 
 const banner: Ref<any> = ref({
   title: "Blog",
@@ -70,6 +48,15 @@ const banner: Ref<any> = ref({
   btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
   slides: [{ img: "/images/offer-1.jpg" }],
   maxWidth: "920px",
+});
+
+const {
+  data: blogs,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/blogs", {
+  query: { populate: "*" },
 });
 
 /* const prices: any[] = reactive([

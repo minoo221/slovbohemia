@@ -43,6 +43,8 @@ export default defineNuxtConfig({
 		'@nuxtjs/strapi',
 		'nuxt-swiper',
 		'@dargmuesli/nuxt-cookie-control',
+		'@nuxtjs/google-fonts',
+		'@vite-pwa/nuxt',
 		'dayjs-nuxt',
     ],
 	runtimeConfig: {
@@ -86,6 +88,18 @@ export default defineNuxtConfig({
 	isIframeBlocked: true,
 	locales: ['sk'],
   },
+
+  googleFonts: {
+    // Options
+	families: {
+		Roboto: {
+			wght: [ 400, 500, 700],
+		},
+		'Noto+Sans': {
+			wght: [ 300, 400, 700],
+		},
+		}
+	},
     i18n: {
 		 locales: [
 			{

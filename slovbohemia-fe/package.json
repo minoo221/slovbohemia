@@ -16,11 +16,13 @@
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "^7.1.4",
     "@mdi/font": "^7.2.96",
+    "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/i18n": "8.0.0-rc.1",
     "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/strapi": "^1.11.0",
-    "@types/qs": "^6.9.11",
     "@types/node": "^18",
+    "@types/qs": "^6.9.11",
+    "@vite-pwa/nuxt": "^0.6.0",
     "dayjs-nuxt": "^2.1.9",
     "nuxt": "^3.10.3",
     "vite-plugin-vuetify": "^1.0.2"
