@@ -4,10 +4,18 @@
     <div class="product-gallery">
       <v-container>
         <v-row>
-          <v-col cols="12" md="6" v-for="(image, index) in galleryImages">
-            <v-img :src="image.smallImg" width="100%" height="350px" cover class="mb-4" @click="showGallery(index)"></v-img>
+          <v-col cols="12" md="6" v-for="(image, index) in galleryImages.slice(0, 2)">
+            <v-img
+              :src="image.smallImg"
+              width="100%"
+              height="350px"
+              cover
+              class="mb-4 product-gallery-img"
+              @click="showGallery(index)"
+            ></v-img>
           </v-col>
         </v-row>
+        <p><em>Klikom na fotografiu zobrazíte celú galériu</em></p>
       </v-container>
     </div>
     <div class="product-parameters">
@@ -191,6 +199,9 @@ onMounted(async () => {
     padding: 60px 0;
     background: #f8fafc;
     margin-bottom: 52px;
+    .product-gallery-img {
+      cursor: pointer;
+    }
   }
   .v-img {
     border-radius: 32px;

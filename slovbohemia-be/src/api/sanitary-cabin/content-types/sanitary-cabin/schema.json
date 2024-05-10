@@ -87,6 +87,22 @@
       "targetField": "title"
     },
     "standartFittings": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "mainImg": {
       "allowedTypes": [
         "images",
         "files",
@@ -94,7 +110,7 @@
         "audios"
       ],
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
