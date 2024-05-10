@@ -55,28 +55,17 @@ N
     <v-container>
       <v-row>
         <v-col cols="12" md="5">
-          <h2 class="h1">O nás</h2>
+          <h2 class="h1">{{ about?.data.attributes?.title }}</h2>
           <p class="mb-8">
-            SlovBohemia je vaším spoľahlivým partnerom v oblasti komerčných riešení! Naša firma sa špecializuje nielen na výrobu
-            šatňových skriniek. Sme hrdí na naše moderné a funkčné šatňové skrinky, ktoré poskytujú praktické úložné riešenia a
-            zároveň pridávajú štýlový dotyk do každého prostredia. Okrem toho, naša ponuka zahŕňa aj špeciálne navrhnuté sanitárne
-            kabínky, ktoré spĺňajú najvyššie hygienické normy a sú ideálne pre použitie v rôznych verejných či komerčných
-            priestoroch. Navyše, naša firma ponúka široký výber posuvných stien, ktoré sú ideálne pre efektívne využitie priestoru
-            v kancelárskych a komerčných prostrediach.
+            {{ about?.data.attributes?.homeText }}
           </p>
           <v-btn color="secondary" link class="mr-4 mb-4 mb-sm-0" to="/o-nas"> Zistiť viac </v-btn>
           <v-btn color="primary" link class="mr-4 mb-4 mb-sm-0" to="/kontakt"> Kontaktujte nás </v-btn>
         </v-col>
         <v-col cols="12" md="6" offset-lg="1">
           <v-row>
-            <v-col cols="12" md="6">
-              <v-img src="/images/offer-2.jpg" width="100%" height="200px" cover></v-img>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-img src="/images/offer-2.jpg" width="100%" height="200px" cover></v-img>
-            </v-col>
-            <v-col cols="12">
-              <v-img src="/images/offer-2.jpg" width="100%" height="200px" cover></v-img>
+            <v-col v-for="(image, index) in galleryImages.slice(0, 3)" cols="12" :md="index === 2 ? '12' : '6'">
+              <v-img :src="image.smallImg" width="100%" height="200px" cover @click="showGallery(index)"></v-img>
             </v-col>
           </v-row>
         </v-col>
@@ -118,6 +107,9 @@ N
         <v-btn color="secondary" link class="px-10" to="/blog"> Pozrieť všetky </v-btn>
       </div>
     </v-container>
+    <client-only>
+      <vue-easy-lightbox :visible="isVisible" :imgs="images" :index="imgIndex" @hide="onHide"></vue-easy-lightbox>
+    </client-only>
   </section>
 </template>
 
@@ -130,6 +122,10 @@ import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 const url = useStrapiUrl();
 const route = useRoute();
+
+const isVisible: Ref<boolean> = ref(false);
+const imgIndex: Ref<number> = ref(0);
+const images: Ref<any> = ref([]);
 
 const banner: Ref<any> = ref({
   title: "SLOVBOHEMIA",
@@ -150,6 +146,15 @@ const {
   query: { populate: "*" },
 });
 
+const {
+  data: about,
+  error: errorAbot,
+  pending: pendingAbout,
+  refresh: refreshAbout,
+} = await useFetch(url + "/about", {
+  query: { populate: "*" },
+});
+
 useServerSeoMeta({
   ogTitle: () => "Slovbohemia systems",
   title: () => "Slovbohemia systems | Hlavná stránka",
@@ -165,6 +170,50 @@ useServerSeoMeta({
     "Slovebohemia Systems, firma zaoberajúca sa dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
   twitterImage: () => "/images/offer-2.jpg",
 });
+
+const onShow = () => {
+  isVisible.value = true;
+};
+
+const onHide = () => {
+  isVisible.value = false;
+};
+const galleryImages = computed(() => {
+  return (about?.value?.data.attributes.gallery.data || []).map((obj: any) => {
+    /* console.log(obj); */
+    /* return obj.id; */
+    return {
+      id: obj.id,
+      smallImg: obj.attributes.formats.small.url
+        ? store.getMediaUrl(obj.attributes.formats.small.url)
+        : store.getMediaUrl(obj.attributes.url),
+      largeImg: store.getMediaUrl(obj.attributes.url),
+    };
+  });
+});
+
+function showGallery(index: number) {
+  /* images.value = apartments[index].value.gallery; */
+
+  const result = galleryImages.value.map((obj: any) => {
+    console.log(obj);
+
+    return {
+      text: obj.id,
+      src: obj.largeImg,
+    };
+  });
+
+  images.value = result;
+
+  imgIndex.value = index;
+
+  console.log("result", result);
+  console.log("index", index);
+
+  onShow();
+  /* gallery.silentbox.openOverlay(item, index); */
+}
 
 onMounted(async () => {
   store.setTitle(t("home.title"));

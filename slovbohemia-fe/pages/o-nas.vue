@@ -13,19 +13,16 @@
         </v-col>
         <v-col cols="12" md="6" offset-lg="1" class="d-flex align-center">
           <v-row>
-            <v-col cols="12" md="6">
-              <v-img src="/images/offer-2.jpg" width="100%" height="200px" cover></v-img>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-img src="/images/offer-2.jpg" width="100%" height="200px" cover></v-img>
-            </v-col>
-            <v-col cols="12">
-              <v-img src="/images/offer-2.jpg" width="100%" height="200px" cover></v-img>
+            <v-col v-for="(image, index) in galleryImages.slice(0, 3)" cols="12" :md="index === 2 ? '12' : '6'">
+              <v-img :src="image.smallImg" width="100%" height="200px" cover @click="showGallery(index)"></v-img>
             </v-col>
           </v-row>
         </v-col>
       </v-row>
     </v-container>
+    <client-only>
+      <vue-easy-lightbox :visible="isVisible" :imgs="images" :index="imgIndex" @hide="onHide"></vue-easy-lightbox>
+    </client-only>
   </section>
 </template>
 
@@ -37,6 +34,10 @@ const localePath = useLocalePath();
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
 const url = useStrapiUrl();
+
+const isVisible: Ref<boolean> = ref(false);
+const imgIndex: Ref<number> = ref(0);
+const images: Ref<any> = ref([]);
 
 useServerSeoMeta({
   ogTitle: () => "Slovbohemia systems",
@@ -70,6 +71,50 @@ const {
 } = await useFetch(url + "/about", {
   query: { populate: "*" },
 });
+
+const onShow = () => {
+  isVisible.value = true;
+};
+
+const onHide = () => {
+  isVisible.value = false;
+};
+const galleryImages = computed(() => {
+  return (about?.value?.data.attributes.gallery.data || []).map((obj: any) => {
+    /* console.log(obj); */
+    /* return obj.id; */
+    return {
+      id: obj.id,
+      smallImg: obj.attributes.formats.small.url
+        ? store.getMediaUrl(obj.attributes.formats.small.url)
+        : store.getMediaUrl(obj.attributes.url),
+      largeImg: store.getMediaUrl(obj.attributes.url),
+    };
+  });
+});
+
+function showGallery(index: number) {
+  /* images.value = apartments[index].value.gallery; */
+
+  const result = galleryImages.value.map((obj: any) => {
+    console.log(obj);
+
+    return {
+      text: obj.id,
+      src: obj.largeImg,
+    };
+  });
+
+  images.value = result;
+
+  imgIndex.value = index;
+
+  console.log("result", result);
+  console.log("index", index);
+
+  onShow();
+  /* gallery.silentbox.openOverlay(item, index); */
+}
 
 /* const prices: any[] = reactive([
   { title: "1 deň", desc: "Členstvo platí 1 deň od zakúpenia", price: "3" },
