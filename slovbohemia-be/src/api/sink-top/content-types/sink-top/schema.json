@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "abouts",
+  "collectionName": "sink_tops",
   "info": {
-    "singularName": "about",
-    "pluralName": "abouts",
-    "displayName": "O nás",
-    "description": ""
+    "singularName": "sink-top",
+    "pluralName": "sink-tops",
+    "displayName": "Sink top"
   },
   "options": {
     "draftAndPublish": true
@@ -15,22 +14,18 @@
     "title": {
       "type": "string"
     },
-    "homeText": {
-      "type": "text"
-    },
-    "aboutUsText": {
+    "info": {
       "type": "text"
     },
     "gallery": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

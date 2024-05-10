@@ -33,7 +33,7 @@
         </v-table>
       </v-container>
     </div>
-    <div class="product-colors">
+    <div class="product-colors" v-if="product?.data.attributes.colors.length > 0">
       <v-container>
         <h2>Základne farby:</h2>
         <div class="d-flex">
@@ -106,9 +106,9 @@ const { data: product, refresh: refreshProducts } = await useAsyncData("sanitary
 const { data: product, pending, error, refresh } = await useFetch(url + "/sanitary-cabins/" + route.params.slug);
 
 const banner: Ref<any> = ref({
-  title: "Sanitárne kabínky " + product?.value?.data.attributes.title,
+  title: "Sanitárne kabínky " + product?.value?.data?.attributes.title,
   btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: "/images/sanitanre-kabinky.jpg" }],
+  slides: [{ img: store.getMediaUrl(product?.value?.data?.attributes.mainImg.data.attributes.url) }],
   maxWidth: "100%",
 });
 
@@ -139,8 +139,6 @@ const galleryImages = computed(() => {
 
 function showGallery(index: number) {
   /* images.value = apartments[index].value.gallery; */
-  console.log(images.value);
-  console.log(galleryImages.value);
 
   const result = galleryImages.value.map((obj: any) => {
     console.log(obj);
@@ -166,8 +164,6 @@ function showGalleryFittings(index: number, imgs: any) {
   /* images.value = apartments[index].value.gallery; */
 
   const result = imgs.map((obj: any) => {
-    console.log(obj);
-
     return {
       text: obj.id,
       src: store.getMediaUrl(obj.attributes.url),
@@ -178,16 +174,11 @@ function showGalleryFittings(index: number, imgs: any) {
 
   imgIndex.value = index;
 
-  console.log("result", result);
-  console.log("result", images.value);
-
   onShow();
   /* gallery.silentbox.openOverlay(item, index); */
 }
 
-onMounted(async () => {
-  console.log("product", product);
-});
+onMounted(async () => {});
 </script>
 <style scoped lang="scss">
 .product-detail {

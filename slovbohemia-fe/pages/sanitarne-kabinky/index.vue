@@ -35,7 +35,7 @@
         <p>Vyberte si z ponuky našich sanitárnych kabiniek.</p>
       </div>
       <v-row class="mb-16">
-        <v-col cols="12" md="4" v-for="(product, index) in products?.data" :key="index">
+        <v-col cols="12" md="4" v-for="(product, index) in products?.data" :key="index" class="mb-4">
           <article>
             <v-img
               :src="
@@ -75,7 +75,7 @@ const store = useIndexStore();
 const banner: Ref<any> = ref({
   title: "Sanitárne kabínky",
   desc: "Sanitárne kabíny sú vyrobené z dosiek z vysokotlakového laminátu HPL hrúbky 10 a 13 mm, drevotrieskové dosky s hrúbkou 24 až 28 mm pokrytých laminátom alebo melamínom. Konštrukcia je založená na hliníkových profiloch, eloxovaných alebo práškovaných farbou podľa zadanej farby. Na výber je aj konštrukcia z prvkov z nerezovej ocele alebo nylonu. Kovanie je chrómové, plastové alebo z nerezu.",
-  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
+  btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
   slides: [{ img: "/images/sanitarne-kabinky.jpg" }],
   maxWidth: "920px",
 });

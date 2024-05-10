@@ -18,6 +18,7 @@ module.exports = createCoreController('api::sanitary-cabin.sanitary-cabin', ({st
 				colors: true,
 				standartFittings: true,
 				stainlessSteelFittings: true,
+				mainImg: true,
 			}
 		})
 		const sanitizedResults = await this.sanitizeOutput(result, ctx);

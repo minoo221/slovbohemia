@@ -4,18 +4,9 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="5">
-          <h2 class="h1">O nás</h2>
+          <h2 class="h1">{{ about?.data.attributes?.title }}</h2>
           <p class="mb-8">
-            SlovBohemia je vaším spoľahlivým partnerom v oblasti komerčných riešení! Naša firma sa špecializuje nielen na výrobu
-            šatňových skriniek. Sme hrdí na naše moderné a funkčné šatňové skrinky, ktoré poskytujú praktické úložné riešenia a
-            zároveň pridávajú štýlový dotyk do každého prostredia. Okrem toho, naša ponuka zahŕňa aj špeciálne navrhnuté sanitárne
-            kabínky, ktoré spĺňajú najvyššie hygienické normy a sú ideálne pre použitie v rôznych verejných či komerčných
-            priestoroch. Navyše, naša firma ponúka široký výber posuvných stien, ktoré sú ideálne pre efektívne využitie priestoru
-            v kancelárskych a komerčných prostrediach. Sú navrhnuté s dôrazom na estetiku a funkčnosť, aby poskytovali maximálnu
-            flexibilitu a pohodlie pre vašich zamestnancov alebo návštevníkov. Spoľahnite sa na SlovBohemia pre špičkové
-            interiérové riešenia, ktoré kombinujú praktickosť, štýl a kvalitu. Naši skúsení odborníci sú pripravení splniť vaše
-            individuálne potreby a poskytnúť vám osobitnú starostlivosť od začiatku až do konca každého projektu. Dovolte nám
-            pomôcť vám vytvoriť priestory, ktoré vás nadchnú svojou funkčnosťou a krásou!
+            {{ about?.data.attributes?.aboutUsText }}
           </p>
           <v-btn color="secondary" class="mr-4" link :to="localePath('ponuka')"> Zistiť viac </v-btn>
           <v-btn color="primary" link :to="localePath('kontakt')"> Kontaktujte nás </v-btn>
@@ -45,6 +36,7 @@ const localePath = useLocalePath();
 
 import { useIndexStore } from "@/stores/";
 const store = useIndexStore();
+const url = useStrapiUrl();
 
 useServerSeoMeta({
   ogTitle: () => "Slovbohemia systems",
@@ -68,6 +60,15 @@ const banner: Ref<any> = ref({
   btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
   slides: [{ img: "/images/offer-1.jpg" }],
   maxWidth: "920px",
+});
+
+const {
+  data: about,
+  pending,
+  error,
+  refresh,
+} = await useFetch(url + "/about", {
+  query: { populate: "*" },
 });
 
 /* const prices: any[] = reactive([

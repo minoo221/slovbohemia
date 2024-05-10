@@ -1050,7 +1050,7 @@ export interface ApiAboutAbout extends Schema.SingleType {
   info: {
     singularName: 'about';
     pluralName: 'abouts';
-    displayName: 'about';
+    displayName: 'O n\u00E1s';
     description: '';
   };
   options: {
@@ -1370,6 +1370,38 @@ export interface ApiSanitaryCabinSanitaryCabin extends Schema.CollectionType {
   };
 }
 
+export interface ApiSinkTopSinkTop extends Schema.SingleType {
+  collectionName: 'sink_tops';
+  info: {
+    singularName: 'sink-top';
+    pluralName: 'sink-tops';
+    displayName: 'Sink top';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    info: Attribute.Text;
+    gallery: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sink-top.sink-top',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sink-top.sink-top',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSlidingWallSlidingWall extends Schema.SingleType {
   collectionName: 'sliding_walls';
   info: {
@@ -1474,6 +1506,7 @@ declare module '@strapi/types' {
       'api::newsletter.newsletter': ApiNewsletterNewsletter;
       'api::page.page': ApiPagePage;
       'api::sanitary-cabin.sanitary-cabin': ApiSanitaryCabinSanitaryCabin;
+      'api::sink-top.sink-top': ApiSinkTopSinkTop;
       'api::sliding-wall.sliding-wall': ApiSlidingWallSlidingWall;
       'api::wardrobe.wardrobe': ApiWardrobeWardrobe;
     }
