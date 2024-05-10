@@ -95,7 +95,7 @@ const { data: product, refresh: refreshProducts } = await useAsyncData("sanitary
   findOne<any>("sanitary-cabins", route.params.slug)
 ); */
 
-const { data: product, pending, error, refresh } = await useFetch(url + "/products/" + route.params.slug);
+const { data: product, pending, error, refresh } = await useFetch(url + "/sanitary-cabins/" + route.params.slug);
 
 const banner: Ref<any> = ref({
   title: "Sanitárne kabínky " + product?.value?.data.attributes.title,

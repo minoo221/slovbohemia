@@ -42,6 +42,22 @@ const store = useIndexStore();
 
 const url = useStrapiUrl();
 
+useServerSeoMeta({
+  ogTitle: () => "Slovbohemia systems",
+  title: () => "Slovbohemia systems | Blog",
+  description: () =>
+    "Vitajte na stránkach firmy Slovebohemia Systems, ktorá sa zaoberá dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
+  ogDescription: () =>
+    "Slovebohemia Systems, firma zaoberajúca sa dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
+  ogImage: () => "/images/offer-2.jpg",
+  ogImageUrl: () => "/images/offer-2.jpg",
+  twitterCard: () => "summary_large_image",
+  twitterTitle: () => "Slovbohemia systems",
+  twitterDescription: () =>
+    "Slovebohemia Systems, firma zaoberajúca sa dodávaním a montážou posuvných stien, sanitárnych kabín a šatňových skriniek. Prezrite si našu ponuku a v prípade akýchkoľvek otázok nás neváhajte kontaktovať",
+  twitterImage: () => "/images/offer-2.jpg",
+});
+
 const banner: Ref<any> = ref({
   title: "Blog",
   desc: "Chcete sa dozvedieť novinky zo sveta skriniek, kabínok či posuvných stien? Alebo chcete vedieť, čo je nové v našej firme? Prečítajte si niektorý z našich článkov.",
