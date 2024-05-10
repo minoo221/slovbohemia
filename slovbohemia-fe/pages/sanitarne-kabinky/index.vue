@@ -61,9 +61,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <client-only>
-      <vue-easy-lightbox :visible="isVisible" :imgs="images" :index="imgIndex" @hide="onHide"></vue-easy-lightbox>
-    </client-only>
   </section>
 </template>
 
