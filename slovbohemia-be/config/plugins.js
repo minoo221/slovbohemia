@@ -12,9 +12,9 @@ module.exports = ({ env }) => ({
 				},
 			},
 			settings: {
-				defaultFrom: 'no-reply@muzeum.eu.sk',
-				defaultReplyTo: 'muzeum.eu.sk@gmail.com',
-				testAddress: 'muzeum.eu.sk@muzeum.eu.sk',
+				defaultFrom: 'slovbohemia@slovbohemia.sk',
+				defaultReplyTo: 'slovbohemialm@gmail.com',
+				testAddress: 'milanblasko28@gmail.com',
 			},
 		},
 	},

@@ -89,8 +89,10 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="auto">
-            <v-btn variant="plain" class="text-subtitle-1 text-decoration-underline" link>Zásady ochrany osobných údajov</v-btn>
-            <v-btn variant="plain" class="text-subtitle-1 text-decoration-underline" link>Podmienky služby</v-btn>
+            <v-btn variant="plain" class="text-subtitle-1 text-decoration-underline" link to="/ochrana-osobnych-udajov"
+              >Zásady ochrany osobných údajov</v-btn
+            >
+            <v-btn variant="plain" class="text-subtitle-1 text-decoration-underline" link to="/cookies">Cookies</v-btn>
           </v-col>
         </v-row>
       </v-container>

@@ -19,7 +19,7 @@ module.exports = createCoreController('api::contact.contact', ({strapi}) => ({
 			.sendTemplatedEmail(
 				{
 					// required
-					to: 'milanblasko28@gmail.com',
+					to: 'slovbohemialm@gmail.com',
 
 					// optional if /config/plugins.js -> email.settings.defaultFrom is set
 

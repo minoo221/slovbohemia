@@ -49,6 +49,21 @@
         </v-row>
       </v-container>
     </div>
+    <div class="offer__item">
+      <v-container>
+        <v-row class="align-center">
+          <v-col cols="12" md="6">
+            <h2>Umývadlové dosky</h2>
+            <p>
+              Vysoká životnosť povrchu, odolnosť voči nečistotám a vonkajším faktorom v kombinácii so širokou škálou farieb robia
+              z HPL dosiek základný nástroj pre dizajnérov.
+            </p>
+            <v-btn color="secondary" link to="/umyvadlove-dosky"> Zistiť viac </v-btn>
+          </v-col>
+          <v-col cols="12" md="6"> <v-img src="/images/offer-4.jpg" width="100%" height="400px" cover></v-img></v-col>
+        </v-row>
+      </v-container>
+    </div>
   </section>
 </template>
 

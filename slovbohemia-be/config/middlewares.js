@@ -7,7 +7,7 @@ module.exports = [
         useDefaults: true,
         directives: {
           "connect-src": ["'self'", "https:"],
-          "script-src": ["'self'", "editor.unlayer.com"],
+          "script-src": ["'self'", "editor.unlayer.com", "editor.unlayer.com/embed.js"],
            "frame-src": ["'self'", "editor.unlayer.com"],
           "img-src": [
             "'self'",

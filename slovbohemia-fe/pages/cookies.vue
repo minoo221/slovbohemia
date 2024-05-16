@@ -1,0 +1,65 @@
+<template>
+  <section class="page-detail">
+    <v-container>
+      <div class="text">
+        <v-container>
+          <v-card>
+            <v-card-title class="h2 px-8 py-8"> Cookies </v-card-title>
+            <v-card-text class="px-8">
+              <p>ČO SÚ SÚBORY COOKIES?</p>
+              <p>
+                Cookie je krátky textový súbor, ktorý navštívená webová stránka odosiela do prehliadača. Umožňuje webu zaznamenať
+                informácie o vašej návšteve, napríklad preferovaný jazyk a ďalšie nastavenia. Nasledujúca návšteva stránok tak
+                môže byť jednoduchšia a produktívnejšia. Súbory cookie sú dôležité. Bez nich by bolo prezeranie webu oveľa
+                zložitejšie.
+              </p>
+              <p>PREČO POUŽÍVAME COOKIES?</p>
+              <p>
+                Súbory cookie slúžia na množstvo účelov. Cookies používame na nastavenie obsahu webových stránok vzhľadom na
+                preferencie používateľa a optimalizáciu využitia webových stránok. Takisto sa používajú na vytvorenie anonymných,
+                súhrnných štatistických údajov, ktoré pomáhajú analyzovať, akým spôsobom používateľ používa webové stránky.
+                Informácie tak pomáhajú zlepšovať štruktúru a obsah stránok.
+              </p>
+              <p>AKÉ COOKIES POUŽÍVAME?</p>
+              <p>
+                Používame niekoľko typov cookies, naše vlastné aj externé súbory získané od partnerov, s ktorými spolupracujeme.
+                Súbory využívané na našich stránkach sa dajú rozdeliť na nasledujúce typy:
+              </p>
+              <p>
+                Analytické cookies – zbierajú informácie o tom, ako používateľ využíva webovú stránku, o type webovej stránky, z
+                ktorej bol návštevník presmerovaný, o počte návštev používateľa a o štatistikách webovej stránky. Tieto súbory
+                nezaznamenávajú osobné údaje, ale používajú sa na zhromažďovanie štatistík webovej stránky.
+              </p>
+              <p>
+                Dynamické cookies – používajú sa na uloženie informácií o reláciách. Súbory s informáciami o reláciách umožňujú
+                navádzanie po webovej stránke bez toho, aby používateľ musel zadávať rovnaké informácie, ktoré už predtým zadal.
+                Po zavretí prehliadača sa súbory zmažú.
+              </p>
+              <p>Trvalé cookies – zostávajú vo vašom zariadení, kým ich nezmažete.</p>
+              <p>AKO MÔŽEM ODSTRÁNIŤ ALEBO ZABLOKOVAŤ COOKIES?</p>
+              <p>
+                Používanie súborov cookie je možné nastaviť pomocou vášho internetového prehliadača. Väčšina prehliadačov súbory
+                cookie automaticky prijíma už vo východiskovom nastavení. Súbory cookie je možné pomocou vášho webového
+                prehliadača odmietnuť alebo nastaviť používanie len niektorých súborov cookie.
+              </p>
+              <p>
+                Obmedzenie používania cookies môže mať vplyv na niektoré funkcie, ktoré sú dôležité na optimálne fungovanie
+                webových stránok. V prípade, že je niektorá z funkcií webových stránok nefunkčná, je vhodné skontrolovať
+                nastavenie cookies vo webovom prehliadači a umožniť zariadeniu prijatie cookies.
+              </p>
+              <p>Niekoľko odkazov, ktoré vám môžu pomôcť pri konfigurácii „cookies“ v najčastejšie používaných prehliadačoch:</p>
+              <p>Google Chrome</p>
+              <p>Mozilla Firefox</p>
+              <p>Internet Explorer</p>
+              <p>Safari</p>
+            </v-card-text>
+          </v-card>
+        </v-container>
+      </div>
+    </v-container>
+  </section>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped></style>

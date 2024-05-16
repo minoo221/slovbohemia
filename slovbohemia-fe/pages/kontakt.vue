@@ -68,7 +68,7 @@
                 </v-col>
                 <v-col cols="12">
                   <v-textarea
-                    v-model="formData.email"
+                    v-model="formData.text"
                     :label="t('contact.form.text')"
                     variant="solo"
                     :rounded="0"
@@ -100,13 +100,13 @@
             <GoogleMap
               api-key="AIzaSyDzsvWr8eGPYF4RQqavfNmuMJuu0HpSbqw"
               style="width: 100%; height: 100%"
-              :center="{ lat: 49.08187605869418, lng: 19.6253826469723 }"
+              :center="{ lat: 49.078767218317736, lng: 19.62830030795598 }"
               :zoom="15"
             >
-              <Marker :options="{ position: { lat: 49.08187605869418, lng: 19.62538264697 } }">
+              <Marker :options="{ position: { lat: 49.078767218317736, lng: 19.62830030795598 } }">
                 <InfoWindow>
                   <div id="content">
-                    <p>Slovbohemia</p>
+                    <p>Slovbohemia Systems</p>
                   </div>
                 </InfoWindow>
               </Marker>
@@ -140,6 +140,7 @@ const formData: any = reactive({});
 const form: Ref<any> = ref(null);
 const loadingSend: Ref<boolean> = ref(false);
 const url = useStrapiUrl();
+const { create, find } = useStrapi();
 /* const { create, find } = useStrapi();
 const { data: contact, refresh: refreContact } = await useAsyncData("contact-information", () =>
   find<any>("contact-information", { populate: "*" })
