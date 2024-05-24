@@ -43,7 +43,7 @@
         </div>
       </v-container>
     </div>
-    <div class="product-fittings" v-if="product?.data.attributes.standartFittings?.data">
+    <!-- <div class="product-fittings" v-if="product?.data.attributes.standartFittings?.data">
       <v-container>
         <h2>Aplikované kovania - štandardné kovanie</h2>
         <div class="d-flex">
@@ -80,7 +80,7 @@
           </div>
         </div>
       </v-container>
-    </div>
+    </div> -->
     <client-only>
       <vue-easy-lightbox :visible="isVisible" :imgs="images" :index="imgIndex" @hide="onHide"></vue-easy-lightbox>
     </client-only>

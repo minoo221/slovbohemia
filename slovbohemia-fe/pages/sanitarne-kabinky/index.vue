@@ -1,10 +1,10 @@
 <template>
   <PartialsBanner :data="banner"></PartialsBanner>
   <section class="catalog">
-    <v-container class="text-center">
+    <!--  <v-container class="text-center">
       <h2 class="text-uppercase mb-4">Katalóg na stiahnutie</h2>
       <v-btn color="black" link class="px-6"> Prezrieť katalóg </v-btn>
-    </v-container>
+    </v-container> -->
   </section>
   <section class="benefits">
     <v-container>
