@@ -14,6 +14,7 @@ export default defineNuxtConfig({
 	app: {
         head: {
             htmlAttrs: { lang: 'sk' },
+			link: [{ rel: 'icon', type: 'image/png', href: "/favicon.png" }]
         },
     },
 	vite: {
