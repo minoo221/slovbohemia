@@ -1,5 +1,5 @@
 <template>
-  <PartialsBanner :data="banner"></PartialsBanner>
+  <PartialsBanner :data="getBannerData(product)"></PartialsBanner>
   <section class="product-detail">
     <div class="product-gallery">
       <v-container>
@@ -105,12 +105,14 @@ const { data: product, refresh: refreshProducts } = await useAsyncData("sanitary
 
 const { data: product, pending, error, refresh } = await useFetch(url + "/sanitary-cabins/" + route.params.slug);
 
-const banner: Ref<any> = ref({
-  title: "Sanitárne kabínky " + product?.value?.data?.attributes.title,
-  btns: [{ title: "Kontaktovať", link: localePath("/"), color: "primary" }],
-  slides: [{ img: store.getMediaUrl(product?.value?.data?.attributes.mainImg.data.attributes.url) }],
-  maxWidth: "100%",
-});
+const getBannerData = (data: any) => {
+  return {
+    title: "Sanitárne kabínky " + product?.value?.data?.attributes.title,
+    btns: [{ title: "Kontaktovať", link: localePath("/kontakt"), color: "primary" }],
+    slides: [{ img: store.getMediaUrl(product?.value?.data?.attributes.mainImg.data.attributes.url) }],
+    maxWidth: "100%",
+  };
+};
 
 const isVisible: Ref<boolean> = ref(false);
 const imgIndex: Ref<number> = ref(0);
