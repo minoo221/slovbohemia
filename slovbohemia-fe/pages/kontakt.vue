@@ -67,6 +67,20 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
+                  <v-text-field
+                    v-model="formData.tel"
+                    :label="t('contact.form.tel')"
+                    variant="solo"
+                    :rounded="0"
+                    hide-details="auto"
+                    flat
+                    required
+                    :rules="[
+                    (v: any) => !!v || 'Telefón je povinný',
+                  ]"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
                   <v-textarea
                     v-model="formData.text"
                     :label="t('contact.form.text')"
@@ -167,6 +181,7 @@ const sendForm = async () => {
         name: formData.name,
         email: formData.email,
         message: formData.text,
+        tel: formData.tel,
       });
       store.showSuccess("Kontaktný formulár bol úspešne odoslaný");
       await form.value.reset();
