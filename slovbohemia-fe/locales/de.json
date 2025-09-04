@@ -1,0 +1,114 @@
+{
+  "hello": "Hallo, {name}!",
+  "test": "test",
+  "home": {
+    "homeInfo": "Wählen Sie aus den Optionen, wie lange Sie Zugriff auf unsere exklusiven Inhalte erhalten möchten",
+    "title": "Willkommen auf unserer Website",
+    "select": "Wählen"
+  },
+  "header": {
+    "login": "Einloggen",
+    "register": "Anmeldung",
+    "profile": "Profil",
+    "logout": "Ausloggen"
+  },
+  "footer": {
+    "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at.",
+    "contact": "Kontakt",
+    "info": "Information",
+    "privacy": "Privatsphäre",
+    "cookies": "Cookies"
+  },
+  "register": {
+    "title": "Anmeldung",
+    "form": {
+      "username": "Nutzername",
+      "tel": "Telefonnummer",
+      "email": "E-mail",
+      "password": "Passwort",
+      "rePassword": "Passwort Bestätigung",
+      "text": "Nachricht",
+      "newsletter": "Ich möchte den Newsletter abonnieren",
+      "agree": "Ich bin mit der Verarbeitung personenbezogener Daten einverstanden",
+      "registerBtn": "Registrieren",
+      "rules": {
+        "required": "Dieses Feld ist erforderlich",
+        "requiredAgree": "Zum Senden müssen Sie der Verarbeitung personenbezogener Daten zustimmen",
+        "email": "Falsches E-Mail-Format",
+        "passwordMatch": "Passwörter stimmen nicht überein",
+        "minLength": "Die Mindestanzahl der Zeichen beträgt 6"
+      },
+      "responses": {
+        "error": "Entschuldigung, irgendwo ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal.",
+        "success": "Die Registrierung war erfolgreich. Sie wurden angemeldet.",
+        "userExist": "Der Anmeldename oder die E-Mail-Adresse werden bereits verwendet."
+      }
+    }
+  },
+  "login": {
+    "title": "Anmeldung",
+    "form": {
+      "username": "Nutzername",
+      "tel": "Telefonnummer",
+      "email": "E-mail",
+      "password": "Passwort",
+      "text": "Nachricht",
+      "agree": "Ich bin mit der Verarbeitung personenbezogener Daten einverstanden",
+      "loginBtn": "Einloggen",
+      "rules": {
+        "required": "Dieses Feld ist erforderlich",
+        "requiredAgree": "Zum Senden müssen Sie der Verarbeitung personenbezogener Daten zustimmen",
+        "email": "Falsches E-Mail-Format",
+        "minLength": "Die Mindestanzahl der Zeichen beträgt 6"
+      },
+      "responses": {
+        "error": "Entschuldigung, irgendwo ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal.",
+        "success": "Du hast dich erfolgreich eingeloggt.",
+        "badCredentials": "Sie haben die falschen Anmeldeinformationen eingegeben."
+      }
+    }
+  },
+  "museum": {
+    "showMore": "Zeig mehr",
+    "search": "Suche mit Name",
+    "resetFilter": "Setzen Sie den Filter zurück",
+    "actualizations": "Aktualisierung",
+    "insight": "Ansicht"
+  },
+  "pay": {
+    "title": "Zahlungsinformationen",
+    "success": "Die Zahlung war erfolgreich.",
+    "redirect": "Gehen Sie zur Hauptseite"
+  },
+  "profile": {
+    "title": "Benutzerprofil",
+    "username": "Benutzer:",
+    "email": "E-mail:",
+    "subscribeUntil": "Abonnement gültig bis:"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "form": {
+      "fullName": "Vollständiger Name",
+      "tel": "Telefonnummer",
+      "email": "E-mail",
+      "subject": "Thema",
+      "text": "Nachricht",
+      "agree": "Ich bin mit der Verarbeitung personenbezogener Daten einverstanden",
+      "submit": "Senden",
+      "rules": {
+        "required": "Dieses Feld ist erforderlich",
+        "requiredAgree": "Zum Senden müssen Sie der Verarbeitung personenbezogener Daten zustimmen",
+        "email": "Falsches E-Mail-Format"
+      },
+      "responses": {
+        "error": "Entschuldigung, irgendwo ist ein Fehler aufgetreten. Bitte versuchen Sie es noch einmal.",
+        "success": "Das Kontaktformular wurde erfolgreich versendet"
+      }
+    },
+    "contactUs": "Kontaktiere uns",
+    "info": "Kontakt",
+    "ico": "Business ID",
+    "dic": "Firmen-Ident.-Nr."
+  }
+}

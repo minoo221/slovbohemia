@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_products_colors_categories",
+  "info": {
+    "displayName": "Colors category"
+  },
+  "options": {},
+  "attributes": {
+    "colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "products.colors"
+    }
+  }
+}

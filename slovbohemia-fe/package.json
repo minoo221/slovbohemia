@@ -1,0 +1,42 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "start": "node .output/server/index.mjs",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@dargmuesli/nuxt-cookie-control": "^7.1.4",
+    "@mdi/font": "^7.2.96",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/i18n": "8.0.0-rc.1",
+    "@nuxtjs/moment": "^1.6.1",
+    "@nuxtjs/strapi": "^1.11.0",
+    "@types/node": "^18",
+    "@types/qs": "^6.9.11",
+    "@vite-pwa/nuxt": "^0.6.0",
+    "dayjs-nuxt": "^2.1.9",
+    "nuxt": "^3.10.3",
+    "vite-plugin-vuetify": "^1.0.2"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "editorjs-html": "^3.4.3",
+    "nuxt-swiper": "^1.2.2",
+    "purify": "^3.5.0",
+    "qs": "^6.12.0",
+    "sass": "^1.62.1",
+    "vue-dompurify-html": "^5.0.1",
+    "vue-easy-lightbox": "^1.16.0",
+    "vue3-google-map": "^0.15.0",
+    "vuetify": "^3.3.0"
+  }
+}

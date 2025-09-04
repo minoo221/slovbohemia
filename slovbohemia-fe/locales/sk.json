@@ -1,0 +1,114 @@
+{
+  "hello": "Ahoj, {name}!",
+  "test": "test",
+  "home": {
+    "homeInfo": "Vyberte si z možností, na aké obdobie chcete získať prístup pre náš exkluzívny obsah",
+    "title": "Vitajte na našej stránke",
+    "select": "Vybrať"
+  },
+  "header": {
+    "login": "Prihlásenie",
+    "register": "Registrácia",
+    "profile": "Profil",
+    "logout": "Odhlásenie"
+  },
+  "footer": {
+    "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at.",
+    "contact": "Kontakt",
+    "info": "Informácie",
+    "privacy": "Ochrana osobých údajov",
+    "cookies": "Cookies"
+  },
+  "register": {
+    "title": "Registrácia",
+    "form": {
+      "username": "Prihlasovacie meno",
+      "tel": "Telefón",
+      "email": "Email",
+      "password": "Heslo",
+      "rePassword": "Potvrdenie hesla",
+      "text": "Správa",
+      "newsletter": "Chcem sa príhlasiť na odber noviniek",
+      "agree": "Súhlasím so spracovaním osobných údajov",
+      "registerBtn": "Registrovať",
+      "rules": {
+        "required": "Toto pole je povinné",
+        "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
+        "email": "Nesprávny formát emailu",
+        "passwordMatch": "Heslá sa nezhodujú",
+        "minLength": "Minimálny počet znakov je 6"
+      },
+      "responses": {
+        "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
+        "success": "Registrácia prebehla úspešne. Boli ste prihlásený.",
+        "userExist": "Prihlasovacie meno alebo email sa už používa."
+      }
+    }
+  },
+  "login": {
+    "title": "Prihlásenie",
+    "form": {
+      "username": "Prihlasovacie meno",
+      "tel": "Telefón",
+      "email": "Email",
+      "password": "Heslo",
+      "text": "Správa",
+      "agree": "Súhlasím so spracovaním osobných údajov",
+      "loginBtn": "Prihlásiť",
+      "rules": {
+        "required": "Toto pole je povinné",
+        "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
+        "email": "Nesprávny formát emailu",
+        "minLength": "Minimálny počet znakov je 6"
+      },
+      "responses": {
+        "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
+        "success": "Boli ste úspešne prihlasený.",
+        "badCredentials": "Zadali ste zlé prihlasovacie údaje."
+      }
+    }
+  },
+  "museum": {
+    "showMore": "Zobraziť viac",
+    "search": "Vyhľadať podľa názvu",
+    "resetFilter": "Resetovať filter",
+    "insight": "Náhľad",
+    "actualizations": "Aktualizácie"
+  },
+  "pay": {
+    "title": "Informácie o platbe",
+    "success": "Platba prebehlá úspešne.",
+    "redirect": "Prejsť na hlavnú stránku"
+  },
+  "profile": {
+    "title": "Profil používateľa",
+    "username": "Používateľ:",
+    "email": "Email:",
+    "subscribeUntil": "Predplatné platné do:"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "form": {
+      "fullName": "Celé meno",
+      "tel": "Telefón",
+      "email": "Email",
+      "subject": "Predmet",
+      "text": "Správa",
+      "agree": "Súhlasím so spracovaním osobných údajov",
+      "submit": "Odoslať",
+      "rules": {
+        "required": "Toto pole je povinné",
+        "requiredAgree": "Pre odoslanie musíte súhlasiť so spracovaním osobých údajov",
+        "email": "Nesprávny formát emailu"
+      },
+      "responses": {
+        "error": "Ospravedlňujeme sa, niekde sa stala chyba. Skúste to znova.",
+        "success": "Kontaktný formulár bol úspešne odoslaný"
+      }
+    },
+    "contactUs": "Napíšte nám",
+    "info": "Kontakt",
+    "ico": "IČO",
+    "dic": "DIČ"
+  }
+}

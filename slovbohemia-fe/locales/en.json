@@ -1,0 +1,114 @@
+{
+  "hello": "Hello, {name}!",
+  "test": "test",
+  "home": {
+    "homeInfo": "Choose from the options, for how long you want to get access to our exclusive content",
+    "title": "Welcome on our website",
+    "select": "Select"
+  },
+  "header": {
+    "login": "Login",
+    "register": "Registration",
+    "profile": "Profile",
+    "logout": "Log out"
+  },
+  "footer": {
+    "about": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore, quisquam! Consectetur, perferendis officiis, ex dolore obcaecati temporibus voluptates sapiente asperiores soluta fuga voluptatibus, perspiciatis laboriosam! Accusamus ea eligendi fugiat cumque aliquid quae distinctio exercitationem et recusandae maxime at.",
+    "contact": "Contact",
+    "info": "Information",
+    "privacy": "Privacy",
+    "cookies": "Cookies"
+  },
+  "register": {
+    "title": "Registration",
+    "form": {
+      "username": "Username",
+      "tel": "Phone number",
+      "email": "E-mail",
+      "password": "Password",
+      "rePassword": "Password confirmation",
+      "text": "Message",
+      "newsletter": "I want to subscribe to the newsletter",
+      "agree": "I agree with the processing of personal data",
+      "registerBtn": "Register",
+      "rules": {
+        "required": "This field is required",
+        "requiredAgree": "To send, you must agree with the processing of personal data",
+        "email": "Incorrect email format",
+        "passwordMatch": "Passwords do not match",
+        "minLength": "The minimum number of characters is 6"
+      },
+      "responses": {
+        "error": "Sorry, there was an error somewhere. Please try it again.",
+        "success": "Registration was successful. You have been logged in.",
+        "userExist": "The login name or e-mail is already in use."
+      }
+    }
+  },
+  "login": {
+    "title": "Login",
+    "form": {
+      "username": "Username",
+      "tel": "Phone number",
+      "email": "E-mail",
+      "password": "Password",
+      "text": "Message",
+      "agree": "I agree with the processing of personal data",
+      "loginBtn": "Log in",
+      "rules": {
+        "required": "This field is required",
+        "requiredAgree": "To send, you must agree with the processing of personal data",
+        "email": "Incorrect email format",
+        "minLength": "The minimum number of characters is 6"
+      },
+      "responses": {
+        "error": "Sorry, there was an error somewhere. Please try it again.",
+        "success": "You have been successfully logged in.",
+        "badCredentials": "You have entered the wrong credentials."
+      }
+    }
+  },
+  "museum": {
+    "showMore": "Show more",
+    "search": "Search by name",
+    "resetFilter": "Reset the filter",
+    "actualizations": "Updates",
+    "insight": "Insight"
+  },
+  "pay": {
+    "title": "Payment Information",
+    "success": "Payment was successful.",
+    "redirect": "Go to the main page"
+  },
+  "profile": {
+    "title": "User profile",
+    "username": "User:",
+    "email": "E-mail:",
+    "subscribeUntil": "Subscription valid until:"
+  },
+  "contact": {
+    "title": "Contact",
+    "form": {
+      "fullName": "Full name",
+      "tel": "Phone",
+      "email": "E-mail",
+      "subject": "Subject",
+      "text": "Message",
+      "agree": "I agree with the processing of personal data",
+      "submit": "To send",
+      "rules": {
+        "required": "This field is required",
+        "requiredAgree": "To send, you must agree with the processing of personal data",
+        "email": "Incorrect email format"
+      },
+      "responses": {
+        "error": "Sorry, there was an error somewhere. Please try it again.",
+        "success": "The contact form has been successfully sent"
+      }
+    },
+    "contactUs": "Contact us",
+    "info": "Contact",
+    "ico": "Business ID",
+    "dic": "Tax ID"
+  }
+}

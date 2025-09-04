@@ -1,0 +1,61 @@
+version: "3"
+services:
+  dmmb-be:
+    container_name: dmmb-be
+    build: .
+    image: dmmb-be:latest
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: mariadb
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./be/config:/opt/app/config
+      - ./be/src:/opt/app/src
+      - ./be/package.json:/opt/package.json
+      - ./be/yarn.lock:/opt/yarn.lock
+      - ./be/.env:/opt/app/.env
+      - ./be/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    depends_on:
+      - mariadb
+    networks:
+      - mariadbNetwork
+  dmmb-fe:
+    container_name: dmmb-fe
+    build: .
+    image: dmmb-fe:latest
+    restart: unless-stopped
+    volumes:
+      - ./be/public/uploads:/opt/public/uploads
+    depends_on:
+      - dmmb-be
+    ports:
+      - "3050:3000"
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: Z1oD4dzP6fNWlOWp
+      MYSQL_USER: flambesk
+      MYSQL_PASSWORD: Z1oD4dzP6fNWlOWp
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+    ports:
+      - "6589:3306"
+    networks:
+      - mariadbNetwork
+      
+networks:
+  mariadbNetwork:
+    name: mariadbNetwork
+    external: true

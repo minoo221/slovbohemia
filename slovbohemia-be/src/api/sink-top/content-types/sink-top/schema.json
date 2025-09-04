@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "sink_tops",
+  "info": {
+    "singularName": "sink-top",
+    "pluralName": "sink-tops",
+    "displayName": "Sink top"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "info": {
+      "type": "text"
+    },
+    "gallery": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
